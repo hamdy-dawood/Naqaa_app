@@ -13,7 +13,7 @@ class NavBarController {
   //list of navigation bar selected icons
   List selectedIcons = [
     "assets/icons/home_selected.svg",
-    "assets/icons/search.svg",
+    "assets/icons/search_selected.svg",
     "assets/icons/orders_selected.svg",
     "assets/icons/check_selected.svg",
     "assets/icons/profile_selected.svg",

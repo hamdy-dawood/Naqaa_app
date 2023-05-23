@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:naqaa/components/svg_icons.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:naqaa/constants/color_manager.dart';
 import 'package:naqaa/constants/custom_text.dart';
 
@@ -26,10 +26,9 @@ class BottomBarItem extends StatelessWidget {
         child: Column(
           children: [
             Expanded(
-              child: SvgIcon(
+              child: SvgPicture.asset(
+                isSelected ? selectedIcon : icon,
                 height: 22.h,
-                icon: isSelected ? selectedIcon : icon,
-                color: ColorManager.white,
               ),
             ),
             CustomText(
