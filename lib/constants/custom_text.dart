@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class CustomText extends StatelessWidget {
   const CustomText({
@@ -9,7 +10,7 @@ class CustomText extends StatelessWidget {
     required this.fontSize,
     this.textDecoration = TextDecoration.none,
     this.textAlign = TextAlign.start,
-    this.maxLines = 2,
+    this.maxLines = 1,
   }) : super(key: key);
   final String text;
   final Color color;
@@ -26,7 +27,7 @@ class CustomText extends StatelessWidget {
       textAlign: textAlign,
       maxLines: maxLines,
       overflow: TextOverflow.ellipsis,
-      style:TextStyle(
+      style: GoogleFonts.redHatDisplay(
         color: color,
         fontSize: fontSize,
         fontWeight: fontWeight,

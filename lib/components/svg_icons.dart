@@ -18,6 +18,7 @@ class SvgIcon extends StatelessWidget {
     return SvgPicture.asset(
       icon,
       height: height,
+      width: height,
       colorFilter: ColorFilter.mode(color, BlendMode.srcIn),
     );
   }

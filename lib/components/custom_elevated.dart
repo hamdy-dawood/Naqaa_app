@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:naqaa/constants/custom_text.dart';
 
 class CustomElevated extends StatelessWidget {
@@ -13,10 +14,10 @@ class CustomElevated extends StatelessWidget {
     required this.press,
     this.textColor = Colors.white,
     required this.btnColor,
-    this.hSize = 50,
-    this.wSize = 200,
+    this.hSize = 20,
+    this.wSize = 80,
     this.fontSize = 17,
-    this.borderRadius = 12,
+    this.borderRadius = 5,
   }) : super(key: key);
 
   @override
@@ -26,17 +27,19 @@ class CustomElevated extends StatelessWidget {
       style: ElevatedButton.styleFrom(
         backgroundColor: btnColor,
         elevation: 0.0,
-        fixedSize: Size(wSize, hSize),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(borderRadius),
+          borderRadius: BorderRadius.circular(borderRadius.r),
         ),
       ),
       child: Center(
-        child: CustomText(
-          text: text,
-          color: textColor,
-          fontWeight: FontWeight.bold,
-          fontSize: fontSize,
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 10.w),
+          child: CustomText(
+            text: text,
+            color: textColor,
+            fontWeight: FontWeight.bold,
+            fontSize: fontSize,
+          ),
         ),
       ),
     );

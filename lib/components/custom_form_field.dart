@@ -1,34 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:naqaa/constants/color_manager.dart';
 
 class CustomTextFormField extends StatelessWidget {
   const CustomTextFormField({
     super.key,
     required this.hint,
-    this.onChanged,
-    this.obscureText = false,
-    this.prefixIcon,
-    this.suffixIcon,
     this.keyboardType = TextInputType.text,
     this.autoValidate = AutovalidateMode.onUserInteraction,
-    this.isLastInput = false,
     this.controller,
     required this.validator,
-    this.borderRadius = 20.0,
   });
 
-  final Function(String)? onChanged;
   final String hint;
-  final Widget? prefixIcon;
-  final IconButton? suffixIcon;
-  final bool obscureText;
+
   final TextInputType? keyboardType;
   final AutovalidateMode autoValidate;
-  final bool isLastInput;
   final TextEditingController? controller;
   final FormFieldValidator validator;
-  final double borderRadius;
 
   @override
   Widget build(BuildContext context) {
@@ -36,46 +26,39 @@ class CustomTextFormField extends StatelessWidget {
       controller: controller,
       autovalidateMode: autoValidate,
       keyboardType: keyboardType,
-      obscureText: obscureText,
-      textInputAction:
-          isLastInput ? TextInputAction.done : TextInputAction.next,
       validator: validator,
-      onChanged: onChanged,
-      style: TextStyle(
+      style: GoogleFonts.redHatDisplay(
         color: ColorManager.black,
         fontSize: 18.sp,
       ),
       decoration: InputDecoration(
+        contentPadding: EdgeInsets.all(12.h),
         hintText: hint,
-        hintStyle:TextStyle(
+        hintStyle: GoogleFonts.redHatDisplay(
           color: ColorManager.grey,
-          fontSize: 16.sp,
+          fontSize: 18.sp,
           fontWeight: FontWeight.normal,
         ),
-        prefixIcon: prefixIcon,
-        suffixIcon: suffixIcon,
-        filled: true,
-        fillColor: ColorManager.lightGrey,
         enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(
-              color: ColorManager.grey,
+              color: ColorManager.black,
             ),
-            borderRadius: BorderRadius.circular(borderRadius)),
+            borderRadius: BorderRadius.circular(10.r)),
         focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(
               color: ColorManager.mainColor,
             ),
-            borderRadius: BorderRadius.circular(borderRadius)),
+            borderRadius: BorderRadius.circular(10.r)),
         errorBorder: OutlineInputBorder(
             borderSide: BorderSide(
               color: ColorManager.red,
             ),
-            borderRadius: BorderRadius.circular(borderRadius)),
+            borderRadius: BorderRadius.circular(10.r)),
         focusedErrorBorder: OutlineInputBorder(
             borderSide: BorderSide(
               color: ColorManager.red,
             ),
-            borderRadius: BorderRadius.circular(borderRadius)),
+            borderRadius: BorderRadius.circular(10.r)),
       ),
     );
   }

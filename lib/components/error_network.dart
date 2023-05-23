@@ -25,7 +25,7 @@ class ErrorNetwork extends StatelessWidget {
               color: ColorManager.mainColor,
             ),
             errorWidget: (context, url, error) => Center(
-              child: Image.asset("assets/images/no_network.png"),
+              child: Image.asset("assets/icons/no_network.png"),
             ),
           ),
         ),

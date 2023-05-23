@@ -19,8 +19,8 @@ class CustomElevatedWithIcon extends StatelessWidget {
     required this.btnColor,
     this.hSize = 50,
     this.wSize = 200,
-    this.fontSize = 17,
-    this.borderRadius = 12,
+    this.fontSize = 18,
+    this.borderRadius = 10,
   }) : super(key: key);
 
   @override
@@ -37,16 +37,16 @@ class CustomElevatedWithIcon extends StatelessWidget {
       style: ElevatedButton.styleFrom(
         backgroundColor: btnColor,
         elevation: 0.0,
-        fixedSize: Size(wSize, hSize),
+        fixedSize: Size(wSize, hSize.h),
         shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(borderRadius),
-            side: BorderSide(color: ColorManager.navGrey)),
+            borderRadius: BorderRadius.circular(borderRadius.r),
+            side: BorderSide(color: ColorManager.mainColor)),
       ),
       label: CustomText(
         text: text,
         color: textColor,
         fontWeight: FontWeight.normal,
-        fontSize: fontSize,
+        fontSize: fontSize.sp,
       ),
     );
   }
