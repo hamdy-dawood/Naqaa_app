@@ -75,9 +75,10 @@ class ProductItem extends StatelessWidget {
                       ),
                     ),
                     CustomElevated(
-                        text: "إضافة",
-                        press: () {},
-                        btnColor: ColorManager.mainColor)
+                      text: "إضافة",
+                      press: () {},
+                      btnColor: ColorManager.mainColor,
+                    ),
                   ],
                 ),
               ],

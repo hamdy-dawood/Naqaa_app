@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:naqaa/constants/color_manager.dart';
 import 'package:naqaa/core/cache_helper.dart';
 import 'package:naqaa/pages/bottom_nav_bar/view.dart';
+import 'package:naqaa/pages/login/view.dart';
 
 class SplashView extends StatefulWidget {
   const SplashView({Key? key}) : super(key: key);
@@ -14,7 +15,7 @@ class SplashView extends StatefulWidget {
 }
 
 class _SplashViewState extends State<SplashView> {
-  bool isFirstTime = CacheHelper.getIfFirstTime();
+  // bool isFirstTime = CacheHelper.getIfFirstTime();
   String token = CacheHelper.getToken();
 
   @override
@@ -29,7 +30,8 @@ class _SplashViewState extends State<SplashView> {
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(
-        builder: (context) => const NavBarView(),
+        builder: (context) =>
+            token.isEmpty ? const LoginView() : const NavBarView(),
       ),
     );
 
@@ -37,10 +39,10 @@ class _SplashViewState extends State<SplashView> {
     //   context,
     //   MaterialPageRoute(
     //     builder: (context) => isFirstTime
-    //         ? const OnBoardingView()
+    //         ? const LanguageView()
     //         : token.isEmpty
     //             ? const LoginView()
-    //             : NavBarView(),
+    //             : const NavBarView(),
     //   ),
     // );
   }

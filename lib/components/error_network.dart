@@ -40,9 +40,7 @@ class ErrorNetwork extends StatelessWidget {
             ? CustomElevated(
                 text: "إعادة التحميل",
                 press: press,
-                hSize: 40.h,
-                wSize: 180.w,
-                btnColor: ColorManager.secMainColor,
+                btnColor: ColorManager.mainColor,
                 borderRadius: 12.r,
                 fontSize: 15.sp,
               )

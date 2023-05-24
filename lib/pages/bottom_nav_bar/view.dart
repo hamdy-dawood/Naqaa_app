@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:naqaa/constants/color_manager.dart';
+import 'package:naqaa/core/cache_helper.dart';
 import 'package:naqaa/pages/account/view.dart';
+import 'package:naqaa/pages/basket/view.dart';
 import 'package:naqaa/pages/home/view.dart';
+import 'package:naqaa/pages/login/view.dart';
 
 import 'bottom_bar_item.dart';
 import 'cubit.dart';
@@ -14,12 +17,13 @@ class NavBarView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List screens = const [
-      HomeView(),
-      HomeView(),
-      HomeView(),
-      HomeView(),
-      MyAccountView(),
+    String token = CacheHelper.getToken();
+    List screens = [
+      const HomeView(),
+      const HomeView(),
+      token.isEmpty ? const LoginView() : const HomeView(),
+      const BasketView(),
+      token.isEmpty ? const LoginView() : const MyAccountView(),
     ];
 
     return BlocProvider(

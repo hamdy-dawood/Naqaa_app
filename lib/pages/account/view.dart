@@ -6,6 +6,9 @@ import 'package:naqaa/components/custom_form_field.dart';
 import 'package:naqaa/components/svg_icons.dart';
 import 'package:naqaa/constants/color_manager.dart';
 import 'package:naqaa/constants/custom_text.dart';
+import 'package:naqaa/core/cache_helper.dart';
+import 'package:naqaa/core/snack_and_navigate.dart';
+import 'package:naqaa/pages/login/view.dart';
 
 class MyAccountView extends StatelessWidget {
   const MyAccountView({Key? key}) : super(key: key);
@@ -99,14 +102,17 @@ class MyAccountView extends StatelessWidget {
                   SizedBox(
                     height: 20.h,
                   ),
-                  //todo
+                  //todo change language
                   SizedBox(
                     height: 30.h,
                   ),
                   CustomElevatedWithIcon(
                     text: "تسجيل الخروج",
                     image: "assets/icons/logout.svg",
-                    press: () {},
+                    press: () {
+                      navigateTo(page: const LoginView(), withHistory: false);
+                      CacheHelper.removeToken();
+                    },
                     btnColor: ColorManager.mainColor,
                   ),
                   SizedBox(

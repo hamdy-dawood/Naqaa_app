@@ -39,8 +39,11 @@ class CustomElevatedWithIcon extends StatelessWidget {
         elevation: 0.0,
         fixedSize: Size(wSize, hSize.h),
         shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(borderRadius.r),
-            side: BorderSide(color: ColorManager.mainColor)),
+          borderRadius: BorderRadius.circular(borderRadius.r),
+          side: BorderSide(
+            color: ColorManager.mainColor,
+          ),
+        ),
       ),
       label: CustomText(
         text: text,

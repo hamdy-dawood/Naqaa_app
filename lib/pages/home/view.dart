@@ -6,7 +6,9 @@ import 'package:naqaa/components/svg_icons.dart';
 import 'package:naqaa/components/will_pop_scope.dart';
 import 'package:naqaa/constants/color_manager.dart';
 import 'package:naqaa/constants/custom_text.dart';
+import 'package:naqaa/core/snack_and_navigate.dart';
 import 'package:naqaa/pages/home/components/product_item.dart';
+import 'package:naqaa/pages/location/view.dart';
 
 import 'cubit.dart';
 
@@ -34,7 +36,9 @@ class HomeView extends StatelessWidget {
               backgroundColor: ColorManager.white,
               elevation: 0.0,
               leading: IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  navigateTo(page: const LocationView());
+                },
                 icon: SvgIcon(
                   height: 22.h,
                   icon: "assets/icons/location.svg",
@@ -70,7 +74,7 @@ class HomeView extends StatelessWidget {
                 BlocBuilder<AllProductsCubit, AllProductsStates>(
                   builder: (context, state) {
                     if (state is AllProductsLoadingState) {
-                      return customWillPopScope(context);
+                      customWillPopScope();
                     } else if (state is AllProductsFailedState) {
                       return Text(state.msg);
                     } else if (state is NetworkErrorState) {

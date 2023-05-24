@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:naqaa/pages/splash/view.dart';
 
 import 'core/cache_helper.dart';
 import 'core/snack_and_navigate.dart';
-import 'pages/splash/view.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await CacheHelper.init();
+  // CacheHelper.clear();
   runApp(const MyApp());
 }
 
