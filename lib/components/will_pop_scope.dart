@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:naqaa/core/snack_and_navigate.dart';
 
-customWillPopScope() {
+customWillPopScope(BuildContext context) {
   showDialog(
-    context: navigatorKey.currentContext!,
+    context: context,
     barrierDismissible: false,
     builder: (BuildContext context) {
       return WillPopScope(

@@ -20,8 +20,8 @@ class NavBarView extends StatelessWidget {
     String token = CacheHelper.getToken();
     List screens = [
       const HomeView(),
-      const HomeView(),
-      token.isEmpty ? const LoginView() : const HomeView(),
+      token.isEmpty ? const LoginView() : const MyAccountView(),
+      token.isEmpty ? const LoginView() : const MyAccountView(),
       const BasketView(),
       token.isEmpty ? const LoginView() : const MyAccountView(),
     ];

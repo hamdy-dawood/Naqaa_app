@@ -18,14 +18,16 @@ class ErrorNetwork extends StatelessWidget {
     return Column(
       children: [
         SizedBox(
-          height: 0.15.sh,
+          height: 0.20.sh,
           child: CachedNetworkImage(
             imageUrl: UrlsStrings.networkErrorUrl,
-            placeholder: (context, url) => CircularProgressIndicator(
-              color: ColorManager.mainColor,
+            placeholder: (context, url) => Center(
+              child: CircularProgressIndicator(
+                color: ColorManager.mainColor,
+              ),
             ),
             errorWidget: (context, url, error) => Center(
-              child: Image.asset("assets/icons/no_network.png"),
+              child: Image.asset(AssetsStrings.noNetworkImages),
             ),
           ),
         ),
@@ -37,12 +39,16 @@ class ErrorNetwork extends StatelessWidget {
         ),
         SizedBox(height: 20.h),
         reloadButton
-            ? CustomElevated(
-                text: "إعادة التحميل",
-                press: press,
-                btnColor: ColorManager.mainColor,
-                borderRadius: 12.r,
-                fontSize: 15.sp,
+            ? Padding(
+                padding: EdgeInsets.symmetric(horizontal: 0.2.sw),
+                child: CustomElevated(
+                  text: "إعادة التحميل",
+                  press: press,
+                  btnColor: ColorManager.mainColor,
+                  borderRadius: 12.r,
+                  fontSize: 18.sp,
+                  paddingVertical: 5.h,
+                ),
               )
             : const SizedBox(),
       ],

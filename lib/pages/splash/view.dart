@@ -25,26 +25,17 @@ class _SplashViewState extends State<SplashView> {
   }
 
   _goNext() async {
-    await Future.delayed(const Duration(milliseconds: 3000), () {});
-    if (!mounted) return;
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(
-        builder: (context) =>
-            token.isEmpty ? const LoginView() : const NavBarView(),
-      ),
+    await Future.delayed(
+      const Duration(seconds: 3),
+      () {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) {
+            return token.isEmpty ? const LoginView() : const NavBarView();
+          }),
+        );
+      },
     );
-
-    // Navigator.pushReplacement(
-    //   context,
-    //   MaterialPageRoute(
-    //     builder: (context) => isFirstTime
-    //         ? const LanguageView()
-    //         : token.isEmpty
-    //             ? const LoginView()
-    //             : const NavBarView(),
-    //   ),
-    // );
   }
 
   @override
@@ -56,7 +47,7 @@ class _SplashViewState extends State<SplashView> {
         width: 1.sw,
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("assets/icons/splash.png"),
+            image: AssetImage("assets/images/splash.png"),
             fit: BoxFit.cover,
           ),
         ),

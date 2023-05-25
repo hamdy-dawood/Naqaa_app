@@ -9,6 +9,7 @@ import 'package:naqaa/components/custom_elevated.dart';
 import 'package:naqaa/components/will_pop_scope.dart';
 import 'package:naqaa/constants/color_manager.dart';
 import 'package:naqaa/constants/custom_text.dart';
+import 'package:naqaa/constants/strings.dart';
 import 'package:naqaa/core/snack_and_navigate.dart';
 import 'package:naqaa/pages/bottom_nav_bar/view.dart';
 import 'package:naqaa/pages/login/states.dart';
@@ -66,7 +67,7 @@ class LoginView extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.symmetric(vertical: 20.h),
                     child: SvgPicture.asset(
-                      "assets/icons/logo.svg",
+                      AssetsStrings.logoIcon,
                       height: 120.h,
                     ),
                   ),
@@ -229,7 +230,7 @@ class LoginView extends StatelessWidget {
                       } else if (state is NetworkErrorState) {
                         showMessage(message: "يرجي التحقق من الانترنت");
                       } else if (state is LoginLoadingState) {
-                        customWillPopScope();
+                        customWillPopScope(context);
                       } else if (state is LoginSuccessState) {
                         navigateTo(
                             page: const NavBarView(), withHistory: false);

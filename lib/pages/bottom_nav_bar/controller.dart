@@ -1,22 +1,24 @@
+import 'package:naqaa/constants/strings.dart';
+
 class NavBarController {
   int selectedItem = 0;
 
   //list of navigation bar unselected icons
   List icons = [
-    "assets/icons/home.svg",
-    "assets/icons/search.svg",
-    "assets/icons/orders.svg",
-    "assets/icons/check.svg",
-    "assets/icons/profile.svg",
+    AssetsStrings.homeIcon,
+    AssetsStrings.searchIcon,
+    AssetsStrings.ordersIcon,
+    AssetsStrings.checkIcon,
+    AssetsStrings.profileIcon,
   ];
 
   //list of navigation bar selected icons
   List selectedIcons = [
-    "assets/icons/home_selected.svg",
-    "assets/icons/search_selected.svg",
-    "assets/icons/orders_selected.svg",
-    "assets/icons/check_selected.svg",
-    "assets/icons/profile_selected.svg",
+    AssetsStrings.homeSelectedIcon,
+    AssetsStrings.searchSelectedIcon,
+    AssetsStrings.ordersSelectedIcon,
+    AssetsStrings.checkSelectedIcon,
+    AssetsStrings.profileSelectedIcon,
   ];
 
   //list of navigation bar labels

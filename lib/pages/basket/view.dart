@@ -4,6 +4,7 @@ import 'package:naqaa/components/custom_elevated.dart';
 import 'package:naqaa/components/svg_icons.dart';
 import 'package:naqaa/constants/color_manager.dart';
 import 'package:naqaa/constants/custom_text.dart';
+import 'package:naqaa/constants/strings.dart';
 import 'package:naqaa/pages/basket/components/order_item.dart';
 
 class BasketView extends StatelessWidget {
@@ -30,7 +31,7 @@ class BasketView extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 10.w),
               child: SvgIcon(
                 height: 20.h,
-                icon: "assets/icons/delete.svg",
+                icon: AssetsStrings.deleteIcon,
                 color: ColorManager.white,
               ),
             ),

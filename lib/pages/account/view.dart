@@ -6,6 +6,7 @@ import 'package:naqaa/components/custom_form_field.dart';
 import 'package:naqaa/components/svg_icons.dart';
 import 'package:naqaa/constants/color_manager.dart';
 import 'package:naqaa/constants/custom_text.dart';
+import 'package:naqaa/constants/strings.dart';
 import 'package:naqaa/core/cache_helper.dart';
 import 'package:naqaa/core/snack_and_navigate.dart';
 import 'package:naqaa/pages/login/view.dart';
@@ -36,7 +37,7 @@ class MyAccountView extends StatelessWidget {
                 children: [
                   SvgIcon(
                     height: 18.h,
-                    icon: "assets/icons/user_edit.svg",
+                    icon: AssetsStrings.userEditIcon,
                     color: ColorManager.mainColor,
                   ),
                   SizedBox(width: 10.w),
@@ -108,7 +109,7 @@ class MyAccountView extends StatelessWidget {
                   ),
                   CustomElevatedWithIcon(
                     text: "تسجيل الخروج",
-                    image: "assets/icons/logout.svg",
+                    image: AssetsStrings.logoutIcon,
                     press: () {
                       navigateTo(page: const LoginView(), withHistory: false);
                       CacheHelper.removeToken();
@@ -120,7 +121,7 @@ class MyAccountView extends StatelessWidget {
                   ),
                   CustomElevatedWithIcon(
                     text: "امسح حسابي",
-                    image: "assets/icons/delete.svg",
+                    image: AssetsStrings.deleteIcon,
                     press: () {},
                     textColor: ColorManager.mainColor,
                     btnColor: ColorManager.white,
@@ -145,7 +146,7 @@ class MyAccountView extends StatelessWidget {
                   Row(
                     children: [
                       SvgPicture.asset(
-                        "assets/icons/support.svg",
+                        AssetsStrings.supportIcon,
                         height: 25.h,
                       ),
                       SizedBox(
@@ -165,7 +166,7 @@ class MyAccountView extends StatelessWidget {
                   Row(
                     children: [
                       SvgPicture.asset(
-                        "assets/icons/whatsapp.svg",
+                        AssetsStrings.whatsappIcon,
                         height: 25.h,
                       ),
                       SizedBox(

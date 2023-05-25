@@ -14,7 +14,6 @@ class CustomTextFormField extends StatelessWidget {
   });
 
   final String hint;
-
   final TextInputType? keyboardType;
   final AutovalidateMode autoValidate;
   final TextEditingController? controller;

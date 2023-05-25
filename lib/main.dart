@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:naqaa/pages/splash/view.dart';
 
 import 'core/cache_helper.dart';
 import 'core/snack_and_navigate.dart';
+import 'pages/add_product_to_basket/cubit.dart';
+import 'pages/home/cubit.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -22,23 +25,30 @@ class MyApp extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (context, child) {
-        return MaterialApp(
-          debugShowCheckedModeBanner: false,
-          title: 'naqaa',
-          navigatorKey: navigatorKey,
-          theme: ThemeData(
-            platform: TargetPlatform.iOS,
+        return MultiBlocProvider(
+          providers: [
+            // BlocProvider(create: (context) => AllProductsCubit()),
+            BlocProvider(create: (context) => AllProductsCubit()),
+            BlocProvider(create: (context) => AddProductBasketCubit()),
+          ],
+          child: MaterialApp(
+            debugShowCheckedModeBanner: false,
+            title: 'naqaa',
+            navigatorKey: navigatorKey,
+            theme: ThemeData(
+              platform: TargetPlatform.iOS,
+            ),
+            localizationsDelegates: const [
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+            supportedLocales: const [
+              Locale('ar', 'AE'),
+            ],
+            locale: const Locale('ar', 'AE'),
+            home: child,
           ),
-          localizationsDelegates: const [
-            GlobalMaterialLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate,
-            GlobalCupertinoLocalizations.delegate,
-          ],
-          supportedLocales: const [
-            Locale('ar', 'AE'),
-          ],
-          locale: const Locale('ar', 'AE'),
-          home: child,
         );
       },
       child: const SplashView(),
