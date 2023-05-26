@@ -16,14 +16,14 @@ class AddProductBasketCubit extends Cubit<AddProductBasketStates> {
   Future<void> addProduct({required String productID}) async {
     emit(AddProductBasketLoadingState());
     try {
-      final response = await dio.get(UrlsStrings.addProductBasketUrl, data: {
-        "productid": productID,
-        "userid": "",
-        "quantity": quantityController.text,
-      });
-      if (response.data["status"] == "success" && response.statusCode == 200) {
+      final response = await dio.post(UrlsStrings.addProductBasketUrl,
+          data: FormData.fromMap({
+            "productid": productID,
+            "userid": "1",
+            "quantity": quantityController.text,
+          }));
+      if (response.statusCode == 200) {
         emit(AddProductBasketSuccessState());
-        print(response.data);
       } else {
         emit(AddProductBasketFailureState(msg: response.data["status"]));
       }

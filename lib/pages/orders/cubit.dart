@@ -5,48 +5,52 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:naqaa/constants/strings.dart';
 
 import 'model.dart';
+import 'states.dart';
 
-part 'states.dart';
+class OrdersCubit extends Cubit<OrdersStates> {
+  OrdersCubit() : super(OrdersInitialState());
 
-class AllProductsCubit extends Cubit<AllProductsStates> {
-  AllProductsCubit() : super(AllProductsInitialState());
-
-  static AllProductsCubit get(context) => BlocProvider.of(context);
-
+  static OrdersCubit get(context) => BlocProvider.of(context);
   final dio = Dio();
-  List<AllProductsResp> products = [];
+  List<OrdersResp> orders = [];
 
-  Future<void> getAllProducts() async {
-    emit(AllProductsLoadingState());
+  Future<void> getOrders() async {
+    emit(OrdersLoadingState());
     try {
-      final response = await dio.get(UrlsStrings.allProductsUrl);
+      final response = await dio.post(UrlsStrings.ordersUrl,
+          data: FormData.fromMap({
+            "userid": "1",
+          }));
       if (response.statusCode == 200) {
         Map<String, dynamic> json = jsonDecode(response.data);
         List<dynamic> data = json['data'];
-        products = data.map((item) => AllProductsResp.fromJson(item)).toList();
-        emit(AllProductsSuccessState());
-        // print(response.data);
+        orders = data.map((item) => OrdersResp.fromJson(item)).toList();
+        if (orders.isEmpty) {
+          emit(OrdersSuccessWithNoDataState());
+        } else {
+          emit(OrdersSuccessState());
+        }
       } else {
-        emit(AllProductsFailedState(msg: response.data["status"]));
+        emit(OrdersFailureState(msg: response.data["status"]));
       }
     } on DioError catch (e) {
       String errorMsg;
       if (e.type == DioErrorType.cancel) {
         errorMsg = 'Request was cancelled';
-        emit(AllProductsFailedState(msg: errorMsg));
+        emit(OrdersFailureState(msg: errorMsg));
       } else if (e.type == DioErrorType.receiveTimeout ||
           e.type == DioErrorType.sendTimeout) {
         errorMsg = 'Connection timed out';
         emit(NetworkErrorState());
       } else if (e.type == DioErrorType.badResponse) {
         errorMsg = 'Received invalid status code: ${e.response?.statusCode}';
-        emit(AllProductsFailedState(msg: errorMsg));
+        emit(OrdersFailureState(msg: errorMsg));
       } else {
         errorMsg = 'An unexpected error occurred: ${e.error}';
         emit(NetworkErrorState());
       }
     } catch (e) {
-      emit(AllProductsFailedState(msg: 'An unknown error : $e'));
+      emit(OrdersFailureState(msg: 'An unknown error : $e'));
       print(e);
     }
   }

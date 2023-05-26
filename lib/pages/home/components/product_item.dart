@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -6,10 +7,9 @@ import 'package:naqaa/components/custom_elevated.dart';
 import 'package:naqaa/components/will_pop_scope.dart';
 import 'package:naqaa/constants/color_manager.dart';
 import 'package:naqaa/constants/custom_text.dart';
-import 'package:naqaa/core/snack_and_navigate.dart';
 import 'package:naqaa/pages/add_product_to_basket/cubit.dart';
 import 'package:naqaa/pages/add_product_to_basket/states.dart';
-import 'package:naqaa/pages/bottom_nav_bar/view.dart';
+import 'package:naqaa/pages/bottom_nav_bar/cubit.dart';
 
 class ProductItem extends StatelessWidget {
   const ProductItem({
@@ -128,6 +128,10 @@ class ProductItem extends StatelessWidget {
                                           padding: EdgeInsets.symmetric(
                                               horizontal: 50.w),
                                           child: TextField(
+                                            inputFormatters: [
+                                              FilteringTextInputFormatter.allow(
+                                                  RegExp(r'\d')),
+                                            ],
                                             controller: addProductCubit
                                                 .quantityController,
                                             keyboardType: TextInputType.number,
@@ -178,13 +182,13 @@ class ProductItem extends StatelessWidget {
                                                 is AddProductBasketFailureState) {
                                               Navigator.pop(context);
                                               Navigator.pop(context);
-                                              showMessage(message: state.msg);
                                             } else if (state
                                                 is AddProductBasketSuccessState) {
-                                              // showMessage(message: "success");
-                                              navigateTo(
-                                                  page: const NavBarView(),
-                                                  withHistory: false);
+                                              Navigator.pop(context);
+                                              Navigator.pop(context);
+                                              // context
+                                              //     .read<NavBarCubit>()
+                                              //     .navigateToIndex(3);
                                             }
                                           },
                                           builder: (context, state) {
@@ -202,9 +206,18 @@ class ProductItem extends StatelessWidget {
                                               child: CustomElevated(
                                                 text: "إضافة",
                                                 press: () {
-                                                  addProductCubit.addProduct(
-                                                    productID: productID,
-                                                  );
+                                                  if (addProductCubit
+                                                          .quantityController
+                                                          .text ==
+                                                      "0") {
+                                                    context
+                                                        .read<NavBarCubit>()
+                                                        .navigateToIndex(4);
+                                                  } else {
+                                                    addProductCubit.addProduct(
+                                                      productID: productID,
+                                                    );
+                                                  }
                                                 },
                                                 btnColor:
                                                     ColorManager.mainColor,

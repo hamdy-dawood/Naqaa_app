@@ -7,6 +7,7 @@ import 'package:naqaa/pages/account/view.dart';
 import 'package:naqaa/pages/basket/view.dart';
 import 'package:naqaa/pages/home/view.dart';
 import 'package:naqaa/pages/login/view.dart';
+import 'package:naqaa/pages/orders/view.dart';
 
 import 'bottom_bar_item.dart';
 import 'cubit.dart';
@@ -21,7 +22,7 @@ class NavBarView extends StatelessWidget {
     List screens = [
       const HomeView(),
       token.isEmpty ? const LoginView() : const MyAccountView(),
-      token.isEmpty ? const LoginView() : const MyAccountView(),
+      token.isEmpty ? const LoginView() : const OrdersView(),
       const BasketView(),
       token.isEmpty ? const LoginView() : const MyAccountView(),
     ];

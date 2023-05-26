@@ -7,12 +7,14 @@ import 'package:naqaa/pages/splash/view.dart';
 import 'core/cache_helper.dart';
 import 'core/snack_and_navigate.dart';
 import 'pages/add_product_to_basket/cubit.dart';
+import 'pages/basket/cubit.dart';
 import 'pages/home/cubit.dart';
+import 'pages/orders/cubit.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await CacheHelper.init();
-  // CacheHelper.clear();
+  //CacheHelper.clear();
   runApp(const MyApp());
 }
 
@@ -27,9 +29,10 @@ class MyApp extends StatelessWidget {
       builder: (context, child) {
         return MultiBlocProvider(
           providers: [
-            // BlocProvider(create: (context) => AllProductsCubit()),
             BlocProvider(create: (context) => AllProductsCubit()),
             BlocProvider(create: (context) => AddProductBasketCubit()),
+            BlocProvider(create: (context) => BasketCubit()),
+            BlocProvider(create: (context) => OrdersCubit()),
           ],
           child: MaterialApp(
             debugShowCheckedModeBanner: false,

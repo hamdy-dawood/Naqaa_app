@@ -5,6 +5,9 @@ class UrlsStrings {
 
   static String allProductsUrl = "${baseUrl}products/viewproducts.php";
   static String addProductBasketUrl = "${baseUrl}basket/addbasket.php";
+  static String basketsUrl = "${baseUrl}basket/viewbasket.php";
+
+  static String ordersUrl = "${baseUrl}order/vieworders.php";
 
   static String networkErrorUrl =
       "https://telegra.ph/file/5fd32c81aeea0385e2418.png";
@@ -36,6 +39,7 @@ class AssetsStrings {
   static String locationIcon = "${baseIcons}location.svg";
   static String notificationIcon = "${baseIcons}notification.svg";
   static String deleteIcon = "${baseIcons}delete.svg";
+  static String filterIcon = "${baseIcons}filter.svg";
   static String userEditIcon = "${baseIcons}user_edit.svg";
   static String logoutIcon = "${baseIcons}logout.svg";
   static String supportIcon = "${baseIcons}support.svg";
