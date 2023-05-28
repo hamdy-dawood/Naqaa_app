@@ -7,6 +7,7 @@ import 'package:naqaa/components/custom_elevated.dart';
 import 'package:naqaa/components/will_pop_scope.dart';
 import 'package:naqaa/constants/color_manager.dart';
 import 'package:naqaa/constants/custom_text.dart';
+import 'package:naqaa/core/cache_helper.dart';
 import 'package:naqaa/pages/add_product_to_basket/cubit.dart';
 import 'package:naqaa/pages/add_product_to_basket/states.dart';
 import 'package:naqaa/pages/bottom_nav_bar/cubit.dart';
@@ -25,6 +26,8 @@ class ProductItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String token = CacheHelper.getToken();
+
     return Builder(
       builder: (context) {
         final addProductCubit = AddProductBasketCubit.get(context);
@@ -40,7 +43,7 @@ class ProductItem extends StatelessWidget {
             ),
             boxShadow: [
               BoxShadow(
-                color: ColorManager.grey,
+                color: ColorManager.darkGrey,
                 blurRadius: 5.0,
                 spreadRadius: 1.0,
               ),
@@ -74,7 +77,7 @@ class ProductItem extends StatelessWidget {
                     ),
                     CustomText(
                       text: subTitle,
-                      color: ColorManager.grey,
+                      color: ColorManager.darkGrey,
                       fontSize: 15.sp,
                       fontWeight: FontWeight.w500,
                     ),
@@ -145,7 +148,7 @@ class ProductItem extends StatelessWidget {
                                               hintText: "0",
                                               hintStyle:
                                                   GoogleFonts.redHatDisplay(
-                                                color: ColorManager.grey,
+                                                color: ColorManager.darkGrey,
                                                 fontSize: 18.sp,
                                                 fontWeight: FontWeight.bold,
                                               ),
@@ -171,7 +174,7 @@ class ProductItem extends StatelessWidget {
                                           padding: EdgeInsets.symmetric(
                                               vertical: 10.h),
                                           child: Divider(
-                                            color: ColorManager.grey,
+                                            color: ColorManager.darkGrey,
                                             thickness: 0.5,
                                           ),
                                         ),
@@ -186,9 +189,9 @@ class ProductItem extends StatelessWidget {
                                                 is AddProductBasketSuccessState) {
                                               Navigator.pop(context);
                                               Navigator.pop(context);
-                                              // context
-                                              //     .read<NavBarCubit>()
-                                              //     .navigateToIndex(3);
+                                              context
+                                                  .read<NavBarCubit>()
+                                                  .navigateToIndex(3);
                                             }
                                           },
                                           builder: (context, state) {
@@ -207,9 +210,16 @@ class ProductItem extends StatelessWidget {
                                                 text: "إضافة",
                                                 press: () {
                                                   if (addProductCubit
-                                                          .quantityController
-                                                          .text ==
-                                                      "0") {
+                                                              .quantityController
+                                                              .text ==
+                                                          "0" ||
+                                                      addProductCubit
+                                                              .quantityController
+                                                              .text ==
+                                                          "") {
+                                                    Navigator.pop(context);
+                                                  } else if (token.isEmpty) {
+                                                    Navigator.pop(context);
                                                     context
                                                         .read<NavBarCubit>()
                                                         .navigateToIndex(4);

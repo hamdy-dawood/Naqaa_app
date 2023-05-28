@@ -45,7 +45,6 @@ class AddProductBasketCubit extends Cubit<AddProductBasketStates> {
       }
     } catch (e) {
       emit(AddProductBasketFailureState(msg: 'An unknown error : $e'));
-      print(e);
     }
   }
 }

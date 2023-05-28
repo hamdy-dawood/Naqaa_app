@@ -31,7 +31,7 @@ class OrderItem extends StatelessWidget {
         ),
         boxShadow: [
           BoxShadow(
-            color: ColorManager.grey,
+            color: ColorManager.darkGrey,
             blurRadius: 5.0,
             spreadRadius: 1.0,
           ),
@@ -94,7 +94,7 @@ class OrderItem extends StatelessWidget {
                     ),
                     CustomText(
                       text: subTitle,
-                      color: ColorManager.grey,
+                      color: ColorManager.darkGrey,
                       fontSize: 15.sp,
                       fontWeight: FontWeight.w500,
                     ),

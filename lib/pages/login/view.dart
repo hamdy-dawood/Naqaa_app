@@ -10,6 +10,7 @@ import 'package:naqaa/components/will_pop_scope.dart';
 import 'package:naqaa/constants/color_manager.dart';
 import 'package:naqaa/constants/custom_text.dart';
 import 'package:naqaa/constants/strings.dart';
+import 'package:naqaa/core/cache_helper.dart';
 import 'package:naqaa/core/snack_and_navigate.dart';
 import 'package:naqaa/pages/bottom_nav_bar/view.dart';
 import 'package:naqaa/pages/login/states.dart';
@@ -31,6 +32,8 @@ class LoginView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isSkip = CacheHelper.getIfSkip();
+
     return BlocProvider(
       create: (context) => LoginCubit(),
       child: Builder(builder: (context) {
@@ -42,20 +45,24 @@ class LoginView extends StatelessWidget {
             backgroundColor: ColorManager.white,
             elevation: 0.0,
             actions: [
-              TextButton(
-                onPressed: () {
-                  navigateTo(page: const NavBarView(), withHistory: false);
-                },
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 10.w),
-                  child: CustomText(
-                    text: "تخطي",
-                    color: ColorManager.mainColor,
-                    fontSize: 20.sp,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
+              isSkip
+                  ? TextButton(
+                      onPressed: () {
+                        navigateTo(
+                            page: const NavBarView(), withHistory: false);
+                        CacheHelper.saveIfSkip();
+                      },
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 10.w),
+                        child: CustomText(
+                          text: "تخطي",
+                          color: ColorManager.mainColor,
+                          fontSize: 20.sp,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    )
+                  : const SizedBox(),
             ],
           ),
           body: SizedBox(

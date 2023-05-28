@@ -7,6 +7,22 @@ class CacheHelper {
     prefs = await SharedPreferences.getInstance();
   }
 
+  // static Future<bool> saveIfNotFirstTime() async {
+  //   return await prefs.setBool("IfFirstTime", false);
+  // }
+  //
+  // static bool getIfFirstTime() {
+  //   return prefs.getBool("IfFirstTime") ?? true;
+  // }
+
+  static Future<bool> saveIfSkip() async {
+    return await prefs.setBool("IfSkip", false);
+  }
+
+  static bool getIfSkip() {
+    return prefs.getBool("IfSkip") ?? true;
+  }
+
   static Future<bool> saveToken(String token) async {
     return await prefs.setString("token", token);
   }

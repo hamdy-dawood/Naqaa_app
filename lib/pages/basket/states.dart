@@ -8,6 +8,8 @@ class BasketSuccessState extends BasketStates {}
 
 class NetworkErrorState extends BasketStates {}
 
+class BasketSuccessWithNoDataState extends BasketStates {}
+
 class BasketFailureState extends BasketStates {
   final String msg;
 

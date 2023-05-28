@@ -7,8 +7,6 @@ import 'package:naqaa/components/will_pop_scope.dart';
 import 'package:naqaa/constants/color_manager.dart';
 import 'package:naqaa/constants/custom_text.dart';
 import 'package:naqaa/constants/strings.dart';
-import 'package:naqaa/core/snack_and_navigate.dart';
-import 'package:naqaa/pages/location/view.dart';
 
 import 'components/product_item.dart';
 import 'cubit.dart';
@@ -36,9 +34,7 @@ class HomeView extends StatelessWidget {
               backgroundColor: ColorManager.white,
               elevation: 0.0,
               leading: IconButton(
-                onPressed: () {
-                  navigateTo(page: const LocationView());
-                },
+                onPressed: () {},
                 icon: SvgIcon(
                   height: 22.h,
                   icon: AssetsStrings.locationIcon,

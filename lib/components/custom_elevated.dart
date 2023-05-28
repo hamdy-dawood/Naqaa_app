@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:naqaa/constants/color_manager.dart';
 import 'package:naqaa/constants/custom_text.dart';
 
 class CustomElevated extends StatelessWidget {
   final String text;
-  final Color textColor, btnColor;
+  final Color textColor, btnColor, borderColor;
   final double fontSize, borderRadius, paddingVertical, paddingHorizontal;
   final VoidCallback press;
 
@@ -14,6 +13,7 @@ class CustomElevated extends StatelessWidget {
     required this.text,
     required this.press,
     this.textColor = Colors.white,
+    this.borderColor = Colors.blue,
     required this.btnColor,
     this.fontSize = 17,
     this.borderRadius = 5,
@@ -31,7 +31,7 @@ class CustomElevated extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(borderRadius.r),
           side: BorderSide(
-            color: ColorManager.mainColor,
+            color: borderColor,
           ),
         ),
       ),

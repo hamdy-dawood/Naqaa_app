@@ -34,7 +34,7 @@ class CustomTextFormField extends StatelessWidget {
         contentPadding: EdgeInsets.all(12.h),
         hintText: hint,
         hintStyle: GoogleFonts.redHatDisplay(
-          color: ColorManager.grey,
+          color: ColorManager.darkGrey,
           fontSize: 18.sp,
           fontWeight: FontWeight.normal,
         ),

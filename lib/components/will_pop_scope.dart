@@ -13,13 +13,14 @@ customWillPopScope(BuildContext context) {
           width: MediaQuery.of(context).size.width,
           child: const Center(
             child: SizedBox(
-                height: 70,
-                width: 70,
-                child: CircularProgressIndicator(
-                  strokeWidth: 4,
-                  backgroundColor: Colors.black38,
-                  color: Colors.white,
-                )),
+              height: 70,
+              width: 70,
+              child: CircularProgressIndicator(
+                strokeWidth: 4,
+                backgroundColor: Colors.black38,
+                color: Colors.white,
+              ),
+            ),
           ),
         ),
       );

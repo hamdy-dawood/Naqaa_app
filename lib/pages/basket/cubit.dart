@@ -26,7 +26,11 @@ class BasketCubit extends Cubit<BasketStates> {
         Map<String, dynamic> json = jsonDecode(response.data);
         List<dynamic> data = json['data'];
         baskets = data.map((item) => BasketsResp.fromJson(item)).toList();
-        emit(BasketSuccessState());
+        if (baskets.isEmpty) {
+          emit(BasketSuccessWithNoDataState());
+        } else {
+          emit(BasketSuccessState());
+        }
       } else {
         emit(BasketFailureState(msg: response.data["status"]));
       }

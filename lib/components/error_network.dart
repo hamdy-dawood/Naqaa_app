@@ -27,7 +27,7 @@ class ErrorNetwork extends StatelessWidget {
               ),
             ),
             errorWidget: (context, url, error) => Center(
-              child: Image.asset(AssetsStrings.noNetworkImages),
+              child: Image.asset(AssetsStrings.noNetworkImage),
             ),
           ),
         ),
