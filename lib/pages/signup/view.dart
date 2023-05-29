@@ -141,7 +141,7 @@ class SignUpView extends StatelessWidget {
                               color: ColorManager.borderColor,
                             ),
                             obscureText: cubit.securePass,
-                            isLastInput: false,
+                            isLastInput: true,
                             validator: regPasswordValidator,
                           );
                         },

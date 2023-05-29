@@ -7,7 +7,6 @@ import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:naqaa/constants/strings.dart';
 import 'package:naqaa/pages/login/controllers.dart';
 
-import 'model.dart';
 import 'states.dart';
 
 class SignUpCubit extends Cubit<SignUpStates> {
@@ -20,7 +19,6 @@ class SignUpCubit extends Cubit<SignUpStates> {
   String phoneNumber = "";
   String initialPhoneNumber = "+97412345678";
   final controllers = SignUpControllers();
-  SignUpResp? signUpResp;
 
   Future<void> signUp() async {
     if (formKey.currentState!.validate()) {
@@ -33,14 +31,12 @@ class SignUpCubit extends Cubit<SignUpStates> {
               "phone": phoneNumber,
               "password": controllers.passwordController.text,
             }));
+        Map<String, dynamic> json = jsonDecode(response.data);
         if (response.statusCode == 200) {
-          // CacheHelper.saveUserID("${response.data["userid"]}");
-          // signUpResp = SignUpResp.fromJson(response.data);.
-
           emit(SignUpSuccessState());
-          Map<String, dynamic> json = jsonDecode(response.data);
-          signUpResp = json['data'];
-          print(signUpResp!.userEmail);
+          final data = json['data'];
+          // CacheHelper.saveUserID("${data['user_id']}");
+          print(data['user_email']);
         } else {
           emit(SignUpFailureState(msg: response.data["status"]));
         }
