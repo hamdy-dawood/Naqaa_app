@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:naqaa/constants/strings.dart';
+import 'package:naqaa/core/cache_helper.dart';
 
 import 'states.dart';
 
@@ -19,7 +20,7 @@ class AddProductBasketCubit extends Cubit<AddProductBasketStates> {
       final response = await dio.post(UrlsStrings.addProductBasketUrl,
           data: FormData.fromMap({
             "productid": productID,
-            "userid": "1",
+            "userid": CacheHelper.getUserID(),
             "quantity": quantityController.text,
           }));
       if (response.statusCode == 200) {

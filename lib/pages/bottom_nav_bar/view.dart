@@ -3,11 +3,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:naqaa/constants/color_manager.dart';
 import 'package:naqaa/core/cache_helper.dart';
-import 'package:naqaa/pages/account/view.dart';
 import 'package:naqaa/pages/basket/view.dart';
 import 'package:naqaa/pages/home/view.dart';
 import 'package:naqaa/pages/login/view.dart';
 import 'package:naqaa/pages/orders/view.dart';
+import 'package:naqaa/pages/profile/view.dart';
+import 'package:naqaa/pages/search/view.dart';
 
 import 'bottom_bar_item.dart';
 import 'cubit.dart';
@@ -21,10 +22,10 @@ class NavBarView extends StatelessWidget {
     String token = CacheHelper.getUserID();
     List screens = [
       const HomeView(),
-      token.isEmpty ? const LoginView() : const MyAccountView(),
+      const SearchView(),
       token.isEmpty ? const LoginView() : const OrdersView(),
       const BasketView(),
-      token.isEmpty ? const LoginView() : const MyAccountView(),
+      token.isEmpty ? const LoginView() : const ProfileView(),
     ];
 
     return Builder(builder: (context) {

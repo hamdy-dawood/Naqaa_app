@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:naqaa/constants/strings.dart';
+import 'package:naqaa/core/cache_helper.dart';
 
 import 'states.dart';
 
@@ -22,7 +23,7 @@ class AddOrderCubit extends Cubit<AddOrderStates> {
     try {
       final response = await dio.post(UrlsStrings.addOrdersUrl,
           data: FormData.fromMap({
-            "userid": "1",
+            "userid": CacheHelper.getUserID(),
             "productid": productID,
             "quantity": quantity,
             "basketid": basketId,

@@ -24,8 +24,8 @@ String? regPasswordValidator(value) {
 String? userNameValidator(value) {
   if (value.isEmpty) {
     return 'من فضلك ادخل اسم المستخدم !';
-  } else if (value.length < 9) {
-    return "يجب الا يقل اسم المستخدم  عن 9 احرف او ارقام !";
+  } else if (value.length < 6) {
+    return "يجب الا يقل اسم المستخدم  عن 6 احرف او ارقام !";
   } else {
     return null;
   }

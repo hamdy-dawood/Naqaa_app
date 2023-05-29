@@ -25,7 +25,7 @@ class HomeView extends StatelessWidget {
           backgroundColor: ColorManager.mainColor,
           color: Colors.white,
           onRefresh: () async {
-            await Future.delayed(const Duration(milliseconds: 500));
+            await Future.delayed(const Duration(milliseconds: 200));
             cubit.getAllProducts();
           },
           child: Scaffold(

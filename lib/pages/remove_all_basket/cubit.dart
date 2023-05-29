@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:naqaa/constants/strings.dart';
+import 'package:naqaa/core/cache_helper.dart';
 
 import 'states.dart';
 
@@ -16,7 +17,7 @@ class RemoveAllBasketCubit extends Cubit<RemoveAllBasketStates> {
     try {
       final response = await dio.post(UrlsStrings.removeAllBasketUrl,
           data: FormData.fromMap({
-            "userid": "1",
+            "userid": CacheHelper.getUserID(),
           }));
       if (response.statusCode == 200) {
         emit(RemoveAllBasketSuccessState());

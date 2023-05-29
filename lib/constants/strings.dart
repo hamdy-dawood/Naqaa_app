@@ -5,14 +5,13 @@ class UrlsStrings {
 
   static String signUpUrl = "${baseUrl}Auth/signup.php";
   static String loginUrl = "${baseUrl}ll";
+  static String profileDateUrl = "${baseUrl}Auth/viewmyinfo.php";
 
   static String allProductsUrl = "${baseUrl}products/viewproducts.php";
   static String addProductBasketUrl = "${baseUrl}basket/addbasket.php";
   static String removeProductBasketUrl = "${baseUrl}basket/removebasket.php";
   static String removeAllBasketUrl = "${baseUrl}basket/removeAllBasket.php";
-
   static String basketsUrl = "${baseUrl}basket/viewbasket.php";
-
   static String ordersUrl = "${baseUrl}order/vieworders.php";
   static String addOrdersUrl = "${baseUrl}order/addorder.php";
 
