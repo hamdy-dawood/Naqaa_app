@@ -25,7 +25,7 @@ class BasketView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String token = CacheHelper.getToken();
+    String token = CacheHelper.getUserID();
     return Builder(
       builder: (context) {
         final cubit = BasketCubit.get(context);

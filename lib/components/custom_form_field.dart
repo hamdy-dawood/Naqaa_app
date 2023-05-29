@@ -11,6 +11,9 @@ class CustomTextFormField extends StatelessWidget {
     this.autoValidate = AutovalidateMode.onUserInteraction,
     this.controller,
     required this.validator,
+    this.suffixIcon,
+    this.obscureText = false,
+    this.isLastInput = false,
   });
 
   final String hint;
@@ -18,6 +21,8 @@ class CustomTextFormField extends StatelessWidget {
   final AutovalidateMode autoValidate;
   final TextEditingController? controller;
   final FormFieldValidator validator;
+  final IconButton? suffixIcon;
+  final bool obscureText, isLastInput;
 
   @override
   Widget build(BuildContext context) {
@@ -26,6 +31,9 @@ class CustomTextFormField extends StatelessWidget {
       autovalidateMode: autoValidate,
       keyboardType: keyboardType,
       validator: validator,
+      obscureText: obscureText,
+      textInputAction:
+          isLastInput ? TextInputAction.done : TextInputAction.next,
       style: GoogleFonts.redHatDisplay(
         color: ColorManager.black,
         fontSize: 18.sp,
@@ -38,6 +46,7 @@ class CustomTextFormField extends StatelessWidget {
           fontSize: 18.sp,
           fontWeight: FontWeight.normal,
         ),
+        suffixIcon: suffixIcon,
         enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(
               color: ColorManager.borderColor,

@@ -16,7 +16,7 @@ class SplashView extends StatefulWidget {
 
 class _SplashViewState extends State<SplashView> {
   // bool isFirstTime = CacheHelper.getIfFirstTime();
-  String token = CacheHelper.getToken();
+  String userID = CacheHelper.getUserID();
 
   @override
   void initState() {
@@ -31,7 +31,7 @@ class _SplashViewState extends State<SplashView> {
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) {
-            return token.isEmpty ? const LoginView() : const NavBarView();
+            return userID.isEmpty ? const LoginView() : const NavBarView();
           }),
         );
       },

@@ -23,16 +23,16 @@ class CacheHelper {
     return prefs.getBool("IfSkip") ?? true;
   }
 
-  static Future<bool> saveToken(String token) async {
-    return await prefs.setString("token", token);
+  static Future<bool> saveUserID(String userID) async {
+    return await prefs.setString("userID", userID);
   }
 
-  static String getToken() {
-    return prefs.getString("token") ?? "";
+  static String getUserID() {
+    return prefs.getString("userID") ?? "";
   }
 
-  static Future<bool> removeToken() {
-    return prefs.remove("token");
+  static Future<bool> removeUserID() {
+    return prefs.remove("userID");
   }
 
   static Future<bool> clear() {

@@ -112,7 +112,7 @@ class MyAccountView extends StatelessWidget {
                     image: AssetsStrings.logoutIcon,
                     press: () {
                       navigateTo(page: const LoginView(), withHistory: false);
-                      CacheHelper.removeToken();
+                      CacheHelper.removeUserID();
                     },
                     btnColor: ColorManager.mainColor,
                   ),

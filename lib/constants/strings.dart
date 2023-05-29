@@ -3,6 +3,9 @@ class UrlsStrings {
   static String baseImageUrl =
       "https://morabrand.net/naqaa/upload/productsimga/";
 
+  static String signUpUrl = "${baseUrl}Auth/signup.php";
+  static String loginUrl = "${baseUrl}ll";
+
   static String allProductsUrl = "${baseUrl}products/viewproducts.php";
   static String addProductBasketUrl = "${baseUrl}basket/addbasket.php";
   static String removeProductBasketUrl = "${baseUrl}basket/removebasket.php";

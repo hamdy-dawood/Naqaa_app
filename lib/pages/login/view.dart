@@ -14,6 +14,7 @@ import 'package:naqaa/core/cache_helper.dart';
 import 'package:naqaa/core/snack_and_navigate.dart';
 import 'package:naqaa/pages/bottom_nav_bar/view.dart';
 import 'package:naqaa/pages/login/states.dart';
+import 'package:naqaa/pages/signup/view.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'cubit.dart';
@@ -256,6 +257,31 @@ class LoginView extends StatelessWidget {
                         ),
                       );
                     },
+                  ),
+                  SizedBox(height: 20.h),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      CustomText(
+                        text: "ليس لديك حساب ؟",
+                        color: ColorManager.black,
+                        fontSize: 15.sp,
+                        fontWeight: FontWeight.normal,
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          navigateTo(
+                            page: const SignUpView(),
+                          );
+                        },
+                        child: CustomText(
+                          text: "اضافة حساب",
+                          color: ColorManager.mainColor,
+                          fontSize: 15.sp,
+                          fontWeight: FontWeight.normal,
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),

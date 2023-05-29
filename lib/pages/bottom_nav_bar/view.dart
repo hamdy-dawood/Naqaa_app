@@ -18,7 +18,7 @@ class NavBarView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String token = CacheHelper.getToken();
+    String token = CacheHelper.getUserID();
     List screens = [
       const HomeView(),
       token.isEmpty ? const LoginView() : const MyAccountView(),
