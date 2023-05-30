@@ -8,9 +8,11 @@ import 'package:naqaa/components/will_pop_scope.dart';
 import 'package:naqaa/constants/color_manager.dart';
 import 'package:naqaa/constants/custom_text.dart';
 import 'package:naqaa/core/cache_helper.dart';
+import 'package:naqaa/core/snack_and_navigate.dart';
 import 'package:naqaa/pages/add_product_to_basket/cubit.dart';
 import 'package:naqaa/pages/add_product_to_basket/states.dart';
 import 'package:naqaa/pages/bottom_nav_bar/cubit.dart';
+import 'package:naqaa/pages/login/view.dart';
 
 class ProductItem extends StatelessWidget {
   const ProductItem({
@@ -27,7 +29,7 @@ class ProductItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     String token = CacheHelper.getUserID();
-
+    final navBarCubit = NavBarCubit.get(context);
     return Builder(
       builder: (context) {
         final addProductCubit = AddProductBasketCubit.get(context);
@@ -105,10 +107,12 @@ class ProductItem extends StatelessWidget {
                       if (state is AddProductBasketFailureState) {
                         Navigator.pop(context);
                         Navigator.pop(context);
+                        showMessage(
+                            message: state.msg, maxLines: 5, height: 80.h);
                       } else if (state is AddProductBasketSuccessState) {
                         Navigator.pop(context);
                         Navigator.pop(context);
-                        context.read<NavBarCubit>().navigateToIndex(3);
+                        navBarCubit.navigateToNavBarView(3);
                       }
                     },
                     builder: (context, state) {
@@ -128,8 +132,9 @@ class ProductItem extends StatelessWidget {
                                 addProductCubit.quantityController.text == "") {
                               Navigator.pop(context);
                             } else if (token.isEmpty) {
-                              Navigator.pop(context);
-                              context.read<NavBarCubit>().navigateToIndex(4);
+                              navigateTo(
+                                page: const LoginView(),
+                              );
                             } else {
                               addProductCubit.addProduct(
                                 productID: productID,

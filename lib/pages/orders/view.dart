@@ -38,7 +38,7 @@ class OrdersView extends StatelessWidget {
               title: CustomText(
                 text: "أحداث الطلبات",
                 color: ColorManager.black,
-                fontSize: 22.sp,
+                fontSize: 18.sp,
                 fontWeight: FontWeight.bold,
               ),
               actions: [
@@ -74,7 +74,7 @@ class OrdersView extends StatelessWidget {
                     padding: EdgeInsets.all(20.h),
                     child: Center(
                         child: CustomText(
-                      text: "سلتك فارغة !",
+                      text: "لا توجد طلبات بعد",
                       color: ColorManager.mainColor,
                       fontWeight: FontWeight.bold,
                       fontSize: 20.sp,

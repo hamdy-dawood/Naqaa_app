@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:naqaa/constants/color_manager.dart';
-import 'package:naqaa/core/cache_helper.dart';
 import 'package:naqaa/pages/basket/view.dart';
 import 'package:naqaa/pages/home/view.dart';
-import 'package:naqaa/pages/login/view.dart';
 import 'package:naqaa/pages/orders/view.dart';
 import 'package:naqaa/pages/profile/view.dart';
 import 'package:naqaa/pages/search/view.dart';
@@ -19,13 +17,12 @@ class NavBarView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String token = CacheHelper.getUserID();
     List screens = [
       const HomeView(),
       const SearchView(),
-      token.isEmpty ? const LoginView() : const OrdersView(),
+      const OrdersView(),
       const BasketView(),
-      token.isEmpty ? const LoginView() : const ProfileView(),
+      const ProfileView(),
     ];
 
     return Builder(builder: (context) {

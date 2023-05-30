@@ -162,7 +162,8 @@ class SignUpView extends StatelessWidget {
                           } else if (state is SignUpLoadingState) {
                             customWillPopScope(context);
                           } else if (state is SignUpSuccessState) {
-                            navigateTo(page: const NavBarView());
+                            navigateTo(
+                                page: const NavBarView(), withHistory: false);
                           }
                         },
                         builder: (context, state) {

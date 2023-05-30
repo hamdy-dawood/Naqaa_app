@@ -146,7 +146,7 @@ class BasketView extends StatelessWidget {
                                         image:
                                             "${UrlsStrings.baseImageUrl}${baskets.productImage}",
                                         quantity: "${baskets.basketQuantity}",
-                                        yesPress: () {
+                                        yesPressDelete: () {
                                           removeCubit.removeProduct(
                                               basketID: "${baskets.basketId}");
                                           Navigator.pop(context);
@@ -246,9 +246,10 @@ class BasketView extends StatelessWidget {
                                           child: CustomElevated(
                                             text: "إضافة المزيد",
                                             press: () {
-                                              context
-                                                  .read<NavBarCubit>()
-                                                  .navigateToIndex(0);
+                                              final navBarCubit =
+                                                  NavBarCubit.get(context);
+                                              navBarCubit
+                                                  .navigateToNavBarView(0);
                                             },
                                             btnColor: ColorManager.white,
                                             textColor: ColorManager.mainColor,

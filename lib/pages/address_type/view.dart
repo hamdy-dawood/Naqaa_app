@@ -36,6 +36,16 @@ class ChooseAddressType extends StatelessWidget {
               fontSize: 20.sp,
               fontWeight: FontWeight.bold,
             ),
+            leading: IconButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              icon: Icon(
+                Icons.arrow_back_ios,
+                size: 22.sp,
+                color: ColorManager.white,
+              ),
+            ),
           ),
           body: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

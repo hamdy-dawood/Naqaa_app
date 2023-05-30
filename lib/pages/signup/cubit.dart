@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:naqaa/constants/strings.dart';
+import 'package:naqaa/core/cache_helper.dart';
 import 'package:naqaa/pages/login/controllers.dart';
 
 import 'states.dart';
@@ -37,6 +38,7 @@ class SignUpCubit extends Cubit<SignUpStates> {
           final data = json['data'];
           // CacheHelper.saveUserID("${data['user_id']}");
           print(data['user_email']);
+          CacheHelper.saveUserID("3");
         } else {
           emit(SignUpFailureState(msg: response.data["status"]));
         }

@@ -15,12 +15,12 @@ class BasketItem extends StatelessWidget {
     required this.price,
     required this.image,
     required this.quantity,
-    required this.yesPress,
+    required this.yesPressDelete,
     required this.itemPress,
   }) : super(key: key);
 
   final String title, subTitle, price, image, quantity;
-  final VoidCallback itemPress, yesPress;
+  final VoidCallback itemPress, yesPressDelete;
 
   @override
   Widget build(BuildContext context) {
@@ -100,7 +100,7 @@ class BasketItem extends StatelessWidget {
                               deleteDialog(
                                 context: context,
                                 title: "هل أنت متأكد من إزالة هذا العنصر؟",
-                                yesPress: yesPress,
+                                yesPress: yesPressDelete,
                               );
                             },
                             icon: Icon(

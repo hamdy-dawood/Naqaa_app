@@ -5,7 +5,8 @@ import 'package:naqaa/components/custom_elevated.dart';
 import 'package:naqaa/components/will_pop_scope.dart';
 import 'package:naqaa/constants/color_manager.dart';
 import 'package:naqaa/constants/custom_text.dart';
-import 'package:naqaa/pages/bottom_nav_bar/cubit.dart';
+import 'package:naqaa/core/snack_and_navigate.dart';
+import 'package:naqaa/pages/bottom_nav_bar/view.dart';
 
 import 'cubit.dart';
 import 'states.dart';
@@ -39,6 +40,16 @@ class AddOrderView extends StatelessWidget {
               color: ColorManager.white,
               fontSize: 22.sp,
               fontWeight: FontWeight.bold,
+            ),
+            leading: IconButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              icon: Icon(
+                Icons.arrow_back_ios,
+                size: 22.sp,
+                color: ColorManager.white,
+              ),
             ),
           ),
           body: SizedBox(
@@ -91,17 +102,9 @@ class AddOrderView extends StatelessWidget {
                   listener: (context, state) {
                     if (state is AddOrderFailureState) {
                       Navigator.pop(context);
-                      print(state.msg);
+                      showMessage(message: state.msg, height: 80.h);
                     } else if (state is AddOrderSuccessState) {
-                      Navigator.pop(context);
-                      Navigator.pop(context);
-                      Navigator.pop(context);
-                      context.read<NavBarCubit>().navigateToIndex(2);
-                      // print("success");
-                      // Navigator.push(context,
-                      //     MaterialPageRoute(builder: (context) {
-                      //   return const NavBarView();
-                      // }));
+                      navigateTo(page: const NavBarView(), withHistory: false);
                     }
                   },
                   builder: (context, state) {

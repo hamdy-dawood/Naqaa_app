@@ -15,14 +15,6 @@ class CacheHelper {
   //   return prefs.getBool("IfFirstTime") ?? true;
   // }
 
-  static Future<bool> saveIfSkip() async {
-    return await prefs.setBool("IfSkip", false);
-  }
-
-  static bool getIfSkip() {
-    return prefs.getBool("IfSkip") ?? true;
-  }
-
   static Future<bool> saveUserID(String userID) async {
     return await prefs.setString("userID", userID);
   }
