@@ -23,8 +23,8 @@ class CacheHelper {
     return prefs.getString("userID") ?? "";
   }
 
-  static Future<bool> removeUserID() {
-    return prefs.remove("userID");
+  static Future<bool> removeUserID() async {
+    return await prefs.remove("userID");
   }
 
   static Future<bool> clear() {

@@ -9,7 +9,7 @@ void navigateTo({required Widget page, bool withHistory = true}) {
     Navigator.pushAndRemoveUntil(
       navigatorKey.currentContext!,
       MaterialPageRoute(builder: (context) => page),
-      (route) => false,
+      (route) => withHistory,
     );
   } else {
     Navigator.pushReplacement(

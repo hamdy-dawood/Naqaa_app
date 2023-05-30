@@ -14,17 +14,17 @@ class NavBarCubit extends Cubit<NavBarStates> {
 
   final controller = NavBarController();
   var scaffoldKey = GlobalKey<ScaffoldState>();
-  String token = CacheHelper.getUserID();
+  String userID = CacheHelper.getUserID();
 
   selectItem(index) {
-    if ((index == 2 || index == 4) && token.isEmpty) {
+    if ((index == 2 || index == 4) && userID.isEmpty) {
       Navigator.of(scaffoldKey.currentContext!).pushReplacement(
         MaterialPageRoute(builder: (context) => const LoginView()),
       );
     } else {
       controller.selectedItem = index;
-      emit(SelectItemState());
     }
+    emit(SelectItemState());
   }
 
   void navigateToNavBarView(int index) {

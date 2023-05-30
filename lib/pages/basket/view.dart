@@ -45,6 +45,7 @@ class BasketView extends StatelessWidget {
                 child: Scaffold(
                   backgroundColor: ColorManager.white,
                   appBar: AppBar(
+                    automaticallyImplyLeading: false,
                     backgroundColor: ColorManager.mainColor,
                     elevation: 0.0,
                     centerTitle: false,

@@ -154,7 +154,9 @@ class SignUpView extends StatelessWidget {
                           if (state is SignUpFailureState) {
                             Navigator.pop(context);
                             showMessage(
-                                message: state.msg, height: 60.h, maxLines: 10);
+                                message: state.msg,
+                                height: 100.h,
+                                maxLines: 10);
                             // showMessage(message: "من فضلك تأكد من البيانات ..");
                           } else if (state is NetworkErrorState) {
                             Navigator.pop(context);
