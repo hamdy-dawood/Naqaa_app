@@ -15,7 +15,6 @@ class SplashView extends StatefulWidget {
 }
 
 class _SplashViewState extends State<SplashView> {
-  // bool isFirstTime = CacheHelper.getIfFirstTime();
   String userID = CacheHelper.getUserID();
 
   @override

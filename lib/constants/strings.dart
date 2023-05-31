@@ -1,58 +1,60 @@
 class UrlsStrings {
-  static String baseUrl = "https://morabrand.net/naqaa/";
-  static String baseImageUrl =
+  static const String baseUrl = "https://morabrand.net/naqaa/";
+  static const String baseImageUrl =
       "https://morabrand.net/naqaa/upload/productsimga/";
 
-  static String signUpUrl = "${baseUrl}Auth/signup.php";
-  static String loginUrl = "${baseUrl}ll";
-  static String profileDateUrl = "${baseUrl}Auth/viewmyinfo.php";
+  static const String signUpUrl = "${baseUrl}Auth/signup.php";
+  static const String loginUrl = "${baseUrl}ll";
+  static const String profileDateUrl = "${baseUrl}Auth/viewmyinfo.php";
 
-  static String allProductsUrl = "${baseUrl}products/viewproducts.php";
-  static String addProductBasketUrl = "${baseUrl}basket/addbasket.php";
-  static String removeProductBasketUrl = "${baseUrl}basket/removebasket.php";
-  static String removeAllBasketUrl = "${baseUrl}basket/removeAllBasket.php";
-  static String basketsUrl = "${baseUrl}basket/viewbasket.php";
-  static String ordersUrl = "${baseUrl}order/vieworders.php";
-  static String addOrdersUrl = "${baseUrl}order/addorder.php";
+  static const String allProductsUrl = "${baseUrl}products/viewproducts.php";
+  static const String addProductBasketUrl = "${baseUrl}basket/addbasket.php";
+  static const String removeProductBasketUrl =
+      "${baseUrl}basket/removebasket.php";
+  static const String removeAllBasketUrl =
+      "${baseUrl}basket/removeAllBasket.php";
+  static const String basketsUrl = "${baseUrl}basket/viewbasket.php";
+  static const String ordersUrl = "${baseUrl}order/vieworders.php";
+  static const String addOrdersUrl = "${baseUrl}order/addorder.php";
 
-  static String networkErrorUrl =
+  static const String networkErrorUrl =
       "https://telegra.ph/file/5fd32c81aeea0385e2418.png";
-  static String noImageUrl =
+  static const String noImageUrl =
       "https://telegra.ph/file/71de56d0641458ae1c65d.png";
-  static String userImageUrl =
+  static const String userImageUrl =
       "https://telegra.ph/file/c8e961ef22fcb1c4546f1.png";
 }
 
 class AssetsStrings {
-  static String baseIcons = "assets/icons/";
-  static String baseImages = "assets/images/";
+  static const String baseIcons = "assets/icons/";
+  static const String baseImages = "assets/images/";
 
-  static String noNetworkImage = "${baseImages}no_network.png";
+  static const String noNetworkImage = "${baseImages}no_network.png";
 
-  static String mosqueImage = "${baseImages}mosque.svg";
-  static String homeImage = "${baseImages}home.svg";
-  static String tickIcon = "${baseIcons}tick.svg";
-  static String tickUnFillIcon = "${baseIcons}tick_un_fill.svg";
+  static const String mosqueImage = "${baseImages}mosque.svg";
+  static const String homeImage = "${baseImages}home.svg";
+  static const String tickIcon = "${baseIcons}tick.svg";
+  static const String tickUnFillIcon = "${baseIcons}tick_un_fill.svg";
 
-  static String logoIcon = "${baseIcons}logo.svg";
-  static String homeIcon = "${baseIcons}home.svg";
-  static String searchIcon = "${baseIcons}search.svg";
-  static String ordersIcon = "${baseIcons}orders.svg";
-  static String checkIcon = "${baseIcons}check.svg";
-  static String profileIcon = "${baseIcons}profile.svg";
+  static const String logoIcon = "${baseIcons}logo.svg";
+  static const String homeIcon = "${baseIcons}home.svg";
+  static const String searchIcon = "${baseIcons}search.svg";
+  static const String ordersIcon = "${baseIcons}orders.svg";
+  static const String checkIcon = "${baseIcons}check.svg";
+  static const String profileIcon = "${baseIcons}profile.svg";
 
-  static String homeSelectedIcon = "${baseIcons}home_selected.svg";
-  static String searchSelectedIcon = "${baseIcons}search_selected.svg";
-  static String ordersSelectedIcon = "${baseIcons}orders_selected.svg";
-  static String checkSelectedIcon = "${baseIcons}check_selected.svg";
-  static String profileSelectedIcon = "${baseIcons}profile_selected.svg";
+  static const String homeSelectedIcon = "${baseIcons}home_selected.svg";
+  static const String searchSelectedIcon = "${baseIcons}search_selected.svg";
+  static const String ordersSelectedIcon = "${baseIcons}orders_selected.svg";
+  static const String checkSelectedIcon = "${baseIcons}check_selected.svg";
+  static const String profileSelectedIcon = "${baseIcons}profile_selected.svg";
 
-  static String locationIcon = "${baseIcons}location.svg";
-  static String notificationIcon = "${baseIcons}notification.svg";
-  static String deleteIcon = "${baseIcons}delete.svg";
-  static String filterIcon = "${baseIcons}filter.svg";
-  static String userEditIcon = "${baseIcons}user_edit.svg";
-  static String logoutIcon = "${baseIcons}logout.svg";
-  static String supportIcon = "${baseIcons}support.svg";
-  static String whatsappIcon = "${baseIcons}whatsapp.svg";
+  static const String locationIcon = "${baseIcons}location.svg";
+  static const String notificationIcon = "${baseIcons}notification.svg";
+  static const String deleteIcon = "${baseIcons}delete.svg";
+  static const String filterIcon = "${baseIcons}filter.svg";
+  static const String userEditIcon = "${baseIcons}user_edit.svg";
+  static const String logoutIcon = "${baseIcons}logout.svg";
+  static const String supportIcon = "${baseIcons}support.svg";
+  static const String whatsappIcon = "${baseIcons}whatsapp.svg";
 }

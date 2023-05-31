@@ -25,7 +25,7 @@ class BasketView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String token = CacheHelper.getUserID();
+    String userID = CacheHelper.getUserID();
     return Builder(
       builder: (context) {
         final cubit = BasketCubit.get(context);
@@ -34,7 +34,7 @@ class BasketView extends StatelessWidget {
 
         cubit.getBaskets();
 
-        return token.isNotEmpty
+        return userID.isNotEmpty
             ? RefreshIndicator(
                 backgroundColor: ColorManager.mainColor,
                 color: Colors.white,

@@ -44,7 +44,7 @@ class LoginView extends StatelessWidget {
             actions: [
               TextButton(
                 onPressed: () {
-                  navigateTo(page: const NavBarView(), withHistory: false);
+                  navigateTo(page: const NavBarView());
                 },
                 child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: 10.w),

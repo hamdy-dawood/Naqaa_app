@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.hamdy.naqaa.naqaa">
    <application
-        android:label="naqaa"
+        android:label="NAQAA"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

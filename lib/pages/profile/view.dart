@@ -152,10 +152,10 @@ class ProfileView extends StatelessWidget {
                               text: "تسجيل الخروج",
                               image: AssetsStrings.logoutIcon,
                               press: () {
+                                CacheHelper.removeUserID();
                                 navigateTo(
                                     page: const LoginView(),
                                     withHistory: false);
-                                CacheHelper.removeUserID();
                               },
                               btnColor: ColorManager.mainColor,
                             ),
