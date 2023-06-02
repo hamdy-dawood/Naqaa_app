@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:naqaa/components/custom_elevated.dart';
 import 'package:naqaa/components/will_pop_scope.dart';
 import 'package:naqaa/constants/color_manager.dart';
 import 'package:naqaa/constants/custom_text.dart';
 import 'package:naqaa/core/cache_helper.dart';
-import 'package:naqaa/core/snack_and_navigate.dart';
+import 'package:naqaa/core/navigate.dart';
 import 'package:naqaa/pages/add_product_to_basket/cubit.dart';
 import 'package:naqaa/pages/add_product_to_basket/states.dart';
 import 'package:naqaa/pages/bottom_nav_bar/cubit.dart';
@@ -107,12 +108,12 @@ class ProductItem extends StatelessWidget {
                       if (state is AddProductBasketFailureState) {
                         Navigator.pop(context);
                         Navigator.pop(context);
-                        showMessage(
-                            message: state.msg, maxLines: 5, height: 80.h);
+                        Fluttertoast.showToast(msg: state.msg);
                       } else if (state is AddProductBasketSuccessState) {
                         Navigator.pop(context);
                         Navigator.pop(context);
                         navBarCubit.navigateToNavBarView(3);
+                        Fluttertoast.showToast(msg: "Add to Cart Successfully");
                       }
                     },
                     builder: (context, state) {

@@ -6,19 +6,20 @@ import 'package:naqaa/constants/custom_text.dart';
 deleteDialog(
     {required BuildContext context,
     required VoidCallback yesPress,
-    required String title}) {
+    required String title,
+    subTitle}) {
   showDialog(
     context: context,
-    builder: (_) {
+    builder: (context) {
       return AlertDialog(
         title: CustomText(
-          text: "مسح",
+          text: title,
           color: ColorManager.black,
           fontSize: 25.sp,
           fontWeight: FontWeight.w500,
         ),
         content: CustomText(
-          text: title,
+          text: subTitle,
           color: ColorManager.black,
           fontSize: 18.sp,
           fontWeight: FontWeight.normal,

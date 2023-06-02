@@ -10,8 +10,8 @@ import 'package:naqaa/constants/color_manager.dart';
 import 'package:naqaa/constants/custom_text.dart';
 import 'package:naqaa/constants/strings.dart';
 import 'package:naqaa/core/cache_helper.dart';
-import 'package:naqaa/core/snack_and_navigate.dart';
 import 'package:naqaa/pages/address_type/view.dart';
+import 'package:naqaa/pages/address_type/view2.dart';
 import 'package:naqaa/pages/basket/components/basket_item.dart';
 import 'package:naqaa/pages/bottom_nav_bar/cubit.dart';
 import 'package:naqaa/pages/remove_all_basket/cubit.dart';
@@ -26,6 +26,7 @@ class BasketView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     String userID = CacheHelper.getUserID();
+
     return Builder(
       builder: (context) {
         final cubit = BasketCubit.get(context);
@@ -60,7 +61,8 @@ class BasketView extends StatelessWidget {
                         onTap: () {
                           deleteDialog(
                             context: context,
-                            title: "هل أنت متأكد من إزالة ما في السلة؟",
+                            title: "مسح",
+                            subTitle: "هل أنت متأكد من إزالة ما في السلة؟",
                             yesPress: () {
                               removeAllCubit.removeAllBasket();
                               Navigator.pop(context);
@@ -131,12 +133,17 @@ class BasketView extends StatelessWidget {
                                     final baskets = cubit.baskets[index];
                                     return BasketItem(
                                         itemPress: () {
-                                          navigateTo(
-                                            page: ChooseAddressType(
-                                              productID: "${baskets.productId}",
-                                              quantity:
-                                                  "${baskets.basketQuantity}",
-                                              basketID: "${baskets.basketId}",
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  ChooseAddressType(
+                                                productID:
+                                                    "${baskets.productId}",
+                                                quantity:
+                                                    "${baskets.basketQuantity}",
+                                                basketID: "${baskets.basketId}",
+                                              ),
                                             ),
                                           );
                                         },
@@ -189,7 +196,7 @@ class BasketView extends StatelessWidget {
                                           fontWeight: FontWeight.normal,
                                         ),
                                         CustomText(
-                                          text: "QR ",
+                                          text: "QR ${cubit.total}",
                                           color: ColorManager.black,
                                           fontSize: 18.sp,
                                           fontWeight: FontWeight.w500,
@@ -210,7 +217,7 @@ class BasketView extends StatelessWidget {
                                           fontWeight: FontWeight.bold,
                                         ),
                                         CustomText(
-                                          text: "QR ",
+                                          text: "QR 10",
                                           color: ColorManager.black,
                                           fontSize: 18.sp,
                                           fontWeight: FontWeight.w500,
@@ -231,7 +238,8 @@ class BasketView extends StatelessWidget {
                                           fontWeight: FontWeight.bold,
                                         ),
                                         CustomText(
-                                          text: "QR ",
+                                          text:
+                                              "QR ${int.parse(cubit.total) + 10}",
                                           color: ColorManager.mainColor,
                                           fontSize: 20.sp,
                                           fontWeight: FontWeight.bold,
@@ -266,9 +274,13 @@ class BasketView extends StatelessWidget {
                                           child: CustomElevated(
                                             text: "إتمام الطلب",
                                             press: () {
-                                              // navigateTo(
-                                              //     page:
-                                              //         const ChooseAddressType());
+                                              Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      ChooseAddressType2(),
+                                                ),
+                                              );
                                             },
                                             btnColor: ColorManager.mainColor,
                                             fontSize: 16.sp,

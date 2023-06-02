@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:naqaa/components/custom_elevated.dart';
 import 'package:naqaa/components/delete_dialog.dart';
 import 'package:naqaa/components/svg_icons.dart';
@@ -99,7 +98,8 @@ class BasketItem extends StatelessWidget {
                             onPressed: () {
                               deleteDialog(
                                 context: context,
-                                title: "هل أنت متأكد من إزالة هذا العنصر؟",
+                                title: "مسح",
+                                subTitle: "هل أنت متأكد من إزالة هذا العنصر؟",
                                 yesPress: yesPressDelete,
                               );
                             },
@@ -132,145 +132,7 @@ class BasketItem extends StatelessWidget {
                             flex: 3,
                             child: CustomElevated(
                               text: "Qty $quantity",
-                              press: () {
-                                showDialog(
-                                  context: context,
-                                  barrierDismissible: false,
-                                  builder: (context) {
-                                    return AlertDialog(
-                                      content: SizedBox(
-                                        width: 1.sw,
-                                        child: Column(
-                                          mainAxisSize: MainAxisSize.min,
-                                          children: [
-                                            Align(
-                                              alignment: Alignment.centerLeft,
-                                              child: IconButton(
-                                                onPressed: () {
-                                                  Navigator.pop(context);
-                                                },
-                                                icon: Icon(
-                                                  Icons.close,
-                                                  size: 25.sp,
-                                                ),
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: EdgeInsets.symmetric(
-                                                  vertical: 10.h),
-                                              child: CustomText(
-                                                text: "أدخل الكمية",
-                                                color: ColorManager.black,
-                                                fontSize: 20.sp,
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: EdgeInsets.symmetric(
-                                                  horizontal: 50.w),
-                                              child: TextField(
-                                                // controller: addProductCubit
-                                                //     .quantityController,
-                                                keyboardType:
-                                                    TextInputType.number,
-                                                textAlign: TextAlign.center,
-                                                style:
-                                                    GoogleFonts.redHatDisplay(
-                                                  color: ColorManager.black,
-                                                  fontSize: 18.sp,
-                                                  fontWeight: FontWeight.bold,
-                                                ),
-                                                decoration: InputDecoration(
-                                                  hintText: "0",
-                                                  hintStyle:
-                                                      GoogleFonts.redHatDisplay(
-                                                    color:
-                                                        ColorManager.darkGrey,
-                                                    fontSize: 18.sp,
-                                                    fontWeight: FontWeight.bold,
-                                                  ),
-                                                  enabledBorder:
-                                                      OutlineInputBorder(
-                                                    borderSide: BorderSide(
-                                                      color: ColorManager
-                                                          .borderColor,
-                                                    ),
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            10.r),
-                                                  ),
-                                                  focusedBorder:
-                                                      OutlineInputBorder(
-                                                    borderSide: BorderSide(
-                                                      color: ColorManager
-                                                          .mainColor,
-                                                    ),
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            10.r),
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: EdgeInsets.symmetric(
-                                                  vertical: 10.h),
-                                              child: Divider(
-                                                color: ColorManager.darkGrey,
-                                                thickness: 0.5,
-                                              ),
-                                            ),
-                                            // BlocConsumer<AddProductBasketCubit,
-                                            //     AddProductBasketStates>(
-                                            //   listener: (context, state) {
-                                            //     if (state
-                                            //     is AddProductBasketFailureState) {
-                                            //       Navigator.pop(context);
-                                            //       Navigator.pop(context);
-                                            //       showMessage(message: state.msg);
-                                            //     } else if (state
-                                            //     is AddProductBasketSuccessState) {
-                                            //       // showMessage(message: "success");
-                                            //       navigateTo(
-                                            //           page: const NavBarView(),
-                                            //           withHistory: false);
-                                            //     }
-                                            //   },
-                                            //   builder: (context, state) {
-                                            //     if (state
-                                            //     is AddProductBasketLoadingState) {
-                                            //       WidgetsBinding.instance
-                                            //           .addPostFrameCallback((_) {
-                                            //         customWillPopScope(context);
-                                            //       });
-                                            //       return const SizedBox();
-                                            //     }
-                                            //     return Padding(
-                                            //       padding: EdgeInsets.symmetric(
-                                            //           horizontal: 40.w),
-                                            //       child: CustomElevated(
-                                            //         text: "إضافة",
-                                            //         press: () {
-                                            //           addProductCubit.addProduct(
-                                            //             productID: productID,
-                                            //           );
-                                            //         },
-                                            //         btnColor:
-                                            //         ColorManager.mainColor,
-                                            //         fontSize: 20.sp,
-                                            //         paddingVertical: 5.h,
-                                            //         borderRadius: 10.r,
-                                            //       ),
-                                            //     );
-                                            //   },
-                                            // ),
-                                          ],
-                                        ),
-                                      ),
-                                    );
-                                  },
-                                );
-                              },
+                              press: () {},
                               btnColor: ColorManager.white,
                               textColor: ColorManager.mainColor,
                               fontSize: 15.sp,

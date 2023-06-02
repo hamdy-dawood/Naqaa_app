@@ -6,6 +6,7 @@ class UrlsStrings {
   static const String signUpUrl = "${baseUrl}Auth/signup.php";
   static const String loginUrl = "${baseUrl}ll";
   static const String profileDateUrl = "${baseUrl}Auth/viewmyinfo.php";
+  static const String getUserIdUrl = "${baseUrl}Auth/getuserid.php";
 
   static const String allProductsUrl = "${baseUrl}products/viewproducts.php";
   static const String addProductBasketUrl = "${baseUrl}basket/addbasket.php";
@@ -16,6 +17,7 @@ class UrlsStrings {
   static const String basketsUrl = "${baseUrl}basket/viewbasket.php";
   static const String ordersUrl = "${baseUrl}order/vieworders.php";
   static const String addOrdersUrl = "${baseUrl}order/addorder.php";
+  static const String addAllBasketOrdersUrl = "${baseUrl}order/addorderAll.php";
 
   static const String networkErrorUrl =
       "https://telegra.ph/file/5fd32c81aeea0385e2418.png";

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:naqaa/components/custom_elevated.dart';
@@ -10,25 +11,15 @@ import 'package:naqaa/components/will_pop_scope.dart';
 import 'package:naqaa/constants/color_manager.dart';
 import 'package:naqaa/constants/custom_text.dart';
 import 'package:naqaa/constants/strings.dart';
-import 'package:naqaa/core/snack_and_navigate.dart';
+import 'package:naqaa/core/navigate.dart';
 import 'package:naqaa/pages/bottom_nav_bar/view.dart';
 import 'package:naqaa/pages/login/states.dart';
 import 'package:naqaa/pages/signup/view.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 import 'cubit.dart';
 
 class LoginView extends StatelessWidget {
   const LoginView({Key? key}) : super(key: key);
-
-  Future<void> _launchInBrowser(Uri url) async {
-    if (!await launchUrl(
-      url,
-      mode: LaunchMode.externalApplication,
-    )) {
-      throw Exception('Could not launch $url');
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +35,7 @@ class LoginView extends StatelessWidget {
             actions: [
               TextButton(
                 onPressed: () {
-                  navigateTo(page: const NavBarView());
+                  navigateTo(page: NavBarView());
                 },
                 child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: 10.w),
@@ -178,7 +169,7 @@ class LoginView extends StatelessWidget {
                               text: " الشروط والأحكام",
                               recognizer: TapGestureRecognizer()
                                 ..onTap = () {
-                                  _launchInBrowser(
+                                  cubit.launchInBrowser(
                                     Uri.parse(
                                       "https://naqaa.app/app/public/terms-and-conditions",
                                     ),
@@ -202,7 +193,7 @@ class LoginView extends StatelessWidget {
                               text: "السياسية",
                               recognizer: TapGestureRecognizer()
                                 ..onTap = () {
-                                  _launchInBrowser(
+                                  cubit.launchInBrowser(
                                     Uri.parse(
                                       "https://naqaa.app/app/public/privacy-policy",
                                     ),
@@ -225,13 +216,15 @@ class LoginView extends StatelessWidget {
                   BlocConsumer<LoginCubit, LoginStates>(
                     listener: (context, state) {
                       if (state is LoginFailureState) {
-                        showMessage(
-                            message: "يرجي التأكد من الإيميل وكلمة السر");
+                        Fluttertoast.showToast(
+                            msg: "يرجي التحقق من الانترنت..");
                       } else if (state is NetworkErrorState) {
-                        showMessage(message: "يرجي التحقق من الانترنت");
+                        Fluttertoast.showToast(
+                            msg: "يرجي التحقق من الانترنت..");
                       } else if (state is LoginLoadingState) {
                         customWillPopScope(context);
                       } else if (state is LoginSuccessState) {
+                        cubit.phoneNumber = "";
                         navigateTo(
                             page: const NavBarView(), withHistory: false);
                       }
@@ -241,7 +234,9 @@ class LoginView extends StatelessWidget {
                         padding: EdgeInsets.symmetric(horizontal: 0.17.sw),
                         child: CustomElevated(
                           text: "تسجيل الدخول",
-                          press: cubit.login,
+                          press: () {
+                            cubit.login();
+                          },
                           btnColor: ColorManager.mainColor,
                           fontSize: 18.sp,
                           borderRadius: 8.r,

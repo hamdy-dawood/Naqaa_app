@@ -4,9 +4,9 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'core/cache_helper.dart';
-import 'core/snack_and_navigate.dart';
-import 'pages/add_order/cubit.dart';
+import 'core/navigate.dart';
 import 'pages/add_product_to_basket/cubit.dart';
+import 'pages/address_type/cubit.dart';
 import 'pages/basket/cubit.dart';
 import 'pages/bottom_nav_bar/cubit.dart';
 import 'pages/home/cubit.dart';
@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
             BlocProvider(create: (context) => RemoveAllBasketCubit()),
             BlocProvider(create: (context) => BasketCubit()),
             BlocProvider(create: (context) => OrdersCubit()),
-            BlocProvider(create: (context) => AddOrderCubit()),
+            BlocProvider(create: (context) => AddressTypeCubit()),
           ],
           child: MaterialApp(
             debugShowCheckedModeBanner: false,

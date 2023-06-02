@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:naqaa/components/custom_elevated_icon.dart';
 import 'package:naqaa/components/custom_form_field.dart';
+import 'package:naqaa/components/delete_dialog.dart';
 import 'package:naqaa/components/error_network.dart';
 import 'package:naqaa/components/svg_icons.dart';
 import 'package:naqaa/components/will_pop_scope.dart';
@@ -143,7 +144,6 @@ class ProfileView extends StatelessWidget {
                             SizedBox(
                               height: 20.h,
                             ),
-                            //todo change language
                             SizedBox(
                               height: 30.h,
                             ),
@@ -151,15 +151,20 @@ class ProfileView extends StatelessWidget {
                               text: "تسجيل الخروج",
                               image: AssetsStrings.logoutIcon,
                               press: () {
-                                CacheHelper.removeUserID();
-                                Navigator.of(context).pushAndRemoveUntil(
-                                  MaterialPageRoute(
-                                      builder: (context) => const LoginView()),
-                                  (Route<dynamic> route) => false,
+                                deleteDialog(
+                                  context: context,
+                                  title: "تسجيل الخروج",
+                                  subTitle: "هل أنت متأكد من تسجيل الخروج؟",
+                                  yesPress: () {
+                                    CacheHelper.removeUserID();
+                                    Navigator.of(context).pushAndRemoveUntil(
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              const LoginView()),
+                                      (Route<dynamic> route) => false,
+                                    );
+                                  },
                                 );
-                                // navigateTo(
-                                //     page: const LoginView(),
-                                //     withHistory: false);
                               },
                               btnColor: ColorManager.mainColor,
                             ),

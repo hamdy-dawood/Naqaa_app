@@ -11,26 +11,23 @@ import 'package:naqaa/pages/bottom_nav_bar/cubit.dart';
 import 'cubit.dart';
 import 'states.dart';
 
-class AddOrderView extends StatelessWidget {
-  const AddOrderView({
-    Key? key,
-    required this.productID,
-    required this.quantity,
-    required this.basketId,
-    required this.orderAddressType,
-    required this.lat,
-    required this.long,
-  }) : super(key: key);
+class AddAllBasketOrderView extends StatelessWidget {
+  const AddAllBasketOrderView(
+      {Key? key,
+      required this.orderAddressType,
+      required this.lat,
+      required this.long})
+      : super(key: key);
 
-  final String productID, quantity, basketId, orderAddressType, lat, long;
+  final String orderAddressType, lat, long;
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => AddOrderCubit(),
+      create: (context) => AddAllBasketOrderCubit(),
       child: Builder(
         builder: (context) {
-          final cubit = AddOrderCubit.get(context);
+          final cubit = AddAllBasketOrderCubit.get(context);
           return Scaffold(
             backgroundColor: ColorManager.white,
             appBar: AppBar(
@@ -46,7 +43,6 @@ class AddOrderView extends StatelessWidget {
               leading: IconButton(
                 onPressed: () {
                   Navigator.pop(context);
-                  Navigator.pop(context);
                 },
                 icon: Icon(
                   Icons.arrow_back_ios,
@@ -60,27 +56,6 @@ class AddOrderView extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  CustomText(
-                    text: "product id : $productID",
-                    color: ColorManager.black,
-                    fontSize: 20.sp,
-                    fontWeight: FontWeight.w500,
-                  ),
-                  SizedBox(height: 10.h),
-                  CustomText(
-                    text: "quantity : $quantity",
-                    color: ColorManager.black,
-                    fontSize: 20.sp,
-                    fontWeight: FontWeight.w500,
-                  ),
-                  SizedBox(height: 10.h),
-                  CustomText(
-                    text: "basket Id : $basketId",
-                    color: ColorManager.black,
-                    fontSize: 20.sp,
-                    fontWeight: FontWeight.w500,
-                  ),
-                  SizedBox(height: 10.h),
                   CustomText(
                     text: "orderAddressType : $orderAddressType",
                     color: ColorManager.black,
@@ -101,21 +76,21 @@ class AddOrderView extends StatelessWidget {
                     fontSize: 20.sp,
                     fontWeight: FontWeight.w500,
                   ),
-                  BlocConsumer<AddOrderCubit, AddOrderStates>(
+                  BlocConsumer<AddAllBasketOrderCubit, AddAllBasketOrderStates>(
                     listener: (context, state) {
-                      if (state is AddOrderFailureState) {
+                      if (state is AddAllBasketOrderFailureState) {
                         Navigator.pop(context);
                         Fluttertoast.showToast(msg: state.msg);
-                      } else if (state is AddOrderSuccessState) {
-                        for (var i = 0; i < 4; i++) {
-                          Navigator.pop(context);
-                        }
+                      } else if (state is AddAllBasketOrderSuccessState) {
+                        Navigator.pop(context);
+                        Navigator.pop(context);
+                        Navigator.pop(context);
                         NavBarCubit.get(context).navigateToNavBarView(2);
                         Fluttertoast.showToast(msg: "success");
                       }
                     },
                     builder: (context, state) {
-                      if (state is AddOrderLoadingState) {
+                      if (state is AddAllBasketOrderLoadingState) {
                         WidgetsBinding.instance.addPostFrameCallback((_) {
                           customWillPopScope(context);
                         });
@@ -126,10 +101,7 @@ class AddOrderView extends StatelessWidget {
                         child: CustomElevated(
                           text: "اتمام الطلب",
                           press: () {
-                            cubit.addOrder(
-                              productID: productID,
-                              quantity: quantity,
-                              basketId: basketId,
+                            cubit.addAllBasketOrder(
                               orderAddressType: orderAddressType,
                               lat: lat,
                               long: long,

@@ -15,6 +15,7 @@ class BasketCubit extends Cubit<BasketStates> {
 
   final dio = Dio();
   List<BasketsResp> baskets = [];
+  String total = "";
 
   Future<void> getBaskets() async {
     emit(BasketLoadingState());
@@ -27,6 +28,8 @@ class BasketCubit extends Cubit<BasketStates> {
         Map<String, dynamic> json = jsonDecode(response.data);
         List<dynamic> data = json['data'];
         baskets = data.map((item) => BasketsResp.fromJson(item)).toList();
+        Map<String, dynamic> jsonTotal = json['total'];
+        total = jsonTotal["total"] ?? "";
         if (baskets.isEmpty) {
           emit(BasketSuccessWithNoDataState());
         } else {

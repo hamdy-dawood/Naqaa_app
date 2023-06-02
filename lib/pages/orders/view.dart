@@ -101,8 +101,8 @@ class OrdersView extends StatelessWidget {
                           price: "${baskets.productPrice}",
                           image:
                               "${UrlsStrings.baseImageUrl}${baskets.productImage}",
-                          quantity: "${baskets.orderQuantity}",
-                          addressType: "${baskets.orderTypeAddress}",
+                          quantity: "${baskets.basketQuantity}",
+                          addressType: "${baskets.basketTypeAddress}",
                         );
                       }),
                 );

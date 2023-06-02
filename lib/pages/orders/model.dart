@@ -6,16 +6,15 @@ class OrdersResp {
   String? productStatus;
   String? productImage;
   String? productTime;
-  String? orderId;
-  String? orderProductId;
-  String? orderBasketId;
-  String? orderUserId;
-  String? orderTypeAddress;
-  String? orderLat;
-  String? orderLong;
-  String? orderQuantity;
-  String? orderStatus;
-  String? orderTime;
+  String? basketId;
+  String? basketProductId;
+  String? basketUserId;
+  String? basketQuantity;
+  String? basketOrderStatus;
+  String? basketLat;
+  String? basketLong;
+  String? basketTypeAddress;
+  String? basketTime;
 
   OrdersResp({
     this.productId,
@@ -25,16 +24,15 @@ class OrdersResp {
     this.productStatus,
     this.productImage,
     this.productTime,
-    this.orderId,
-    this.orderProductId,
-    this.orderBasketId,
-    this.orderUserId,
-    this.orderTypeAddress,
-    this.orderLat,
-    this.orderLong,
-    this.orderQuantity,
-    this.orderStatus,
-    this.orderTime,
+    this.basketId,
+    this.basketProductId,
+    this.basketUserId,
+    this.basketQuantity,
+    this.basketOrderStatus,
+    this.basketLat,
+    this.basketLong,
+    this.basketTypeAddress,
+    this.basketTime,
   });
 
   OrdersResp.fromJson(Map<String, dynamic> json) {
@@ -45,15 +43,14 @@ class OrdersResp {
     productStatus = json['product_status'] ?? "";
     productImage = json['product_image'] ?? "";
     productTime = json['product_time'] ?? "";
-    orderId = json['order_id'] ?? "";
-    orderProductId = json['order_productid'] ?? "";
-    orderBasketId = json['order_basketid'] ?? "";
-    orderUserId = json['order_userid'] ?? "";
-    orderTypeAddress = json['order_typeaddress'] ?? "";
-    orderLat = json['order_lat'] ?? "";
-    orderLong = json['order_long'] ?? "";
-    orderQuantity = json['order_quantity'] ?? "";
-    orderStatus = json['order_status'] ?? "";
-    orderTime = json['order_time'] ?? "";
+    basketId = json['basket_id'] ?? "";
+    basketProductId = json['basket_productid'] ?? "";
+    basketUserId = json['basket_userid'] ?? "";
+    basketQuantity = json['basket_quantity'] ?? "";
+    basketOrderStatus = json['basket_orderstatus'] ?? "";
+    basketLat = json['basket_lat'] ?? "";
+    basketLong = json['basket_long'] ?? "";
+    basketTypeAddress = json['basket_typeaddress'] ?? "";
+    basketTime = json['basket_time'] ?? "";
   }
 }

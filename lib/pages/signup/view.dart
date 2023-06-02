@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:naqaa/components/custom_elevated.dart';
@@ -11,8 +12,9 @@ import 'package:naqaa/constants/color_manager.dart';
 import 'package:naqaa/constants/custom_text.dart';
 import 'package:naqaa/constants/input_validator.dart';
 import 'package:naqaa/constants/strings.dart';
-import 'package:naqaa/core/snack_and_navigate.dart';
-import 'package:naqaa/pages/bottom_nav_bar/view.dart';
+import 'package:naqaa/core/navigate.dart';
+import 'package:naqaa/pages/get_user_id/view.dart';
+import 'package:naqaa/pages/login/view.dart';
 import 'package:naqaa/pages/signup/states.dart';
 
 import 'cubit.dart';
@@ -153,19 +155,20 @@ class SignUpView extends StatelessWidget {
                         listener: (context, state) {
                           if (state is SignUpFailureState) {
                             Navigator.pop(context);
-                            showMessage(
-                                message: state.msg,
-                                height: 100.h,
-                                maxLines: 10);
+                            Fluttertoast.showToast(msg: state.msg);
                             // showMessage(message: "من فضلك تأكد من البيانات ..");
                           } else if (state is NetworkErrorState) {
                             Navigator.pop(context);
-                            showMessage(message: "يرجي التحقق من الانترنت..");
+                            Fluttertoast.showToast(
+                                msg: "يرجي التحقق من الانترنت..");
                           } else if (state is SignUpLoadingState) {
                             customWillPopScope(context);
                           } else if (state is SignUpSuccessState) {
                             navigateTo(
-                                page: const NavBarView(), withHistory: false);
+                              page: GetUserIDView(
+                                phone: cubit.phoneNumber,
+                              ),
+                            );
                           }
                         },
                         builder: (context, state) {
@@ -194,7 +197,7 @@ class SignUpView extends StatelessWidget {
                           ),
                           TextButton(
                             onPressed: () {
-                              Navigator.pop(context);
+                              navigateTo(page: LoginView(), withHistory: false);
                             },
                             child: CustomText(
                               text: "تسجيل الدخول",
