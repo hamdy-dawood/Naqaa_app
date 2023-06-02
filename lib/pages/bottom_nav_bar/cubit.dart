@@ -17,6 +17,8 @@ class NavBarCubit extends Cubit<NavBarStates> {
 
   selectItem(index) {
     String userID = CacheHelper.getUserID();
+    print("userID : $userID");
+    print("- " * 20);
     if (index == 2 && userID.isEmpty) {
       Navigator.of(scaffoldKey.currentContext!).pushReplacement(
         MaterialPageRoute(builder: (context) => const LoginView()),
@@ -25,13 +27,14 @@ class NavBarCubit extends Cubit<NavBarStates> {
       Navigator.of(scaffoldKey.currentContext!).pushReplacement(
         MaterialPageRoute(builder: (context) => const LoginView()),
       );
+      print('1. Selected Item: ${index}');
     } else {
       if (userID.isEmpty) {
         controller.selectedItem = 0;
-        print('1. Selected Item: ${controller.selectedItem}');
+        print('2. Selected Item: ${controller.selectedItem}');
       } else {
         controller.selectedItem = index;
-        print('2. Selected Item: ${controller.selectedItem}');
+        print('3. Selected Item: ${controller.selectedItem}');
       }
     }
     emit(SelectItemState());

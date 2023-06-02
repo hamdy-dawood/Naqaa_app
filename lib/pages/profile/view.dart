@@ -11,7 +11,6 @@ import 'package:naqaa/constants/color_manager.dart';
 import 'package:naqaa/constants/custom_text.dart';
 import 'package:naqaa/constants/strings.dart';
 import 'package:naqaa/core/cache_helper.dart';
-import 'package:naqaa/core/snack_and_navigate.dart';
 import 'package:naqaa/pages/login/view.dart';
 
 import 'cubit.dart';
@@ -153,9 +152,14 @@ class ProfileView extends StatelessWidget {
                               image: AssetsStrings.logoutIcon,
                               press: () {
                                 CacheHelper.removeUserID();
-                                navigateTo(
-                                    page: const LoginView(),
-                                    withHistory: false);
+                                Navigator.of(context).pushAndRemoveUntil(
+                                  MaterialPageRoute(
+                                      builder: (context) => const LoginView()),
+                                  (Route<dynamic> route) => false,
+                                );
+                                // navigateTo(
+                                //     page: const LoginView(),
+                                //     withHistory: false);
                               },
                               btnColor: ColorManager.mainColor,
                             ),
