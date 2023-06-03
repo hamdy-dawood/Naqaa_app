@@ -54,66 +54,70 @@ class AddAllBasketOrderView extends StatelessWidget {
             ),
             body: SizedBox(
               width: 1.sw,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  CustomText(
-                    text: "orderAddressType : $orderAddressType",
-                    color: ColorManager.black,
-                    fontSize: 20.sp,
-                    fontWeight: FontWeight.w500,
-                  ),
-                  SizedBox(height: 10.h),
-                  CustomText(
-                    text: "Lat: $lat",
-                    color: ColorManager.black,
-                    fontSize: 20.sp,
-                    fontWeight: FontWeight.w500,
-                  ),
-                  SizedBox(height: 10.h),
-                  CustomText(
-                    text: "Long: $long",
-                    color: ColorManager.black,
-                    fontSize: 20.sp,
-                    fontWeight: FontWeight.w500,
-                  ),
-                  BlocConsumer<AddAllBasketOrderCubit, AddAllBasketOrderStates>(
-                    listener: (context, state) {
-                      if (state is AddAllBasketOrderFailureState) {
-                        Navigator.pop(context);
-                        Fluttertoast.showToast(msg: state.msg);
-                      } else if (state is AddAllBasketOrderSuccessState) {
-                        for (var i = 0; i < 4; i++) {
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    SizedBox(height: 50.h),
+                    CustomText(
+                      text: "orderAddressType : $orderAddressType",
+                      color: ColorManager.black,
+                      fontSize: 20.sp,
+                      fontWeight: FontWeight.w500,
+                    ),
+                    SizedBox(height: 10.h),
+                    CustomText(
+                      text: "Lat: $lat",
+                      color: ColorManager.black,
+                      fontSize: 20.sp,
+                      fontWeight: FontWeight.w500,
+                    ),
+                    SizedBox(height: 10.h),
+                    CustomText(
+                      text: "Long: $long",
+                      color: ColorManager.black,
+                      fontSize: 20.sp,
+                      fontWeight: FontWeight.w500,
+                    ),
+                    BlocConsumer<AddAllBasketOrderCubit,
+                        AddAllBasketOrderStates>(
+                      listener: (context, state) {
+                        if (state is AddAllBasketOrderFailureState) {
                           Navigator.pop(context);
+                          Fluttertoast.showToast(msg: state.msg);
+                        } else if (state is AddAllBasketOrderSuccessState) {
+                          for (var i = 0; i < 4; i++) {
+                            Navigator.pop(context);
+                          }
+                          NavBarCubit.get(context).navigateToNavBarView(2);
+                          Fluttertoast.showToast(msg: "success");
                         }
-                        NavBarCubit.get(context).navigateToNavBarView(2);
-                        Fluttertoast.showToast(msg: "success");
-                      }
-                    },
-                    builder: (context, state) {
-                      if (state is AddAllBasketOrderLoadingState) {
-                        WidgetsBinding.instance.addPostFrameCallback((_) {
-                          customWillPopScope(context);
-                        });
-                        return const SizedBox();
-                      }
-                      return Padding(
-                        padding: EdgeInsets.all(20.h),
-                        child: CustomElevated(
-                          text: "اتمام الطلب",
-                          press: () {
-                            cubit.addAllBasketOrder(
-                              orderAddressType: orderAddressType,
-                              lat: lat,
-                              long: long,
-                            );
-                          },
-                          btnColor: ColorManager.mainColor,
-                        ),
-                      );
-                    },
-                  ),
-                ],
+                      },
+                      builder: (context, state) {
+                        if (state is AddAllBasketOrderLoadingState) {
+                          WidgetsBinding.instance.addPostFrameCallback((_) {
+                            customWillPopScope(context);
+                          });
+                          return const SizedBox();
+                        }
+                        return Padding(
+                          padding: EdgeInsets.all(20.h),
+                          child: CustomElevated(
+                            text: "اتمام الطلب",
+                            press: () {
+                              cubit.addAllBasketOrder(
+                                orderAddressType: orderAddressType,
+                                lat: lat,
+                                long: long,
+                              );
+                            },
+                            btnColor: ColorManager.mainColor,
+                          ),
+                        );
+                      },
+                    ),
+                  ],
+                ),
               ),
             ),
           );

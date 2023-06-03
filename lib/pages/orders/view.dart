@@ -82,6 +82,7 @@ class OrdersView extends StatelessWidget {
                     )),
                   );
                 } else if (state is NetworkErrorState) {
+                  Navigator.pop(context);
                   return ErrorNetwork(
                     press: () {
                       cubit.getOrders();

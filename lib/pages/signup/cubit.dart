@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:naqaa/constants/strings.dart';
-import 'package:naqaa/pages/login/controllers.dart';
+import 'package:naqaa/pages/signup/controllers.dart';
 
 import 'states.dart';
 

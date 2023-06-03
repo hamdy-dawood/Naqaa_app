@@ -109,11 +109,13 @@ class ProductItem extends StatelessWidget {
                         Navigator.pop(context);
                         Navigator.pop(context);
                         Fluttertoast.showToast(msg: state.msg);
+                        addProductCubit.quantityController.clear();
                       } else if (state is AddProductBasketSuccessState) {
                         Navigator.pop(context);
                         Navigator.pop(context);
                         navBarCubit.navigateToNavBarView(3);
                         Fluttertoast.showToast(msg: "Add to Cart Successfully");
+                        addProductCubit.quantityController.clear();
                       }
                     },
                     builder: (context, state) {
@@ -131,8 +133,10 @@ class ProductItem extends StatelessWidget {
                             if (addProductCubit.quantityController.text ==
                                     "0" ||
                                 addProductCubit.quantityController.text == "") {
+                              addProductCubit.quantityController.clear();
                               Navigator.pop(context);
                             } else if (token.isEmpty) {
+                              addProductCubit.quantityController.clear();
                               navigateTo(
                                 page: const LoginView(),
                               );

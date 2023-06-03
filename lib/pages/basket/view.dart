@@ -104,6 +104,7 @@ class BasketView extends StatelessWidget {
                           child: Text(state.msg),
                         );
                       } else if (state is NetworkErrorState) {
+                        Navigator.pop(context);
                         return ErrorNetwork(
                           press: () {
                             cubit.getBaskets();
@@ -125,9 +126,10 @@ class BasketView extends StatelessWidget {
                         width: 1.sw,
                         child: Column(
                           children: [
-                            SizedBox(
-                              height: 0.53.sh,
-                              child: ListView.builder(
+                            Expanded(
+                              child: SizedBox(
+                                height: 0.53.sh,
+                                child: ListView.builder(
                                   itemCount: cubit.baskets.length,
                                   itemBuilder: (context, index) {
                                     final baskets = cubit.baskets[index];
@@ -170,131 +172,102 @@ class BasketView extends StatelessWidget {
                                             },
                                           );
                                         });
-                                  }),
-                            ),
-                            const Spacer(),
-                            Divider(
-                              color: ColorManager.mainColor,
-                              thickness: 0.5,
+                                  },
+                                ),
+                              ),
                             ),
                             SizedBox(
-                              height: 5.h,
-                            ),
-                            Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 15.w),
-                              child: SizedBox(
-                                child: Column(
-                                  children: [
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        CustomText(
-                                          text: "قيمة الطلب",
-                                          color: ColorManager.borderColor,
-                                          fontSize: 15.sp,
-                                          fontWeight: FontWeight.normal,
-                                        ),
-                                        CustomText(
-                                          text: "QR ${cubit.total}",
-                                          color: ColorManager.black,
-                                          fontSize: 18.sp,
-                                          fontWeight: FontWeight.w500,
-                                        ),
-                                      ],
-                                    ),
-                                    SizedBox(
-                                      height: 5.h,
-                                    ),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        CustomText(
-                                          text: "رسوم التوصيل",
-                                          color: ColorManager.borderColor,
-                                          fontSize: 15.sp,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                        CustomText(
-                                          text: "QR 10",
-                                          color: ColorManager.black,
-                                          fontSize: 18.sp,
-                                          fontWeight: FontWeight.w500,
-                                        ),
-                                      ],
-                                    ),
-                                    SizedBox(
-                                      height: 5.h,
-                                    ),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        CustomText(
-                                          text: "الإجمالي",
-                                          color: ColorManager.mainColor,
-                                          fontSize: 20.sp,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                        CustomText(
-                                          text:
-                                              "QR ${int.parse(cubit.total) + 10}",
-                                          color: ColorManager.mainColor,
-                                          fontSize: 20.sp,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ],
-                                    ),
-                                    SizedBox(
-                                      height: 10.h,
-                                    ),
-                                    Row(
-                                      children: [
-                                        Expanded(
-                                          child: CustomElevated(
-                                            text: "إضافة المزيد",
-                                            press: () {
-                                              final navBarCubit =
-                                                  NavBarCubit.get(context);
-                                              navBarCubit
-                                                  .navigateToNavBarView(0);
-                                            },
-                                            btnColor: ColorManager.white,
-                                            textColor: ColorManager.mainColor,
-                                            fontSize: 16.sp,
-                                            borderRadius: 8.r,
-                                            paddingVertical: 5.w,
+                              height: 0.15.sh,
+                              width: 1.sw,
+                              child: ListView(
+                                children: [
+                                  Divider(
+                                    color: ColorManager.mainColor,
+                                    thickness: 0.5,
+                                  ),
+                                  SizedBox(
+                                    height: 5.h,
+                                  ),
+                                  Padding(
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 15.w),
+                                    child: SizedBox(
+                                      child: Column(
+                                        children: [
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              CustomText(
+                                                text: "الإجمالي",
+                                                color: ColorManager.mainColor,
+                                                fontSize: 20.sp,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                              CustomText(
+                                                text: "QR ${cubit.total}",
+                                                color: ColorManager.mainColor,
+                                                fontSize: 20.sp,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ],
                                           ),
-                                        ),
-                                        SizedBox(
-                                          width: 10.h,
-                                        ),
-                                        Expanded(
-                                          child: CustomElevated(
-                                            text: "إتمام الطلب",
-                                            press: () {
-                                              Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      ChooseAddressType2(),
+                                          SizedBox(
+                                            height: 10.h,
+                                          ),
+                                          Row(
+                                            children: [
+                                              Expanded(
+                                                child: CustomElevated(
+                                                  text: "إضافة المزيد",
+                                                  press: () {
+                                                    final navBarCubit =
+                                                        NavBarCubit.get(
+                                                            context);
+                                                    navBarCubit
+                                                        .navigateToNavBarView(
+                                                            0);
+                                                  },
+                                                  btnColor: ColorManager.white,
+                                                  textColor:
+                                                      ColorManager.mainColor,
+                                                  fontSize: 16.sp,
+                                                  borderRadius: 8.r,
+                                                  paddingVertical: 5.w,
                                                 ),
-                                              );
-                                            },
-                                            btnColor: ColorManager.mainColor,
-                                            fontSize: 16.sp,
-                                            borderRadius: 8.r,
-                                            paddingVertical: 5.w,
+                                              ),
+                                              SizedBox(
+                                                width: 10.h,
+                                              ),
+                                              Expanded(
+                                                child: CustomElevated(
+                                                  text: "إتمام الطلب",
+                                                  press: () {
+                                                    Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            ChooseAddressType2(),
+                                                      ),
+                                                    );
+                                                  },
+                                                  btnColor:
+                                                      ColorManager.mainColor,
+                                                  fontSize: 16.sp,
+                                                  borderRadius: 8.r,
+                                                  paddingVertical: 5.w,
+                                                ),
+                                              ),
+                                            ],
                                           ),
-                                        ),
-                                      ],
+                                          SizedBox(
+                                            height: 5.h,
+                                          ),
+                                        ],
+                                      ),
                                     ),
-                                    SizedBox(
-                                      height: 5.h,
-                                    ),
-                                  ],
-                                ),
+                                  ),
+                                ],
                               ),
                             ),
                           ],

@@ -64,7 +64,6 @@ class ChooseAddressType2 extends StatelessWidget {
                   cubit.mosque = "mosque";
                   cubit.home = "home";
                   return ListView(
-                    physics: const NeverScrollableScrollPhysics(),
                     children: [
                       CardTypeItem(
                         isSelected: cubit.type == AddressType.mosque,

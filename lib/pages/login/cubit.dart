@@ -16,16 +16,14 @@ class LoginCubit extends Cubit<LoginStates> {
   bool isChecked = false;
 
   Future<void> login() async {
-    if (formKey.currentState!.validate()) {
-      emit(LoginLoadingState());
-      Future.delayed(
-        const Duration(seconds: 3),
-        () {
-          CacheHelper.saveUserID("3");
-          emit(LoginSuccessState());
-        },
-      );
-    }
+    emit(LoginLoadingState());
+    Future.delayed(
+      const Duration(seconds: 3),
+      () {
+        CacheHelper.saveUserID("3");
+        emit(LoginSuccessState());
+      },
+    );
   }
 
   Future<void> launchInBrowser(Uri url) async {

@@ -235,7 +235,15 @@ class LoginView extends StatelessWidget {
                         child: CustomElevated(
                           text: "تسجيل الدخول",
                           press: () {
-                            cubit.login();
+                            if (cubit.formKey.currentState!.validate()) {
+                              if (cubit.isChecked == false) {
+                                Fluttertoast.showToast(
+                                    msg:
+                                        "يجب عليك الموافقة علي الشروط والأحكام السياسية");
+                              } else {
+                                cubit.login();
+                              }
+                            }
                           },
                           btnColor: ColorManager.mainColor,
                           fontSize: 18.sp,

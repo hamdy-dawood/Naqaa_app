@@ -87,6 +87,7 @@ class ProfileView extends StatelessWidget {
                     child: Text(state.msg),
                   );
                 } else if (state is NetworkErrorState) {
+                  Navigator.pop(context);
                   return ErrorNetwork(
                     press: () {
                       cubit.getProfileData();

@@ -48,4 +48,10 @@ class AddProductBasketCubit extends Cubit<AddProductBasketStates> {
       emit(AddProductBasketFailureState(msg: 'An unknown error : $e'));
     }
   }
+
+  @override
+  Future<void> close() {
+    quantityController.dispose();
+    return super.close();
+  }
 }
