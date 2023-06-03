@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:naqaa/components/will_pop_scope.dart';
 import 'package:naqaa/constants/color_manager.dart';
 import 'package:naqaa/constants/custom_text.dart';
 import 'package:naqaa/constants/strings.dart';
@@ -68,17 +69,25 @@ class ChooseAddressType2 extends StatelessWidget {
                       CardTypeItem(
                         isSelected: cubit.type == AddressType.mosque,
                         continuePress: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) {
-                                return AddAllBasketOrderView(
-                                  orderAddressType: " ${cubit.mosque}",
-                                  lat: "${cubit.lat}",
-                                  long: "${cubit.long}",
-                                );
-                              },
-                            ),
+                          WidgetsBinding.instance.addPostFrameCallback((_) {
+                            customWillPopScope(context);
+                          });
+                          Future.delayed(
+                            Duration(seconds: 1),
+                            () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) {
+                                    return AddAllBasketOrderView(
+                                      orderAddressType: " ${cubit.mosque}",
+                                      lat: "${cubit.lat}",
+                                      long: "${cubit.long}",
+                                    );
+                                  },
+                                ),
+                              );
+                            },
                           );
                         },
                         itemPress: () {
@@ -91,17 +100,25 @@ class ChooseAddressType2 extends StatelessWidget {
                       CardTypeItem(
                         isSelected: cubit.type == AddressType.home,
                         continuePress: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) {
-                                return AddAllBasketOrderView(
-                                  orderAddressType: " ${cubit.home}",
-                                  lat: "${cubit.lat}",
-                                  long: "${cubit.long}",
-                                );
-                              },
-                            ),
+                          WidgetsBinding.instance.addPostFrameCallback((_) {
+                            customWillPopScope(context);
+                          });
+                          Future.delayed(
+                            Duration(seconds: 1),
+                            () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) {
+                                    return AddAllBasketOrderView(
+                                      orderAddressType: " ${cubit.home}",
+                                      lat: "${cubit.lat}",
+                                      long: "${cubit.long}",
+                                    );
+                                  },
+                                ),
+                              );
+                            },
                           );
                         },
                         itemPress: () {
