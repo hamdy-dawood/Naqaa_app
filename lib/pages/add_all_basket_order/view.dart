@@ -43,7 +43,6 @@ class AddAllBasketOrderView extends StatelessWidget {
               leading: IconButton(
                 onPressed: () {
                   Navigator.pop(context);
-                  Navigator.pop(context);
                 },
                 icon: Icon(
                   Icons.arrow_back_ios,
@@ -83,9 +82,9 @@ class AddAllBasketOrderView extends StatelessWidget {
                         Navigator.pop(context);
                         Fluttertoast.showToast(msg: state.msg);
                       } else if (state is AddAllBasketOrderSuccessState) {
-                        for (var i = 0; i < 4; i++) {
-                          Navigator.pop(context);
-                        }
+                        Navigator.pop(context);
+                        Navigator.pop(context);
+                        Navigator.pop(context);
                         NavBarCubit.get(context).navigateToNavBarView(2);
                         Fluttertoast.showToast(msg: "success");
                       }
