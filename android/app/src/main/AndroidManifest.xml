@@ -1,8 +1,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.hamdy.naqaa.naqaa">
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-feature android:name="android.hardware.location.network" android:required="false"
+        tools:targetApi="eclair" />
+    <uses-feature android:name="android.hardware.location.gps" android:required="false"
+        tools:targetApi="eclair" />
    <application
         android:label="NAQAA"
         android:name="${applicationName}"
@@ -33,5 +38,7 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
+       <meta-data android:name="com.google.android.geo.API_KEY"
+           android:value="AIzaSyDjjZzMmPfqAB8xbfhXhr2yiEaJ8n5EiDg"/>
     </application>
 </manifest>

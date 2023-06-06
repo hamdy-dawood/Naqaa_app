@@ -206,7 +206,12 @@ class _HomeMapViewState extends State<HomeMapView> {
     });
     if (response.statusCode == 200) {
       try {
-        final data = jsonDecode(response.data);
+        var data;
+        if (response.data is Map<String, dynamic>) {
+          data = response.data;
+        } else if (response.data is String) {
+          data = jsonDecode(response.data);
+        }
         print(data);
         var address = data['results'][0]['formatted_address'];
         print("Address: $address");
