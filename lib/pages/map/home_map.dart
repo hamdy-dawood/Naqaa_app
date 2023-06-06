@@ -33,10 +33,9 @@ class _HomeMapViewState extends State<HomeMapView> {
   void _onMapCreated(GoogleMapController controller) async {
     _mapController.complete(controller);
     MarkerId markerId = MarkerId(_markerIdVal());
-    LatLng position = currentLocation;
     Marker marker = Marker(
       markerId: markerId,
-      position: position,
+      position: currentLocation,
       draggable: false,
     );
     setState(() {
@@ -48,7 +47,7 @@ class _HomeMapViewState extends State<HomeMapView> {
       controller.animateCamera(
         CameraUpdate.newCameraPosition(
           CameraPosition(
-            target: position,
+            target: currentLocation,
             zoom: 17.0,
           ),
         ),
@@ -102,6 +101,13 @@ class _HomeMapViewState extends State<HomeMapView> {
               setState(() {
                 currentLocation =
                     LatLng(position.target.latitude, position.target.longitude);
+                MarkerId markerId = MarkerId(_markerIdVal());
+                Marker marker = Marker(
+                  markerId: markerId,
+                  position: currentLocation,
+                  draggable: false,
+                );
+                _markers[markerId] = marker;
               });
             },
             onCameraIdle: () {
@@ -173,7 +179,7 @@ class _HomeMapViewState extends State<HomeMapView> {
                         MaterialPageRoute(
                           builder: (context) {
                             return AddAllBasketOrderView(
-                              orderAddressType: "mosque",
+                              orderAddressType: "home",
                               lat: "${currentAddress?.lat}",
                               long: "${currentAddress?.long}",
                             );
@@ -215,7 +221,6 @@ class _HomeMapViewState extends State<HomeMapView> {
         print(data);
         var address = data['results'][0]['formatted_address'];
         print("Address: $address");
-
         int id = 0;
         var rng = Random();
         for (var i = 0; i < 1000; i++) {

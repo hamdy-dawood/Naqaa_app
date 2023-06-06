@@ -7,9 +7,9 @@ import 'package:naqaa/components/will_pop_scope.dart';
 import 'package:naqaa/constants/color_manager.dart';
 import 'package:naqaa/constants/custom_text.dart';
 import 'package:naqaa/constants/strings.dart';
-import 'package:naqaa/pages/add_all_basket_order/view.dart';
 import 'package:naqaa/pages/address_type/states.dart';
 import 'package:naqaa/pages/map/home_map.dart';
+import 'package:naqaa/pages/map/mosque_map.dart';
 
 import 'components/card_item.dart';
 import 'cubit.dart';
@@ -81,10 +81,8 @@ class ChooseAddressType2 extends StatelessWidget {
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) {
-                                    return AddAllBasketOrderView(
-                                      orderAddressType: " ${cubit.home}",
-                                      lat: "${cubit.lat}",
-                                      long: "${cubit.long}",
+                                    return MosqueMap(
+                                      addressType: "mosque",
                                     );
                                   },
                                 ),

@@ -54,7 +54,6 @@ dependencies:
   flutter_locales: ^2.0.2
   pinput: ^2.2.31
   google_maps_flutter: ^2.2.5
-  http: ^0.13.5
 
 dev_dependencies:
   flutter_test:

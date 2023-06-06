@@ -6,7 +6,8 @@ class Address {
   String? lat;
   String? long;
 
-  Address({this.addressName, this.type, this.short, this.id,this.lat,this.long});
+  Address(
+      {this.addressName, this.type, this.short, this.id, this.lat, this.long});
 
   Address.fromJson(Map<String, dynamic> json) {
     addressName = json['address'];
