@@ -12,7 +12,7 @@ class AddProductBasketCubit extends Cubit<AddProductBasketStates> {
   static AddProductBasketCubit get(context) => BlocProvider.of(context);
 
   final dio = Dio();
-  final quantityController = TextEditingController();
+  final quantityController = TextEditingController(text: "1");
 
   Future<void> addProduct({required String productID}) async {
     emit(AddProductBasketLoadingState());

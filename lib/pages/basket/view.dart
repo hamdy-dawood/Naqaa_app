@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:get/get.dart';
 import 'package:naqaa/components/custom_elevated.dart';
 import 'package:naqaa/components/delete_dialog.dart';
 import 'package:naqaa/components/error_network.dart';
@@ -10,7 +12,6 @@ import 'package:naqaa/constants/color_manager.dart';
 import 'package:naqaa/constants/custom_text.dart';
 import 'package:naqaa/constants/strings.dart';
 import 'package:naqaa/core/cache_helper.dart';
-import 'package:naqaa/pages/address_type/view.dart';
 import 'package:naqaa/pages/address_type/view2.dart';
 import 'package:naqaa/pages/basket/components/basket_item.dart';
 import 'package:naqaa/pages/bottom_nav_bar/cubit.dart';
@@ -51,7 +52,7 @@ class BasketView extends StatelessWidget {
                     elevation: 0.0,
                     centerTitle: false,
                     title: CustomText(
-                      text: "إتمام الطلب",
+                      text: "complete_order".tr,
                       color: ColorManager.white,
                       fontSize: 22.sp,
                       fontWeight: FontWeight.bold,
@@ -61,8 +62,8 @@ class BasketView extends StatelessWidget {
                         onTap: () {
                           deleteDialog(
                             context: context,
-                            title: "مسح",
-                            subTitle: "هل أنت متأكد من إزالة ما في السلة؟",
+                            title: "delete".tr,
+                            subTitle: "delete_all_sub".tr,
                             yesPress: () {
                               removeAllCubit.removeAllBasket();
                               Navigator.pop(context);
@@ -114,7 +115,7 @@ class BasketView extends StatelessWidget {
                         Navigator.pop(context);
                         return Center(
                           child: CustomText(
-                            text: "سلتك فارغة!",
+                            text: "empty_cart".tr,
                             color: ColorManager.mainColor,
                             fontSize: 22.sp,
                             fontWeight: FontWeight.normal,
@@ -135,19 +136,27 @@ class BasketView extends StatelessWidget {
                                     final baskets = cubit.baskets[index];
                                     return BasketItem(
                                         itemPress: () {
-                                          Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (context) =>
-                                                  ChooseAddressType(
-                                                productID:
-                                                    "${baskets.productId}",
-                                                quantity:
-                                                    "${baskets.basketQuantity}",
-                                                basketID: "${baskets.basketId}",
-                                              ),
-                                            ),
-                                          );
+                                          // if (int.parse(cubit.total) < 129) {
+                                          //   Fluttertoast.showToast(
+                                          //       msg:
+                                          //           "Minimum Order Value is QR 129 and if Products is Out of Stock"
+                                          //           "then New Stock will be available Soon!! Try Again Later");
+                                          // } else {
+                                          //   Navigator.push(
+                                          //     context,
+                                          //     MaterialPageRoute(
+                                          //       builder: (context) =>
+                                          //           ChooseAddressType(
+                                          //         productID:
+                                          //             "${baskets.productId}",
+                                          //         quantity:
+                                          //             "${baskets.basketQuantity}",
+                                          //         basketID:
+                                          //             "${baskets.basketId}",
+                                          //       ),
+                                          //     ),
+                                          //   );
+                                          // }
                                         },
                                         title: "${baskets.productName}",
                                         subTitle:
@@ -199,7 +208,7 @@ class BasketView extends StatelessWidget {
                                                 MainAxisAlignment.spaceBetween,
                                             children: [
                                               CustomText(
-                                                text: "الإجمالي",
+                                                text: "total".tr,
                                                 color: ColorManager.mainColor,
                                                 fontSize: 20.sp,
                                                 fontWeight: FontWeight.bold,
@@ -219,7 +228,7 @@ class BasketView extends StatelessWidget {
                                             children: [
                                               Expanded(
                                                 child: CustomElevated(
-                                                  text: "إضافة المزيد",
+                                                  text: "add_more".tr,
                                                   press: () {
                                                     final navBarCubit =
                                                         NavBarCubit.get(
@@ -241,15 +250,22 @@ class BasketView extends StatelessWidget {
                                               ),
                                               Expanded(
                                                 child: CustomElevated(
-                                                  text: "إتمام الطلب",
+                                                  text: "complete_order".tr,
                                                   press: () {
-                                                    Navigator.push(
-                                                      context,
-                                                      MaterialPageRoute(
-                                                        builder: (context) =>
-                                                            ChooseAddressType2(),
-                                                      ),
-                                                    );
+                                                    if (int.parse(cubit.total) <
+                                                        129) {
+                                                      Fluttertoast.showToast(
+                                                          msg: "cart_minimum"
+                                                              .tr);
+                                                    } else {
+                                                      Navigator.push(
+                                                        context,
+                                                        MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              ChooseAddressType2(),
+                                                        ),
+                                                      );
+                                                    }
                                                   },
                                                   btnColor:
                                                       ColorManager.mainColor,
@@ -283,7 +299,7 @@ class BasketView extends StatelessWidget {
                   elevation: 0.0,
                   centerTitle: false,
                   title: CustomText(
-                    text: "إتمام الطلب",
+                    text: "complete_order".tr,
                     color: ColorManager.white,
                     fontSize: 22.sp,
                     fontWeight: FontWeight.bold,
@@ -304,7 +320,7 @@ class BasketView extends StatelessWidget {
                 ),
                 body: Center(
                   child: CustomText(
-                    text: "سلتك فارغة!",
+                    text: "empty_cart".tr,
                     color: ColorManager.mainColor,
                     fontSize: 22.sp,
                     fontWeight: FontWeight.normal,

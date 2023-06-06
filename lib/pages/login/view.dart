@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:naqaa/components/custom_elevated.dart';
@@ -14,7 +15,7 @@ import 'package:naqaa/constants/strings.dart';
 import 'package:naqaa/core/navigate.dart';
 import 'package:naqaa/pages/bottom_nav_bar/view.dart';
 import 'package:naqaa/pages/login/states.dart';
-import 'package:naqaa/pages/signup/view.dart';
+import 'package:naqaa/pages/otp_screen/view.dart';
 
 import 'cubit.dart';
 
@@ -40,9 +41,9 @@ class LoginView extends StatelessWidget {
                 child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: 10.w),
                   child: CustomText(
-                    text: "تخطي",
+                    text: "skip".tr,
                     color: ColorManager.mainColor,
-                    fontSize: 20.sp,
+                    fontSize: 18.sp,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -63,23 +64,23 @@ class LoginView extends StatelessWidget {
                     ),
                   ),
                   CustomText(
-                    text: "تسجيل الدخول",
+                    text: "login".tr,
                     color: ColorManager.mainColor,
                     fontSize: 22.sp,
                     fontWeight: FontWeight.bold,
                     textAlign: TextAlign.center,
                   ),
                   SizedBox(
-                    height: 15.h,
+                    height: 20.h,
                   ),
                   CustomText(
-                    text: "ادخل رقم هاتفك للإستمرار",
+                    text: "proceed_number".tr,
                     color: ColorManager.black,
                     fontSize: 16.sp,
                     fontWeight: FontWeight.normal,
                   ),
                   SizedBox(
-                    height: 30.h,
+                    height: 15.h,
                   ),
                   Form(
                     key: cubit.formKey,
@@ -99,7 +100,7 @@ class LoginView extends StatelessWidget {
                         onInputChanged: cubit.onInputChanged,
                         validator: (value) {
                           if (value!.isEmpty) {
-                            return "من فضلك ادخل رقم الهاتف !";
+                            return "phone_validator".tr;
                           }
                           return null;
                         },
@@ -118,7 +119,7 @@ class LoginView extends StatelessWidget {
                           contentPadding:
                               EdgeInsets.only(right: 10.w, bottom: 8.w),
                           border: InputBorder.none,
-                          hintText: "ادخل رقم هاتفك",
+                          hintText: "mobile_number".tr,
                           hintStyle: GoogleFonts.redHatDisplay(
                             color: ColorManager.borderColor,
                             fontSize: 16.sp,
@@ -154,58 +155,62 @@ class LoginView extends StatelessWidget {
                           );
                         },
                       ),
-                      RichText(
-                        text: TextSpan(
-                          children: [
-                            TextSpan(
-                              text: "اوافق علي",
-                              style: GoogleFonts.redHatDisplay(
-                                fontSize: 15.sp,
-                                color: ColorManager.black,
-                                fontWeight: FontWeight.w500,
-                              ),
+                      Expanded(
+                        child: FittedBox(
+                          child: RichText(
+                            text: TextSpan(
+                              children: [
+                                TextSpan(
+                                  text: "agree".tr,
+                                  style: GoogleFonts.redHatDisplay(
+                                    fontSize: 12.sp,
+                                    color: ColorManager.black,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                                TextSpan(
+                                  text: "terms".tr,
+                                  recognizer: TapGestureRecognizer()
+                                    ..onTap = () {
+                                      cubit.launchInBrowser(
+                                        Uri.parse(
+                                          "https://naqaa.app/app/public/terms-and-conditions",
+                                        ),
+                                      );
+                                    },
+                                  style: GoogleFonts.redHatDisplay(
+                                    fontSize: 12.sp,
+                                    color: ColorManager.mainColor,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                                TextSpan(
+                                  text: "and".tr,
+                                  style: GoogleFonts.redHatDisplay(
+                                    fontSize: 12.sp,
+                                    color: ColorManager.black,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                                TextSpan(
+                                  text: "policy".tr,
+                                  recognizer: TapGestureRecognizer()
+                                    ..onTap = () {
+                                      cubit.launchInBrowser(
+                                        Uri.parse(
+                                          "https://naqaa.app/app/public/privacy-policy",
+                                        ),
+                                      );
+                                    },
+                                  style: GoogleFonts.redHatDisplay(
+                                    fontSize: 12.sp,
+                                    color: ColorManager.mainColor,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                              ],
                             ),
-                            TextSpan(
-                              text: " الشروط والأحكام",
-                              recognizer: TapGestureRecognizer()
-                                ..onTap = () {
-                                  cubit.launchInBrowser(
-                                    Uri.parse(
-                                      "https://naqaa.app/app/public/terms-and-conditions",
-                                    ),
-                                  );
-                                },
-                              style: GoogleFonts.redHatDisplay(
-                                fontSize: 15.sp,
-                                color: ColorManager.mainColor,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                            TextSpan(
-                              text: " و ",
-                              style: GoogleFonts.redHatDisplay(
-                                fontSize: 15.sp,
-                                color: ColorManager.black,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                            TextSpan(
-                              text: "السياسية",
-                              recognizer: TapGestureRecognizer()
-                                ..onTap = () {
-                                  cubit.launchInBrowser(
-                                    Uri.parse(
-                                      "https://naqaa.app/app/public/privacy-policy",
-                                    ),
-                                  );
-                                },
-                              style: GoogleFonts.redHatDisplay(
-                                fontSize: 15.sp,
-                                color: ColorManager.mainColor,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                          ],
+                          ),
                         ),
                       ),
                     ],
@@ -216,30 +221,30 @@ class LoginView extends StatelessWidget {
                   BlocConsumer<LoginCubit, LoginStates>(
                     listener: (context, state) {
                       if (state is LoginFailureState) {
-                        Fluttertoast.showToast(
-                            msg: "يرجي التحقق من الانترنت..");
+                        Fluttertoast.showToast(msg: "check_online".tr);
                       } else if (state is NetworkErrorState) {
-                        Fluttertoast.showToast(
-                            msg: "يرجي التحقق من الانترنت..");
+                        Fluttertoast.showToast(msg: "check_online".tr);
                       } else if (state is LoginLoadingState) {
                         customWillPopScope(context);
                       } else if (state is LoginSuccessState) {
-                        cubit.phoneNumber = "";
-                        navigateTo(
-                            page: const NavBarView(), withHistory: false);
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                OtpView(phone: "${cubit.phoneNumber}"),
+                          ),
+                        );
                       }
                     },
                     builder: (context, state) {
                       return Padding(
                         padding: EdgeInsets.symmetric(horizontal: 0.17.sw),
                         child: CustomElevated(
-                          text: "تسجيل الدخول",
+                          text: "log_in".tr,
                           press: () {
                             if (cubit.formKey.currentState!.validate()) {
                               if (cubit.isChecked == false) {
-                                Fluttertoast.showToast(
-                                    msg:
-                                        "يجب عليك الموافقة علي الشروط والأحكام السياسية");
+                                Fluttertoast.showToast(msg: "terms_accept".tr);
                               } else {
                                 cubit.login();
                               }
@@ -254,30 +259,30 @@ class LoginView extends StatelessWidget {
                     },
                   ),
                   SizedBox(height: 20.h),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      CustomText(
-                        text: "ليس لديك حساب ؟",
-                        color: ColorManager.black,
-                        fontSize: 15.sp,
-                        fontWeight: FontWeight.normal,
-                      ),
-                      TextButton(
-                        onPressed: () {
-                          navigateTo(
-                            page: const SignUpView(),
-                          );
-                        },
-                        child: CustomText(
-                          text: "اضافة حساب",
-                          color: ColorManager.mainColor,
-                          fontSize: 15.sp,
-                          fontWeight: FontWeight.normal,
-                        ),
-                      ),
-                    ],
-                  ),
+                  // Row(
+                  //   mainAxisAlignment: MainAxisAlignment.start,
+                  //   children: [
+                  //     CustomText(
+                  //       text: "ليس لديك حساب ؟",
+                  //       color: ColorManager.black,
+                  //       fontSize: 15.sp,
+                  //       fontWeight: FontWeight.normal,
+                  //     ),
+                  //     TextButton(
+                  //       onPressed: () {
+                  //         navigateTo(
+                  //           page: const SignUpView(),
+                  //         );
+                  //       },
+                  //       child: CustomText(
+                  //         text: "اضافة حساب",
+                  //         color: ColorManager.mainColor,
+                  //         fontSize: 15.sp,
+                  //         fontWeight: FontWeight.normal,
+                  //       ),
+                  //     ),
+                  //   ],
+                  // ),
                 ],
               ),
             ),

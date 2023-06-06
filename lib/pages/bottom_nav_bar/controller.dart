@@ -23,10 +23,10 @@ class NavBarController {
 
   //list of navigation bar labels
   List labels = [
-    "الرئيسة",
-    'بحث',
-    'طلباتي',
-    'السلة',
-    'حسابي',
+    "home",
+    'search',
+    'orders',
+    'cart',
+    'profile',
   ];
 }

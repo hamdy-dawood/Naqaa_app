@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:naqaa/constants/color_manager.dart';
 import 'package:naqaa/core/cache_helper.dart';
 import 'package:naqaa/pages/bottom_nav_bar/view.dart';
+import 'package:naqaa/pages/languages/view.dart';
 import 'package:naqaa/pages/login/view.dart';
 
 class SplashView extends StatefulWidget {
@@ -15,6 +16,7 @@ class SplashView extends StatefulWidget {
 }
 
 class _SplashViewState extends State<SplashView> {
+  bool isFirstTime = CacheHelper.getIfFirstTime();
   String userID = CacheHelper.getUserID();
 
   @override
@@ -29,9 +31,13 @@ class _SplashViewState extends State<SplashView> {
       () {
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) {
-            return userID.isEmpty ? const LoginView() : const NavBarView();
-          }),
+          MaterialPageRoute(
+            builder: (context) => isFirstTime
+                ? const LanguageView()
+                : userID.isEmpty
+                    ? const LoginView()
+                    : const NavBarView(),
+          ),
         );
       },
     );

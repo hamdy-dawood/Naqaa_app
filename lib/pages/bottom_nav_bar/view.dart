@@ -33,7 +33,7 @@ class NavBarView extends StatelessWidget {
             key: cubit.scaffoldKey,
             body: screens[cubit.controller.selectedItem],
             bottomNavigationBar: Container(
-              height: 80.h,
+              height: 70.h,
               decoration: BoxDecoration(
                 color: ColorManager.mainColor,
                 borderRadius: BorderRadius.only(

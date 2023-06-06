@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:naqaa/constants/color_manager.dart';
 import 'package:naqaa/constants/custom_text.dart';
 
@@ -15,7 +16,7 @@ class SearchView extends StatelessWidget {
         backgroundColor: ColorManager.mainColor,
         elevation: 0.0,
         title: CustomText(
-          text: "بحث",
+          text: "search".tr,
           color: ColorManager.white,
           fontSize: 22.sp,
           fontWeight: FontWeight.w500,

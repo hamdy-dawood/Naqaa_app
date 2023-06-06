@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:naqaa/components/error_network.dart';
 import 'package:naqaa/components/svg_icons.dart';
 import 'package:naqaa/components/will_pop_scope.dart';
@@ -37,7 +38,7 @@ class OrdersView extends StatelessWidget {
               elevation: 0.0,
               centerTitle: false,
               title: CustomText(
-                text: "أحداث الطلبات",
+                text: "order_history".tr,
                 color: ColorManager.black,
                 fontSize: 18.sp,
                 fontWeight: FontWeight.bold,
@@ -75,7 +76,7 @@ class OrdersView extends StatelessWidget {
                     padding: EdgeInsets.all(20.h),
                     child: Center(
                         child: CustomText(
-                      text: "لا توجد طلبات بعد",
+                      text: "no_orders".tr,
                       color: ColorManager.mainColor,
                       fontWeight: FontWeight.bold,
                       fontSize: 20.sp,

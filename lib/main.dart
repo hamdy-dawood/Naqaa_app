@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:naqaa/core/languages.dart';
+import 'package:naqaa/pages/languages/cubit.dart';
+import 'package:naqaa/pages/splash/view.dart';
 
 import 'core/cache_helper.dart';
 import 'core/navigate.dart';
@@ -13,12 +16,11 @@ import 'pages/home/cubit.dart';
 import 'pages/orders/cubit.dart';
 import 'pages/remove_all_basket/cubit.dart';
 import 'pages/remove_product_from_basket/cubit.dart';
-import 'pages/splash/view.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await CacheHelper.init();
-  //CacheHelper.clear();
+  // CacheHelper.clear();
   runApp(const MyApp());
 }
 
@@ -41,23 +43,18 @@ class MyApp extends StatelessWidget {
             BlocProvider(create: (context) => BasketCubit()),
             BlocProvider(create: (context) => OrdersCubit()),
             BlocProvider(create: (context) => AddressTypeCubit()),
+            BlocProvider(create: (context) => LanguageCubit()),
           ],
-          child: MaterialApp(
+          child: GetMaterialApp(
             debugShowCheckedModeBanner: false,
             title: 'naqaa',
             navigatorKey: navigatorKey,
             theme: ThemeData(
               platform: TargetPlatform.iOS,
             ),
-            localizationsDelegates: const [
-              GlobalMaterialLocalizations.delegate,
-              GlobalWidgetsLocalizations.delegate,
-              GlobalCupertinoLocalizations.delegate,
-            ],
-            supportedLocales: const [
-              Locale('ar', 'AE'),
-            ],
-            locale: const Locale('ar', 'AE'),
+            translations: Languages(),
+            locale: Locale("ar"),
+            fallbackLocale: Locale("ar"),
             home: child,
           ),
         );

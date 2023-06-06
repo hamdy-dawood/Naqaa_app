@@ -35,6 +35,8 @@ class AssetsStrings {
 
   static const String mosqueImage = "${baseImages}mosque.svg";
   static const String homeImage = "${baseImages}home.svg";
+  static const String logoArabicImage = "${baseImages}logo_arabic.png";
+  static const String logoEnglishImage = "${baseImages}logo_english.png";
   static const String tickIcon = "${baseIcons}tick.svg";
   static const String tickUnFillIcon = "${baseIcons}tick_un_fill.svg";
 

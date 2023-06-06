@@ -14,6 +14,7 @@ class ProfileCubit extends Cubit<ProfileStates> {
   static ProfileCubit get(context) => BlocProvider.of(context);
 
   final dio = Dio();
+
   List<ProfileDataResp> profileData = [];
 
   Future<void> getProfileData() async {

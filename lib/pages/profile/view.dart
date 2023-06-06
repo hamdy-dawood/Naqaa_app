@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:naqaa/components/custom_elevated_icon.dart';
 import 'package:naqaa/components/custom_form_field.dart';
 import 'package:naqaa/components/delete_dialog.dart';
@@ -12,6 +13,8 @@ import 'package:naqaa/constants/color_manager.dart';
 import 'package:naqaa/constants/custom_text.dart';
 import 'package:naqaa/constants/strings.dart';
 import 'package:naqaa/core/cache_helper.dart';
+import 'package:naqaa/pages/languages/cubit.dart';
+import 'package:naqaa/pages/languages/states.dart';
 import 'package:naqaa/pages/login/view.dart';
 
 import 'cubit.dart';
@@ -26,6 +29,7 @@ class ProfileView extends StatelessWidget {
       create: (context) => ProfileCubit(),
       child: Builder(builder: (context) {
         final cubit = ProfileCubit.get(context);
+        final langCubit = LanguageCubit.get(context);
         cubit.getProfileData();
 
         return RefreshIndicator(
@@ -43,7 +47,7 @@ class ProfileView extends StatelessWidget {
               elevation: 0.0,
               centerTitle: false,
               title: CustomText(
-                text: "حسابي",
+                text: "profile".tr,
                 color: ColorManager.black,
                 fontSize: 22.sp,
                 fontWeight: FontWeight.w500,
@@ -62,7 +66,7 @@ class ProfileView extends StatelessWidget {
                         ),
                         SizedBox(width: 10.w),
                         CustomText(
-                          text: "تعديل بيانات الحساب",
+                          text: "edit_profile".tr,
                           color: ColorManager.mainColor,
                           fontSize: 12.sp,
                           fontWeight: FontWeight.normal,
@@ -108,7 +112,7 @@ class ProfileView extends StatelessWidget {
                         child: ListView(
                           children: [
                             CustomText(
-                              text: "الإسم",
+                              text: "name".tr,
                               color: ColorManager.black,
                               fontSize: 20.sp,
                               fontWeight: FontWeight.normal,
@@ -127,7 +131,7 @@ class ProfileView extends StatelessWidget {
                               height: 20.h,
                             ),
                             CustomText(
-                              text: "رقم الجوال",
+                              text: "mobile_num".tr,
                               color: ColorManager.black,
                               fontSize: 20.sp,
                               fontWeight: FontWeight.normal,
@@ -145,17 +149,76 @@ class ProfileView extends StatelessWidget {
                             SizedBox(
                               height: 20.h,
                             ),
+                            CustomText(
+                              text: "language".tr,
+                              color: ColorManager.black,
+                              fontSize: 20.sp,
+                              fontWeight: FontWeight.normal,
+                            ),
+                            SizedBox(
+                              height: 5.h,
+                            ),
+                            BlocBuilder<LanguageCubit, LanguageStates>(
+                              builder: (context, state) {
+                                return Container(
+                                  height: 55,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10.r),
+                                    border: Border.all(
+                                      color: ColorManager.borderColor,
+                                    ),
+                                  ),
+                                  child: Padding(
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 15.w),
+                                    child: DropdownButton<String>(
+                                      style: TextStyle(
+                                        fontSize: 18.sp,
+                                        color: ColorManager.black,
+                                      ),
+                                      alignment: Alignment.center,
+                                      iconEnabledColor: ColorManager.darkGrey,
+                                      dropdownColor: Colors.grey[50],
+                                      elevation: 0,
+                                      borderRadius: BorderRadius.circular(10),
+                                      underline: const SizedBox.shrink(),
+                                      hint: Text(
+                                        "language".tr,
+                                        style: TextStyle(
+                                          fontSize: 18.sp,
+                                          color: ColorManager.darkGrey,
+                                        ),
+                                      ),
+                                      onChanged: (value) {
+                                        langCubit.onChangeLang(value);
+                                      },
+                                      value: langCubit.selectedLang,
+                                      items: List.generate(
+                                        langCubit.lang.length,
+                                        (index) => DropdownMenuItem(
+                                          value: langCubit.lang[index],
+                                          onTap: langCubit.changeLang[index],
+                                          child: Text(
+                                            langCubit.lang[index],
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              },
+                            ),
                             SizedBox(
                               height: 30.h,
                             ),
                             CustomElevatedWithIcon(
-                              text: "تسجيل الخروج",
+                              text: "logout".tr,
                               image: AssetsStrings.logoutIcon,
                               press: () {
                                 deleteDialog(
                                   context: context,
-                                  title: "تسجيل الخروج",
-                                  subTitle: "هل أنت متأكد من تسجيل الخروج؟",
+                                  title: "logout".tr,
+                                  subTitle: "logout_sub".tr,
                                   yesPress: () {
                                     CacheHelper.removeUserID();
                                     Navigator.of(context).pushAndRemoveUntil(
@@ -173,7 +236,7 @@ class ProfileView extends StatelessWidget {
                               height: 10.h,
                             ),
                             CustomElevatedWithIcon(
-                              text: "امسح حسابي",
+                              text: "delete_acc".tr,
                               image: AssetsStrings.deleteIcon,
                               press: () {},
                               textColor: ColorManager.mainColor,
@@ -188,7 +251,7 @@ class ProfileView extends StatelessWidget {
                             ),
                             SizedBox(height: 20.h),
                             CustomText(
-                              text: "المساعدة",
+                              text: "support".tr,
                               color: ColorManager.black,
                               fontSize: 20.sp,
                               fontWeight: FontWeight.bold,
@@ -232,6 +295,9 @@ class ProfileView extends StatelessWidget {
                                   fontWeight: FontWeight.normal,
                                 ),
                               ],
+                            ),
+                            SizedBox(
+                              height: 10.h,
                             ),
                           ],
                         ),

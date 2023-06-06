@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:naqaa/constants/color_manager.dart';
 import 'package:naqaa/constants/custom_text.dart';
 
@@ -23,24 +24,27 @@ class BottomBarItem extends StatelessWidget {
     return Expanded(
       child: InkWell(
         onTap: onPress,
-        child: Column(
-          children: [
-            Expanded(
-              child: SvgPicture.asset(
-                isSelected ? selectedIcon : icon,
-                height: 22.h,
+        child: Padding(
+          padding: EdgeInsets.symmetric(vertical: 10.h),
+          child: Column(
+            children: [
+              Expanded(
+                child: SvgPicture.asset(
+                  isSelected ? selectedIcon : icon,
+                  height: 22.h,
+                ),
               ),
-            ),
-            CustomText(
-              text: label,
-              color: ColorManager.white,
-              fontSize: 15.sp,
-              fontWeight: FontWeight.normal,
-            ),
-            SizedBox(
-              height: 10.h,
-            ),
-          ],
+              SizedBox(height: 8.w),
+              Expanded(
+                child: CustomText(
+                  text: label.tr,
+                  color: ColorManager.white,
+                  fontSize: 12.sp,
+                  fontWeight: FontWeight.normal,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

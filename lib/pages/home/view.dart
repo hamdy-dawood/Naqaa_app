@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:naqaa/components/error_network.dart';
 import 'package:naqaa/components/svg_icons.dart';
 import 'package:naqaa/components/will_pop_scope.dart';
@@ -78,9 +79,9 @@ class HomeView extends StatelessWidget {
                   physics: const NeverScrollableScrollPhysics(),
                   children: [
                     Padding(
-                      padding: EdgeInsets.only(right: 15.h),
+                      padding: EdgeInsets.symmetric(horizontal: 15.h),
                       child: CustomText(
-                        text: "اختر منتج",
+                        text: "select_item".tr,
                         color: ColorManager.black,
                         fontSize: 20.sp,
                         fontWeight: FontWeight.bold,

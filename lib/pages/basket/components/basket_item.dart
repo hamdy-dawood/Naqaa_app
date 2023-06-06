@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:naqaa/components/custom_elevated.dart';
 import 'package:naqaa/components/delete_dialog.dart';
 import 'package:naqaa/components/svg_icons.dart';
@@ -27,7 +28,7 @@ class BasketItem extends StatelessWidget {
       onTap: itemPress,
       child: Container(
         margin: EdgeInsets.symmetric(horizontal: 15.h, vertical: 12.h),
-        padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 10.h),
+        padding: EdgeInsets.all(8.h),
         decoration: BoxDecoration(
           color: ColorManager.white,
           borderRadius: BorderRadius.circular(10.r),
@@ -55,7 +56,7 @@ class BasketItem extends StatelessWidget {
                   width: 10.w,
                 ),
                 CustomText(
-                  text: "عنوان الطلب",
+                  text: "delivery_address".tr,
                   color: ColorManager.black,
                   fontSize: 15.sp,
                   fontWeight: FontWeight.bold,
@@ -70,7 +71,6 @@ class BasketItem extends StatelessWidget {
                 Container(
                   height: 80.h,
                   width: 80.h,
-                  margin: EdgeInsets.only(left: 12.w),
                   decoration: BoxDecoration(
                     color: ColorManager.white,
                     borderRadius: BorderRadius.circular(10.r),
@@ -78,8 +78,12 @@ class BasketItem extends StatelessWidget {
                       color: Colors.black12,
                     ),
                   ),
-                  child: Image.network(image),
+                  child: Padding(
+                    padding: EdgeInsets.all(8.w),
+                    child: Image.network(image),
+                  ),
                 ),
+                SizedBox(width: 10.h),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -98,8 +102,8 @@ class BasketItem extends StatelessWidget {
                             onPressed: () {
                               deleteDialog(
                                 context: context,
-                                title: "مسح",
-                                subTitle: "هل أنت متأكد من إزالة هذا العنصر؟",
+                                title: "delete".tr,
+                                subTitle: "delete_item_sub".tr,
                                 yesPress: yesPressDelete,
                               );
                             },

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:naqaa/components/will_pop_scope.dart';
 import 'package:naqaa/constants/color_manager.dart';
 import 'package:naqaa/constants/custom_text.dart';
@@ -30,7 +31,7 @@ class ChooseAddressType extends StatelessWidget {
         appBar: AppBar(
           centerTitle: true,
           title: CustomText(
-            text: "حدد موقع التوصيل",
+            text: "delivery_location".tr,
             color: ColorManager.white,
             fontSize: 20.sp,
             fontWeight: FontWeight.bold,
@@ -56,7 +57,7 @@ class ChooseAddressType extends StatelessWidget {
             Padding(
               padding: EdgeInsets.symmetric(vertical: 5.h, horizontal: 20.w),
               child: CustomText(
-                text: "حدد موقع التوصيل",
+                text: "delivery_location".tr,
                 color: ColorManager.black,
                 fontSize: 20.sp,
                 fontWeight: FontWeight.w600,
@@ -100,8 +101,8 @@ class ChooseAddressType extends StatelessWidget {
                           cubit.mosqueType();
                         },
                         image: AssetsStrings.mosqueImage,
-                        title: "التوصيل للمساجد",
-                        subTitle: "سوف نرسل لك صورتين في 'طلباتي' بعد التسليم",
+                        title: "delivery_mosque".tr,
+                        subTitle: "delivery_mosque_sub".tr,
                       ),
                       CardTypeItem(
                         isSelected: cubit.type == AddressType.home,
@@ -134,7 +135,7 @@ class ChooseAddressType extends StatelessWidget {
                           cubit.homeType();
                         },
                         image: AssetsStrings.homeImage,
-                        title: "التوصيل للمنازل",
+                        title: "delivery_home".tr,
                         haveSub: false,
                       ),
                     ],

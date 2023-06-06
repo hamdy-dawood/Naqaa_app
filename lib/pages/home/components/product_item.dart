@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:naqaa/components/custom_elevated.dart';
 import 'package:naqaa/components/will_pop_scope.dart';
@@ -56,7 +57,7 @@ class ProductItem extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.symmetric(vertical: 10.h),
                     child: CustomText(
-                      text: "أدخل الكمية",
+                      text: "enter_quantity".tr,
                       color: ColorManager.black,
                       fontSize: 20.sp,
                       fontWeight: FontWeight.bold,
@@ -114,7 +115,7 @@ class ProductItem extends StatelessWidget {
                         Navigator.pop(context);
                         Navigator.pop(context);
                         navBarCubit.navigateToNavBarView(3);
-                        Fluttertoast.showToast(msg: "Add to Cart Successfully");
+                        Fluttertoast.showToast(msg: "add_successfully".tr);
                         addProductCubit.quantityController.clear();
                       }
                     },
@@ -128,7 +129,7 @@ class ProductItem extends StatelessWidget {
                       return Padding(
                         padding: EdgeInsets.symmetric(horizontal: 40.w),
                         child: CustomElevated(
-                          text: "إضافة",
+                          text: "add".tr,
                           press: () {
                             if (addProductCubit.quantityController.text ==
                                     "0" ||
@@ -158,7 +159,6 @@ class ProductItem extends StatelessWidget {
               ),
             ),
           );
-
           showDialog(
             context: context,
             barrierDismissible: false,
@@ -170,7 +170,7 @@ class ProductItem extends StatelessWidget {
 
         return Container(
           margin: EdgeInsets.symmetric(horizontal: 15.h, vertical: 12.h),
-          padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 10.h),
+          padding: EdgeInsets.all(8.h),
           decoration: BoxDecoration(
             color: ColorManager.white,
             borderRadius: BorderRadius.circular(10.r),
@@ -190,8 +190,6 @@ class ProductItem extends StatelessWidget {
               Container(
                 height: 80.h,
                 width: 80.h,
-                margin: EdgeInsets.only(left: 12.w),
-                padding: EdgeInsets.all(5.w),
                 decoration: BoxDecoration(
                   color: ColorManager.white,
                   borderRadius: BorderRadius.circular(10.r),
@@ -199,8 +197,12 @@ class ProductItem extends StatelessWidget {
                     color: Colors.black12,
                   ),
                 ),
-                child: Image.network(image),
+                child: Padding(
+                  padding: EdgeInsets.all(8.w),
+                  child: Image.network(image),
+                ),
               ),
+              SizedBox(width: 10.h),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -228,7 +230,7 @@ class ProductItem extends StatelessWidget {
                           ),
                         ),
                         CustomElevated(
-                          text: "إضافة",
+                          text: "add".tr,
                           btnColor: ColorManager.mainColor,
                           press: () {
                             showAlertDialog(context);

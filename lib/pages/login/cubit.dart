@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
-import 'package:naqaa/core/cache_helper.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'states.dart';
@@ -20,7 +19,6 @@ class LoginCubit extends Cubit<LoginStates> {
     Future.delayed(
       const Duration(seconds: 3),
       () {
-        CacheHelper.saveUserID("3");
         emit(LoginSuccessState());
       },
     );
