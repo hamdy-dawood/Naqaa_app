@@ -89,6 +89,17 @@ class _MosqueMapState extends State<MosqueMap> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+            Navigator.pop(context);
+          },
+          icon: Icon(
+            Icons.arrow_back_ios,
+            size: 22.sp,
+            color: ColorManager.white,
+          ),
+        ),
         title: Text("Map"),
       ),
       body: _center == null
