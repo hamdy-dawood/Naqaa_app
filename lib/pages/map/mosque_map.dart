@@ -317,60 +317,6 @@ class _MosqueMapState extends State<MosqueMap> {
     );
   }
 
-  // Future<List<Marker>> getNearbyRestaurants(LatLng currentPosition) async {
-  //   String apiUrl =
-  //       'https://maps.googleapis.com/maps/api/place/nearbysearch/json?'
-  //       'location=${currentPosition.latitude},${currentPosition.longitude}'
-  //       '&rankby=distance&type=mosque&key=AIzaSyDjjZzMmPfqAB8xbfhXhr2yiEaJ8n5EiDg';
-  //   final response = await Dio().get(apiUrl);
-  //   print("API : ${apiUrl}");
-  //   print("StatusCode: ${response.statusCode}");
-  //   if (response.statusCode == 200) {
-  //     List<Marker> markers = [];
-  //     final data = jsonDecode(response.data);
-  //     print(data);
-  //     data['results'].forEach((result) async {
-  //       final latLng = LatLng(result['geometry']['location']['lat'],
-  //           result['geometry']['location']['lng']);
-  //       BitmapDescriptor markerbitmap = await BitmapDescriptor.fromAssetImage(
-  //         ImageConfiguration(size: Size(50, 50)),
-  //         "assets/images/mosqueImage.png",
-  //       );
-  //       final marker = Marker(
-  //           markerId: MarkerId(result['place_id']),
-  //           icon: markerbitmap,
-  //           position: latLng,
-  //           infoWindow: InfoWindow(title: result['name'] ?? "Custom"),
-  //           onTap: () async {
-  //             int id = 0;
-  //             var rng = Random();
-  //             for (var i = 0; i < 1000; i++) {
-  //               id = rng.nextInt(100);
-  //             }
-  //             print("Address : -");
-  //             print(result['geometry']['location']['lat']);
-  //             var selectedAddress = Address(
-  //                 addressName: result['name'] ?? '',
-  //                 short: '',
-  //                 type: widget.addressType == "mosque" ? 'mosque' : "home",
-  //                 id: id,
-  //                 lat: "${result['geometry']['location']['lat'] ?? ''}",
-  //                 long: "${result['geometry']['location']['lng'] ?? ''}");
-  //             if (widget.addressType == "mosque") {
-  //               showBottomSheet(selectedAddress);
-  //             } else {
-  //               showBottomSheetHome(selectedAddress);
-  //             }
-  //           });
-  //       _markers.add(marker);
-  //     });
-  //     setState(() {});
-  //     return markers;
-  //   } else {
-  //     throw Exception('Failed to fetch restaurant data');
-  //   }
-  // }
-
   Future<List<Marker>> getNearbyMosques(LatLng currentPosition) async {
     String apiUrl =
         'https://maps.googleapis.com/maps/api/place/nearbysearch/json?'

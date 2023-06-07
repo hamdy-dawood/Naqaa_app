@@ -12,7 +12,9 @@ import 'pages/add_product_to_basket/cubit.dart';
 import 'pages/address_type/cubit.dart';
 import 'pages/basket/cubit.dart';
 import 'pages/bottom_nav_bar/cubit.dart';
+import 'pages/get_user_id/cubit.dart';
 import 'pages/home/cubit.dart';
+import 'pages/map/home_map/cubit.dart';
 import 'pages/orders/cubit.dart';
 import 'pages/remove_all_basket/cubit.dart';
 import 'pages/remove_product_from_basket/cubit.dart';
@@ -36,6 +38,7 @@ class MyApp extends StatelessWidget {
         return MultiBlocProvider(
           providers: [
             BlocProvider(create: (context) => NavBarCubit()),
+            BlocProvider(create: (context) => GetUserIDCubit()),
             BlocProvider(create: (context) => AllProductsCubit()),
             BlocProvider(create: (context) => AddProductBasketCubit()),
             BlocProvider(create: (context) => RemoveProductBasketCubit()),
@@ -44,6 +47,7 @@ class MyApp extends StatelessWidget {
             BlocProvider(create: (context) => OrdersCubit()),
             BlocProvider(create: (context) => AddressTypeCubit()),
             BlocProvider(create: (context) => LanguageCubit()),
+            BlocProvider(create: (context) => HomeMapCubit()),
           ],
           child: GetMaterialApp(
             debugShowCheckedModeBanner: false,

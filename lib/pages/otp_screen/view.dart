@@ -11,10 +11,11 @@ import 'package:naqaa/constants/color_manager.dart';
 import 'package:naqaa/constants/custom_text.dart';
 import 'package:naqaa/constants/strings.dart';
 import 'package:naqaa/pages/bottom_nav_bar/view.dart';
+import 'package:naqaa/pages/get_user_id/cubit.dart';
+import 'package:naqaa/pages/get_user_id/states.dart';
 import 'package:pinput/pinput.dart';
 
 import 'cubit.dart';
-import 'states.dart';
 
 class OtpView extends StatelessWidget {
   const OtpView({Key? key, required this.phone}) : super(key: key);
@@ -26,6 +27,7 @@ class OtpView extends StatelessWidget {
       create: (context) => OtpCubit(),
       child: Builder(builder: (context) {
         final cubit = OtpCubit.get(context);
+        final getUserCubit = GetUserIDCubit.get(context);
         cubit.generateNumber();
         return Scaffold(
           backgroundColor: ColorManager.white,
@@ -114,14 +116,17 @@ class OtpView extends StatelessWidget {
                   SizedBox(
                     height: 10.h,
                   ),
-                  BlocConsumer<OtpCubit, OtpStates>(
+                  BlocConsumer<GetUserIDCubit, GetUserIDStates>(
                     listener: (context, state) {
-                      if (state is OtpFailureState) {
+                      if (state is GetUserIDFailureState) {
                         Navigator.pop(context);
-                        Fluttertoast.showToast(msg: "wrong otp");
-                      } else if (state is OtpLoadingState) {
+                        Fluttertoast.showToast(msg: state.msg);
+                      } else if (state is NetworkErrorState) {
+                        Navigator.pop(context);
+                        Fluttertoast.showToast(msg: "check_online".tr);
+                      } else if (state is GetUserIDLoadingState) {
                         customWillPopScope(context);
-                      } else if (state is OtpSuccessState) {
+                      } else if (state is GetUserIDSuccessState) {
                         Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
@@ -138,7 +143,12 @@ class OtpView extends StatelessWidget {
                         child: CustomElevated(
                           text: "verify".tr,
                           press: () {
-                            cubit.otpLogin();
+                            if (cubit.otpController.text !=
+                                cubit.randomNumber) {
+                              Fluttertoast.showToast(msg: "wrong otp");
+                            } else {
+                              getUserCubit.getUserID(phone: phone);
+                            }
                           },
                           btnColor: ColorManager.mainColor,
                           fontSize: 18.sp,

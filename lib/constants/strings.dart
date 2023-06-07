@@ -4,7 +4,7 @@ class UrlsStrings {
       "https://morabrand.net/naqaa/upload/productsimga/";
 
   static const String signUpUrl = "${baseUrl}Auth/signup.php";
-  static const String loginUrl = "${baseUrl}ll";
+  static const String loginUrl = "${baseUrl}Auth/login.php";
   static const String profileDateUrl = "${baseUrl}Auth/viewmyinfo.php";
   static const String getUserIdUrl = "${baseUrl}Auth/getuserid.php";
 

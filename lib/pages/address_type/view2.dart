@@ -3,12 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:naqaa/components/will_pop_scope.dart';
 import 'package:naqaa/constants/color_manager.dart';
 import 'package:naqaa/constants/custom_text.dart';
 import 'package:naqaa/constants/strings.dart';
 import 'package:naqaa/pages/address_type/states.dart';
-import 'package:naqaa/pages/map/home_map.dart';
+import 'package:naqaa/pages/map/home_map/view.dart';
 import 'package:naqaa/pages/map/mosque_map.dart';
 
 import 'components/card_item.dart';
@@ -71,23 +70,15 @@ class ChooseAddressType2 extends StatelessWidget {
                       CardTypeItem(
                         isSelected: cubit.type == AddressType.mosque,
                         continuePress: () {
-                          WidgetsBinding.instance.addPostFrameCallback((_) {
-                            customWillPopScope(context);
-                          });
-                          Future.delayed(
-                            Duration(seconds: 1),
-                            () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) {
-                                    return MosqueMap(
-                                      addressType: "mosque",
-                                    );
-                                  },
-                                ),
-                              );
-                            },
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return MosqueMap(
+                                  addressType: "mosque",
+                                );
+                              },
+                            ),
                           );
                         },
                         itemPress: () {
@@ -100,26 +91,18 @@ class ChooseAddressType2 extends StatelessWidget {
                       CardTypeItem(
                         isSelected: cubit.type == AddressType.home,
                         continuePress: () {
-                          WidgetsBinding.instance.addPostFrameCallback((_) {
-                            customWillPopScope(context);
-                          });
-                          Future.delayed(
-                            Duration(seconds: 1),
-                            () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) {
-                                    return HomeMapView(
-                                      location: LatLng(
-                                        double.parse("${cubit.lat}"),
-                                        double.parse("${cubit.long}"),
-                                      ),
-                                    );
-                                  },
-                                ),
-                              );
-                            },
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return HomeMapView(
+                                  location: LatLng(
+                                    double.parse("${cubit.lat}"),
+                                    double.parse("${cubit.long}"),
+                                  ),
+                                );
+                              },
+                            ),
                           );
                         },
                         itemPress: () {

@@ -115,6 +115,7 @@ class ProductItem extends StatelessWidget {
                         Navigator.pop(context);
                         navBarCubit.navigateToNavBarView(3);
                         Fluttertoast.showToast(msg: "add_successfully".tr);
+                        addProductCubit.quantityController.text = "1";
                       }
                     },
                     builder: (context, state) {
@@ -133,6 +134,7 @@ class ProductItem extends StatelessWidget {
                                     "0" ||
                                 addProductCubit.quantityController.text == "") {
                               Navigator.pop(context);
+                              addProductCubit.quantityController.text = "1";
                             } else if (token.isEmpty) {
                               navigateTo(
                                 page: const LoginView(),
