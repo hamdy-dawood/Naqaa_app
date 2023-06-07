@@ -148,6 +148,36 @@ class OtpView extends StatelessWidget {
                       );
                     },
                   ),
+                  SizedBox(
+                    height: 20.h,
+                  ),
+                  FittedBox(
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 20.w),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          CustomText(
+                            text: "don't_receive".tr,
+                            color: ColorManager.black,
+                            fontSize: 12.sp,
+                            fontWeight: FontWeight.normal,
+                          ),
+                          TextButton(
+                            onPressed: () {
+                              cubit.generateNumber();
+                            },
+                            child: CustomText(
+                              text: "send_again".tr,
+                              color: ColorManager.mainColor,
+                              fontSize: 12.sp,
+                              fontWeight: FontWeight.normal,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),

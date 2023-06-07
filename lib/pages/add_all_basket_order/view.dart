@@ -85,7 +85,7 @@ class AddAllBasketOrderView extends StatelessWidget {
                           Navigator.pop(context);
                           Fluttertoast.showToast(msg: state.msg);
                         } else if (state is AddAllBasketOrderSuccessState) {
-                          for (var i = 0; i < 4; i++) {
+                          for (var i = 0; i < 5; i++) {
                             Navigator.pop(context);
                           }
                           NavBarCubit.get(context).navigateToNavBarView(2);

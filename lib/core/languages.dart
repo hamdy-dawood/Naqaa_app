@@ -58,6 +58,8 @@ class Languages extends Translations {
               "We will send you 2 photos in 'My orders' after delivery",
           "delivery_home": "Delivery Home",
           "next": "Next",
+          "don't_receive": "Didn't received the OTP?",
+          "send_again": "Resend OTP",
         },
         'ar': {
           "language": "اللغة",
@@ -113,6 +115,8 @@ class Languages extends Translations {
           "delivery_mosque_sub": "سوف نرسل لك صورتين في 'طلباتي' بعد التسليم",
           "delivery_home": "التوصيل للمنازل",
           "next": "التالي",
+          "don't_receive": "لم تستلم كلمة السر لمرة واحدة؟",
+          "send_again": "إعادة الإرسال",
         },
       };
 }

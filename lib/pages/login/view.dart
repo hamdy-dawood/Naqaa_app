@@ -163,7 +163,7 @@ class LoginView extends StatelessWidget {
                                 TextSpan(
                                   text: "agree".tr,
                                   style: GoogleFonts.redHatDisplay(
-                                    fontSize: 12.sp,
+                                    fontSize: 10.sp,
                                     color: ColorManager.black,
                                     fontWeight: FontWeight.w500,
                                   ),
@@ -179,7 +179,7 @@ class LoginView extends StatelessWidget {
                                       );
                                     },
                                   style: GoogleFonts.redHatDisplay(
-                                    fontSize: 12.sp,
+                                    fontSize: 10.sp,
                                     color: ColorManager.mainColor,
                                     fontWeight: FontWeight.w500,
                                   ),
@@ -187,7 +187,7 @@ class LoginView extends StatelessWidget {
                                 TextSpan(
                                   text: "and".tr,
                                   style: GoogleFonts.redHatDisplay(
-                                    fontSize: 12.sp,
+                                    fontSize: 10.sp,
                                     color: ColorManager.black,
                                     fontWeight: FontWeight.w500,
                                   ),
@@ -203,7 +203,7 @@ class LoginView extends StatelessWidget {
                                       );
                                     },
                                   style: GoogleFonts.redHatDisplay(
-                                    fontSize: 12.sp,
+                                    fontSize: 10.sp,
                                     color: ColorManager.mainColor,
                                     fontWeight: FontWeight.w500,
                                   ),
