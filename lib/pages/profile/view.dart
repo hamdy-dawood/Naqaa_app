@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:naqaa/components/custom_elevated_icon.dart';
 import 'package:naqaa/components/custom_form_field.dart';
@@ -13,6 +14,9 @@ import 'package:naqaa/constants/color_manager.dart';
 import 'package:naqaa/constants/custom_text.dart';
 import 'package:naqaa/constants/strings.dart';
 import 'package:naqaa/core/cache_helper.dart';
+import 'package:naqaa/pages/delete_account/cubit.dart';
+import 'package:naqaa/pages/delete_account/states.dart';
+import 'package:naqaa/pages/edit_name/view.dart';
 import 'package:naqaa/pages/languages/cubit.dart';
 import 'package:naqaa/pages/languages/states.dart';
 import 'package:naqaa/pages/login/view.dart';
@@ -30,6 +34,7 @@ class ProfileView extends StatelessWidget {
       child: Builder(builder: (context) {
         final cubit = ProfileCubit.get(context);
         final langCubit = LanguageCubit.get(context);
+        final deleteCubit = DeleteAccountCubit.get(context);
         cubit.getProfileData();
 
         return RefreshIndicator(
@@ -54,7 +59,14 @@ class ProfileView extends StatelessWidget {
               ),
               actions: [
                 InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) {
+                        return EditNameView();
+                      }),
+                    );
+                  },
                   child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: 10.w),
                     child: Row(
@@ -121,6 +133,7 @@ class ProfileView extends StatelessWidget {
                               height: 5.h,
                             ),
                             CustomTextFormField(
+                              readOnly: true,
                               controller: TextEditingController(),
                               hint: "${cubit.profileData[0].userName}",
                               validator: (value) {
@@ -140,6 +153,7 @@ class ProfileView extends StatelessWidget {
                               height: 5.h,
                             ),
                             CustomTextFormField(
+                              readOnly: true,
                               controller: TextEditingController(),
                               hint: "${cubit.profileData[0].userPhone}",
                               validator: (value) {
@@ -235,12 +249,48 @@ class ProfileView extends StatelessWidget {
                             SizedBox(
                               height: 10.h,
                             ),
-                            CustomElevatedWithIcon(
-                              text: "delete_acc".tr,
-                              image: AssetsStrings.deleteIcon,
-                              press: () {},
-                              textColor: ColorManager.mainColor,
-                              btnColor: ColorManager.white,
+                            BlocConsumer<DeleteAccountCubit,
+                                DeleteAccountStates>(
+                              listener: (context, state) {
+                                if (state is DeleteAccountFailureState) {
+                                  Navigator.pop(context);
+                                  Fluttertoast.showToast(msg: state.msg);
+                                } else if (state is DeleteNetworkErrorState) {
+                                  Navigator.pop(context);
+                                  Fluttertoast.showToast(
+                                      msg: "check_online".tr);
+                                } else if (state is DeleteAccountLoadingState) {
+                                  customWillPopScope(context);
+                                } else if (state is DeleteAccountSuccessState) {
+                                  Navigator.pushAndRemoveUntil(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) {
+                                        return LoginView();
+                                      },
+                                    ),
+                                    (route) => false,
+                                  );
+                                }
+                              },
+                              builder: (context, state) {
+                                return CustomElevatedWithIcon(
+                                  text: "delete_acc".tr,
+                                  image: AssetsStrings.deleteIcon,
+                                  press: () {
+                                    deleteDialog(
+                                      context: context,
+                                      title: "delete_account".tr,
+                                      subTitle: "delete_account_sub".tr,
+                                      yesPress: () {
+                                        deleteCubit.deleteAccount();
+                                      },
+                                    );
+                                  },
+                                  textColor: ColorManager.mainColor,
+                                  btnColor: ColorManager.white,
+                                );
+                              },
                             ),
                             SizedBox(
                               height: 15.h,

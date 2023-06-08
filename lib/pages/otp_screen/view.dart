@@ -37,7 +37,6 @@ class OtpView extends StatelessWidget {
             leading: IconButton(
               onPressed: () {
                 Navigator.pop(context);
-                Navigator.pop(context);
               },
               icon: Icon(
                 Icons.arrow_back,
@@ -127,13 +126,15 @@ class OtpView extends StatelessWidget {
                       } else if (state is GetUserIDLoadingState) {
                         customWillPopScope(context);
                       } else if (state is GetUserIDSuccessState) {
-                        Navigator.pushReplacement(
+                        Navigator.pop(context);
+                        Navigator.pushAndRemoveUntil(
                           context,
                           MaterialPageRoute(
                             builder: (context) {
                               return NavBarView();
                             },
                           ),
+                          (route) => false,
                         );
                       }
                     },

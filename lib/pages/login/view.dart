@@ -163,7 +163,7 @@ class LoginView extends StatelessWidget {
                                 TextSpan(
                                   text: "agree".tr,
                                   style: GoogleFonts.redHatDisplay(
-                                    fontSize: 10.sp,
+                                    fontSize: 14.sp,
                                     color: ColorManager.black,
                                     fontWeight: FontWeight.w500,
                                   ),
@@ -179,7 +179,7 @@ class LoginView extends StatelessWidget {
                                       );
                                     },
                                   style: GoogleFonts.redHatDisplay(
-                                    fontSize: 10.sp,
+                                    fontSize: 14.sp,
                                     color: ColorManager.mainColor,
                                     fontWeight: FontWeight.w500,
                                   ),
@@ -187,7 +187,7 @@ class LoginView extends StatelessWidget {
                                 TextSpan(
                                   text: "and".tr,
                                   style: GoogleFonts.redHatDisplay(
-                                    fontSize: 10.sp,
+                                    fontSize: 14.sp,
                                     color: ColorManager.black,
                                     fontWeight: FontWeight.w500,
                                   ),
@@ -203,7 +203,7 @@ class LoginView extends StatelessWidget {
                                       );
                                     },
                                   style: GoogleFonts.redHatDisplay(
-                                    fontSize: 10.sp,
+                                    fontSize: 14.sp,
                                     color: ColorManager.mainColor,
                                     fontWeight: FontWeight.w500,
                                   ),
@@ -221,12 +221,15 @@ class LoginView extends StatelessWidget {
                   BlocConsumer<LoginCubit, LoginStates>(
                     listener: (context, state) {
                       if (state is LoginFailureState) {
+                        Navigator.pop(context);
                         Fluttertoast.showToast(msg: "check_online".tr);
                       } else if (state is NetworkErrorState) {
+                        Navigator.pop(context);
                         Fluttertoast.showToast(msg: "check_online".tr);
                       } else if (state is LoginLoadingState) {
                         customWillPopScope(context);
                       } else if (state is LoginSuccessState) {
+                        Navigator.pop(context);
                         Navigator.push(
                           context,
                           MaterialPageRoute(

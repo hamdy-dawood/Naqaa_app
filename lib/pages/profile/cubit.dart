@@ -30,6 +30,7 @@ class ProfileCubit extends Cubit<ProfileStates> {
         profileData =
             data.map((item) => ProfileDataResp.fromJson(item)).toList();
         emit(ProfileSuccessState());
+        print(profileData);
       } else {
         emit(ProfileFailureState(msg: response.data["status"]));
       }

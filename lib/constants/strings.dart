@@ -6,7 +6,9 @@ class UrlsStrings {
   static const String signUpUrl = "${baseUrl}Auth/signup.php";
   static const String loginUrl = "${baseUrl}Auth/login.php";
   static const String profileDateUrl = "${baseUrl}Auth/viewmyinfo.php";
-  static const String getUserIdUrl = "${baseUrl}Auth/getuserid.php";
+  static const String getUserIdUrl = "${baseUrl}Auth/getmyinfo.php";
+  static const String deleteAccUrl = "${baseUrl}Auth/deletmyaccount.php";
+  static const String editNameUrl = "${baseUrl}Auth/editmyinfo.php";
 
   static const String allProductsUrl = "${baseUrl}products/viewproducts.php";
   static const String addProductBasketUrl = "${baseUrl}basket/addbasket.php";

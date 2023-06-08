@@ -62,6 +62,9 @@ class Languages extends Translations {
           "send_again": "Resend OTP",
           "no_notifications": "No Notification Found!",
           "notifications": "Notifications",
+          "delete_account": "Delete Account",
+          "delete_account_sub": "Are you sure want to delete account?",
+          "edit": "Edit",
         },
         'ar': {
           "language": "اللغة",
@@ -121,6 +124,9 @@ class Languages extends Translations {
           "send_again": "إعادة الإرسال",
           "no_notifications": "لاتوجد اشعارات!",
           "notifications": "الإشعارات",
+          "delete_account": "مسح الحساب",
+          "delete_account_sub": "هل أنت متأكد من مسح الحساب؟",
+          "edit": "تعديل",
         },
       };
 }

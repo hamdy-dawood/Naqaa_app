@@ -14,6 +14,7 @@ class CustomTextFormField extends StatelessWidget {
     this.suffixIcon,
     this.obscureText = false,
     this.isLastInput = false,
+    this.readOnly = false,
   });
 
   final String hint;
@@ -22,11 +23,12 @@ class CustomTextFormField extends StatelessWidget {
   final TextEditingController? controller;
   final FormFieldValidator validator;
   final IconButton? suffixIcon;
-  final bool obscureText, isLastInput;
+  final bool obscureText, isLastInput, readOnly;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      readOnly: readOnly,
       controller: controller,
       autovalidateMode: autoValidate,
       keyboardType: keyboardType,

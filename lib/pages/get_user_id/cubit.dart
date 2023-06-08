@@ -19,10 +19,10 @@ class GetUserIDCubit extends Cubit<GetUserIDStates> {
           data: FormData.fromMap({
             "phone": phone,
           }));
-      Map<String, dynamic> json = jsonDecode(response.data);
+      Map<String, dynamic> jsonData = jsonDecode(response.data);
       if (response.statusCode == 200) {
         emit(GetUserIDSuccessState());
-        final userID = json['user_id'];
+        final userID = jsonData['data']['user_id'];
         CacheHelper.saveUserID("${userID}");
       } else {
         emit(GetUserIDFailureState(msg: response.data["status"]));

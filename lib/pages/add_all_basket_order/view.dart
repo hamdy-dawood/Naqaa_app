@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:get/get.dart';
 import 'package:naqaa/components/custom_elevated.dart';
 import 'package:naqaa/components/will_pop_scope.dart';
 import 'package:naqaa/constants/color_manager.dart';
@@ -35,7 +36,7 @@ class AddAllBasketOrderView extends StatelessWidget {
               elevation: 0.0,
               centerTitle: true,
               title: CustomText(
-                text: "إتمام الطلب",
+                text: "complete_order".tr,
                 color: ColorManager.white,
                 fontSize: 22.sp,
                 fontWeight: FontWeight.bold,
@@ -102,7 +103,7 @@ class AddAllBasketOrderView extends StatelessWidget {
                         return Padding(
                           padding: EdgeInsets.all(20.h),
                           child: CustomElevated(
-                            text: "اتمام الطلب",
+                            text: "complete_order".tr,
                             press: () {
                               cubit.addAllBasketOrder(
                                 orderAddressType: orderAddressType,
