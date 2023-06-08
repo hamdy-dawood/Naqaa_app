@@ -60,6 +60,8 @@ class Languages extends Translations {
           "next": "Next",
           "don't_receive": "Didn't received the OTP?",
           "send_again": "Resend OTP",
+          "no_notifications": "No Notification Found!",
+          "notifications": "Notifications",
         },
         'ar': {
           "language": "اللغة",
@@ -117,6 +119,8 @@ class Languages extends Translations {
           "next": "التالي",
           "don't_receive": "لم تستلم كلمة السر لمرة واحدة؟",
           "send_again": "إعادة الإرسال",
+          "no_notifications": "لاتوجد اشعارات!",
+          "notifications": "الإشعارات",
         },
       };
 }

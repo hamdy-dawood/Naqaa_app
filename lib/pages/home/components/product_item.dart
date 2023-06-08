@@ -20,13 +20,15 @@ class ProductItem extends StatelessWidget {
   const ProductItem({
     Key? key,
     required this.title,
+    required this.enTitle,
     required this.subTitle,
+    required this.enSubTitle,
     required this.price,
     required this.image,
     required this.productID,
   }) : super(key: key);
 
-  final String title, subTitle, price, image, productID;
+  final String title, enTitle, subTitle, enSubTitle, price, image, productID;
 
   @override
   Widget build(BuildContext context) {
@@ -110,6 +112,7 @@ class ProductItem extends StatelessWidget {
                         Navigator.pop(context);
                         Navigator.pop(context);
                         Fluttertoast.showToast(msg: state.msg);
+                        addProductCubit.quantityController.text = "1";
                       } else if (state is AddProductBasketSuccessState) {
                         Navigator.pop(context);
                         Navigator.pop(context);
@@ -205,13 +208,14 @@ class ProductItem extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     CustomText(
-                      text: title,
+                      text: CacheHelper.getLang() == "ar" ? title : enTitle,
                       color: ColorManager.black,
                       fontSize: 15.sp,
                       fontWeight: FontWeight.w500,
                     ),
                     CustomText(
-                      text: subTitle,
+                      text:
+                          CacheHelper.getLang() == "ar" ? subTitle : enSubTitle,
                       color: ColorManager.darkGrey,
                       fontSize: 15.sp,
                       fontWeight: FontWeight.w500,

@@ -8,6 +8,7 @@ import 'package:naqaa/components/will_pop_scope.dart';
 import 'package:naqaa/constants/color_manager.dart';
 import 'package:naqaa/constants/custom_text.dart';
 import 'package:naqaa/constants/strings.dart';
+import 'package:naqaa/pages/notifications/view.dart';
 
 import 'components/product_item.dart';
 import 'cubit.dart';
@@ -44,7 +45,14 @@ class HomeView extends StatelessWidget {
               ),
               actions: [
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) {
+                        return NotificationsView();
+                      }),
+                    );
+                  },
                   icon: SvgIcon(
                     height: 22.h,
                     icon: AssetsStrings.notificationIcon,
@@ -99,7 +107,9 @@ class HomeView extends StatelessWidget {
                           return ProductItem(
                             productID: "${products.productId}",
                             title: "${products.productName}",
+                            enTitle: "${products.productNameEN}",
                             subTitle: "${products.productDescription}",
+                            enSubTitle: "${products.productDescriptionEN}",
                             price: "${products.productPrice}",
                             image:
                                 "${UrlsStrings.baseImageUrl}${products.productImage}",

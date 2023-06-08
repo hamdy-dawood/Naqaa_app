@@ -92,7 +92,6 @@ class _MosqueMapState extends State<MosqueMap> {
         leading: IconButton(
           onPressed: () {
             Navigator.pop(context);
-            Navigator.pop(context);
           },
           icon: Icon(
             Icons.arrow_back_ios,
@@ -163,34 +162,34 @@ class _MosqueMapState extends State<MosqueMap> {
     );
   }
 
-  Future<void> showBottomSheet(Address address) {
-    return Get.bottomSheet(Container(
+  Future<void> showBottomSheet(Address address) async {
+    Get.bottomSheet(Container(
       decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.only(
               topRight: Radius.circular(20), topLeft: Radius.circular(20))),
       width: double.infinity,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          SizedBox(height: 10),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 2.h),
-            child: CustomText(
+      child: Padding(
+        padding: EdgeInsets.all(20.h),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(height: 10.h),
+            CustomText(
               text: "Confirm Your Address",
               color: ColorManager.black,
               fontSize: 20.sp,
               fontWeight: FontWeight.w600,
             ),
-          ),
-          Divider(
-            height: 3.h,
-            thickness: 1,
-            color: ColorManager.border2Color,
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 2.h),
-            child: Column(
+            SizedBox(height: 10.h),
+            Divider(
+              height: 3.h,
+              thickness: 1,
+              color: ColorManager.border2Color,
+            ),
+            SizedBox(height: 10.h),
+            Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(
@@ -200,6 +199,7 @@ class _MosqueMapState extends State<MosqueMap> {
                       icon: AssetsStrings.locationIcon,
                       color: ColorManager.black,
                     ),
+                    SizedBox(width: 10.h),
                     Expanded(
                       child: Text(
                         address.addressName ?? '',
@@ -212,6 +212,7 @@ class _MosqueMapState extends State<MosqueMap> {
                     )
                   ],
                 ),
+                SizedBox(height: 10.h),
                 CustomElevated(
                   text: "next".tr,
                   press: () async {
@@ -249,8 +250,8 @@ class _MosqueMapState extends State<MosqueMap> {
                 )
               ],
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     ));
   }
@@ -265,27 +266,27 @@ class _MosqueMapState extends State<MosqueMap> {
         width: double.infinity,
         child: Form(
           key: _form,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              SizedBox(height: 10),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 2.h),
-                child: CustomText(
+          child: Padding(
+            padding: EdgeInsets.all(20.h),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(height: 10.h),
+                CustomText(
                   text: "Confirm Your Address",
                   color: ColorManager.black,
                   fontSize: 20.sp,
                   fontWeight: FontWeight.w600,
                 ),
-              ),
-              Divider(
-                height: 3.h,
-                thickness: 1,
-                color: ColorManager.border2Color,
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 2.h),
-                child: Column(
+                SizedBox(height: 10.h),
+                Divider(
+                  height: 3.h,
+                  thickness: 1,
+                  color: ColorManager.border2Color,
+                ),
+                SizedBox(height: 10.h),
+                Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Row(
@@ -295,6 +296,7 @@ class _MosqueMapState extends State<MosqueMap> {
                           icon: AssetsStrings.locationIcon,
                           color: ColorManager.black,
                         ),
+                        SizedBox(width: 10.h),
                         Expanded(
                           child: Text(
                             address.addressName ?? '',
@@ -309,8 +311,8 @@ class _MosqueMapState extends State<MosqueMap> {
                     ),
                   ],
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
@@ -329,7 +331,12 @@ class _MosqueMapState extends State<MosqueMap> {
 
     if (response.statusCode == 200) {
       List<Marker> markers = [];
-      final data = jsonDecode(response.data);
+      var data;
+      if (response.data is Map<String, dynamic>) {
+        data = response.data;
+      } else if (response.data is String) {
+        data = jsonDecode(response.data);
+      }
       print(data);
 
       data['results'].forEach((result) async {
@@ -389,7 +396,12 @@ class _MosqueMapState extends State<MosqueMap> {
     });
     if (response.statusCode == 200) {
       try {
-        final data = jsonDecode(response.data);
+        var data;
+        if (response.data is Map<String, dynamic>) {
+          data = response.data;
+        } else if (response.data is String) {
+          data = jsonDecode(response.data);
+        }
         print(data);
         var address = data['results'][0]['formatted_address'];
         print("Address: $address");
