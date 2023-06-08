@@ -37,7 +37,6 @@ class BasketView extends StatelessWidget {
           final removeAllCubit = RemoveAllBasketCubit.get(context);
 
           cubit.getBaskets();
-
           return userID.isNotEmpty
               ? RefreshIndicator(
                   backgroundColor: ColorManager.mainColor,
@@ -190,7 +189,7 @@ class BasketView extends StatelessWidget {
                                 ),
                               ),
                               SizedBox(
-                                height: 0.15.sh,
+                                height: 0.25.sh,
                                 width: 1.sw,
                                 child: ListView(
                                   children: [
@@ -213,13 +212,60 @@ class BasketView extends StatelessWidget {
                                                       .spaceBetween,
                                               children: [
                                                 CustomText(
+                                                  text: "order_val".tr,
+                                                  color:
+                                                      ColorManager.borderColor,
+                                                  fontSize: 15.sp,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                                CustomText(
+                                                  text: "QR ${cubit.total}",
+                                                  color: ColorManager.black,
+                                                  fontSize: 16.sp,
+                                                  fontWeight: FontWeight.w500,
+                                                ),
+                                              ],
+                                            ),
+                                            SizedBox(
+                                              height: 5.h,
+                                            ),
+                                            Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                CustomText(
+                                                  text: "delivery_char".tr,
+                                                  color:
+                                                      ColorManager.borderColor,
+                                                  fontSize: 15.sp,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                                CustomText(
+                                                  text: "QR 10",
+                                                  color: ColorManager.black,
+                                                  fontSize: 16.sp,
+                                                  fontWeight: FontWeight.w500,
+                                                ),
+                                              ],
+                                            ),
+                                            SizedBox(
+                                              height: 8.h,
+                                            ),
+                                            Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                CustomText(
                                                   text: "total".tr,
                                                   color: ColorManager.mainColor,
                                                   fontSize: 20.sp,
                                                   fontWeight: FontWeight.bold,
                                                 ),
                                                 CustomText(
-                                                  text: "QR ${cubit.total}",
+                                                  text:
+                                                      "QR ${int.parse(cubit.total) + 10}",
                                                   color: ColorManager.mainColor,
                                                   fontSize: 20.sp,
                                                   fontWeight: FontWeight.bold,

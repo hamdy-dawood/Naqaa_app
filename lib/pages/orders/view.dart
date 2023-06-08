@@ -101,7 +101,9 @@ class OrdersView extends StatelessWidget {
                           final baskets = cubit.orders[index];
                           return OrderItem(
                             title: "${baskets.productName}",
+                            enTitle: "${baskets.productNameEN}",
                             subTitle: "${baskets.productDescription}",
+                            enSubTitle: "${baskets.productDescriptionEN}",
                             price: "${baskets.productPrice}",
                             image:
                                 "${UrlsStrings.baseImageUrl}${baskets.productImage}",

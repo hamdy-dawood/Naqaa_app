@@ -90,7 +90,7 @@ class AddAllBasketOrderView extends StatelessWidget {
                             Navigator.pop(context);
                           }
                           NavBarCubit.get(context).navigateToNavBarView(2);
-                          Fluttertoast.showToast(msg: "success");
+                          Fluttertoast.showToast(msg: "order_added".tr);
                         }
                       },
                       builder: (context, state) {

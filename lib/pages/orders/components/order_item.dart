@@ -5,6 +5,7 @@ import 'package:naqaa/components/custom_elevated.dart';
 import 'package:naqaa/components/svg_icons.dart';
 import 'package:naqaa/constants/color_manager.dart';
 import 'package:naqaa/constants/custom_text.dart';
+import 'package:naqaa/core/cache_helper.dart';
 
 class OrderItem extends StatelessWidget {
   const OrderItem(
@@ -14,10 +15,19 @@ class OrderItem extends StatelessWidget {
       required this.price,
       required this.image,
       required this.quantity,
-      required this.addressType})
+      required this.addressType,
+      required this.enTitle,
+      required this.enSubTitle})
       : super(key: key);
 
-  final String title, subTitle, price, image, quantity, addressType;
+  final String title,
+      subTitle,
+      enTitle,
+      enSubTitle,
+      price,
+      image,
+      quantity,
+      addressType;
 
   @override
   Widget build(BuildContext context) {
@@ -91,30 +101,28 @@ class OrderItem extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     CustomText(
-                      text: title,
+                      text: CacheHelper.getLang() == "ar" ? title : enTitle,
                       color: ColorManager.black,
                       fontSize: 15.sp,
                       fontWeight: FontWeight.w500,
                     ),
                     CustomText(
-                      text: subTitle,
+                      text:
+                          CacheHelper.getLang() == "ar" ? subTitle : enSubTitle,
                       color: ColorManager.darkGrey,
                       fontSize: 15.sp,
                       fontWeight: FontWeight.w500,
                     ),
                     Row(
                       children: [
-                        Expanded(
-                          flex: 1,
-                          child: CustomText(
-                            text: price,
-                            color: ColorManager.black,
-                            fontSize: 18.sp,
-                            fontWeight: FontWeight.bold,
-                          ),
+                        CustomText(
+                          text: "${price} QR",
+                          color: ColorManager.black,
+                          fontSize: 18.sp,
+                          fontWeight: FontWeight.bold,
                         ),
+                        SizedBox(width: 10.w),
                         Expanded(
-                          flex: 3,
                           child: CustomElevated(
                             text: "Qty $quantity",
                             press: () {},

@@ -1,7 +1,9 @@
 class OrdersResp {
   String? productId;
   String? productName;
+  String? productNameEN;
   String? productDescription;
+  String? productDescriptionEN;
   String? productPrice;
   String? productStatus;
   String? productImage;
@@ -20,6 +22,8 @@ class OrdersResp {
     this.productId,
     this.productName,
     this.productDescription,
+    this.productNameEN,
+    this.productDescriptionEN,
     this.productPrice,
     this.productStatus,
     this.productImage,
@@ -39,6 +43,8 @@ class OrdersResp {
     productId = json['product_id'] ?? "";
     productName = json['product_name'] ?? "";
     productDescription = json['product_description'] ?? "";
+    productNameEN = json['product_nameEN'] ?? "";
+    productDescriptionEN = json['product_descriptionEN'] ?? "";
     productPrice = json['product_price'] ?? "";
     productStatus = json['product_status'] ?? "";
     productImage = json['product_image'] ?? "";

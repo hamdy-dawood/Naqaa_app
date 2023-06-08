@@ -224,7 +224,7 @@ class ProductItem extends StatelessWidget {
                       children: [
                         Expanded(
                           child: CustomText(
-                            text: price,
+                            text: "${price} QR",
                             color: ColorManager.black,
                             fontSize: 18.sp,
                             fontWeight: FontWeight.bold,

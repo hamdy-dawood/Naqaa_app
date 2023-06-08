@@ -235,7 +235,7 @@ class _MosqueMapState extends State<MosqueMap> {
                       MaterialPageRoute(
                         builder: (context) {
                           return AddAllBasketOrderView(
-                            orderAddressType: "mosque",
+                            orderAddressType: "${addressName}",
                             lat: "${lat}",
                             long: "${long}",
                           );

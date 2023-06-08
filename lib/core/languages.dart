@@ -65,6 +65,9 @@ class Languages extends Translations {
           "delete_account": "Delete Account",
           "delete_account_sub": "Are you sure want to delete account?",
           "edit": "Edit",
+          "order_val": "Order Value",
+          "delivery_char": "Delivery Charge",
+          "order_added": "Order Added",
         },
         'ar': {
           "language": "اللغة",
@@ -127,6 +130,9 @@ class Languages extends Translations {
           "delete_account": "مسح الحساب",
           "delete_account_sub": "هل أنت متأكد من مسح الحساب؟",
           "edit": "تعديل",
+          "order_val": "قيمة الطلب",
+          "delivery_char": "رسوم التوصيل",
+          "order_added": "نجحت العملية",
         },
       };
 }

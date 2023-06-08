@@ -126,7 +126,7 @@ class BasketItem extends StatelessWidget {
                           Expanded(
                             flex: 1,
                             child: CustomText(
-                              text: price,
+                              text: "${price} QR",
                               color: ColorManager.black,
                               fontSize: 18.sp,
                               fontWeight: FontWeight.bold,

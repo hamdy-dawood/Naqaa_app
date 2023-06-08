@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:naqaa/components/will_pop_scope.dart';
 import 'package:naqaa/constants/color_manager.dart';
 import 'package:naqaa/constants/custom_text.dart';
 import 'package:naqaa/constants/strings.dart';
@@ -91,18 +92,25 @@ class ChooseAddressType2 extends StatelessWidget {
                       CardTypeItem(
                         isSelected: cubit.type == AddressType.home,
                         continuePress: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) {
-                                return HomeMapView(
-                                  location: LatLng(
-                                    double.parse("${cubit.lat}"),
-                                    double.parse("${cubit.long}"),
-                                  ),
-                                );
-                              },
-                            ),
+                          customWillPopScope(context);
+                          Future.delayed(
+                            Duration(seconds: 2),
+                            () {
+                              Navigator.pop(context);
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) {
+                                    return HomeMapView(
+                                      location: LatLng(
+                                        double.parse("${cubit.lat}"),
+                                        double.parse("${cubit.long}"),
+                                      ),
+                                    );
+                                  },
+                                ),
+                              );
+                            },
                           );
                         },
                         itemPress: () {
