@@ -8,13 +8,13 @@ import 'package:naqaa/components/will_pop_scope.dart';
 import 'package:naqaa/constants/color_manager.dart';
 import 'package:naqaa/constants/custom_text.dart';
 import 'package:naqaa/constants/strings.dart';
-import 'package:naqaa/pages/orders/states.dart';
 
-import 'components/order_item.dart';
+import 'components/orders_item.dart';
 import 'cubit.dart';
+import 'states.dart';
 
-class OrdersView extends StatelessWidget {
-  const OrdersView({Key? key}) : super(key: key);
+class NewOrdersView extends StatelessWidget {
+  const NewOrdersView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +51,7 @@ class OrdersView extends StatelessWidget {
                     child: Padding(
                       padding: EdgeInsets.symmetric(horizontal: 10.w),
                       child: SvgIcon(
-                        height: 20.h,
+                        height: 18.h,
                         icon: AssetsStrings.filterIcon,
                         color: ColorManager.black,
                       ),
@@ -84,7 +84,7 @@ class OrdersView extends StatelessWidget {
                         fontSize: 20.sp,
                       )),
                     );
-                  } else if (state is NetworkErrorState) {
+                  } else if (state is OrdersNetworkErrorState) {
                     Navigator.pop(context);
                     return ErrorNetwork(
                       press: () {
@@ -96,21 +96,20 @@ class OrdersView extends StatelessWidget {
                   return SizedBox(
                     width: 1.sw,
                     child: ListView.builder(
-                        itemCount: cubit.orders.length,
-                        itemBuilder: (context, index) {
-                          final baskets = cubit.orders[index];
-                          return OrderItem(
-                            title: "${baskets.productName}",
-                            enTitle: "${baskets.productNameEN}",
-                            subTitle: "${baskets.productDescription}",
-                            enSubTitle: "${baskets.productDescriptionEN}",
-                            price: "${baskets.productPrice}",
-                            image:
-                                "${UrlsStrings.baseImageUrl}${baskets.productImage}",
-                            quantity: "${baskets.basketQuantity}",
-                            addressType: "${baskets.basketTypeAddress}",
-                          );
-                        }),
+                      itemCount: cubit.orders.length,
+                      itemBuilder: (context, index) {
+                        final order = cubit.orders[index];
+                        return OrdersItem(
+                          id: "${order.basketTicketID}",
+                          count: "${order.count}",
+                          status: "${order.basketOrderStatus}",
+                          // price: "${order.basketPrice}",
+                          price: "500",
+                          addressType: "${order.basketTypeAddress}",
+                          time: "${order.basketTime}",
+                        );
+                      },
+                    ),
                   );
                 },
               ),

@@ -30,6 +30,7 @@ class Languages extends Translations {
           "no_orders": "No Orders Placed Yet!",
           "delivery_address": "Delivery Address",
           "complete_order": "Complete Order",
+          "order_detail": "Order Detail",
           "empty_cart": "Your Cart is Empty!",
           "add_more": "Add More",
           "cart_minimum":
@@ -68,6 +69,13 @@ class Languages extends Translations {
           "order_val": "Order Value",
           "delivery_char": "Delivery Charge",
           "order_added": "Order Added",
+          "order_id": "Order ID: ",
+          "order_items": "Total Items: ",
+          "date_time": "Date & Time ",
+          "receiver_details": "Receiver Details",
+          "pending": "PENDING",
+          "done": "DONE",
+          "canceled": "CANCELED",
         },
         'ar': {
           "language": "اللغة",
@@ -96,6 +104,7 @@ class Languages extends Translations {
           "no_orders": "لا توجد طلبات بعد",
           "delivery_address": "عنوان الطلب",
           "complete_order": "إتمام الطلب",
+          "order_detail": "تفاصيل الطلب",
           "empty_cart": "سلتك فارغة!",
           "add_more": "إضافة المزيد",
           "cart_minimum":
@@ -133,6 +142,13 @@ class Languages extends Translations {
           "order_val": "قيمة الطلب",
           "delivery_char": "رسوم التوصيل",
           "order_added": "نجحت العملية",
+          "order_id": "رقم الطلب:",
+          "order_items": "اجمالي العناصر: ",
+          "date_time": "التاريخ و الوقت ",
+          "receiver_details": "تفاصيل المستلم",
+          "pending": "قيد الانتظار",
+          "done": "تم التوصيل",
+          "canceled": "تم الإلغاء",
         },
       };
 }

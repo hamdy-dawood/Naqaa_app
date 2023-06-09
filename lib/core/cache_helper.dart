@@ -31,16 +31,6 @@ class CacheHelper {
     return prefs.getString("lang") ?? "";
   }
 
-  static Future<void> setAddress(String type) async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setString("address", type);
-  }
-
-  static Future<String> getAddress() async {
-    var value = prefs.getString("address");
-    return value ?? "";
-  }
-
   static Future<bool> removeUserID() async {
     return await prefs.remove("userID");
   }

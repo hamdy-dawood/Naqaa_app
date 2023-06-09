@@ -13,7 +13,6 @@ import 'package:naqaa/components/svg_icons.dart';
 import 'package:naqaa/constants/color_manager.dart';
 import 'package:naqaa/constants/custom_text.dart';
 import 'package:naqaa/constants/strings.dart';
-import 'package:naqaa/core/cache_helper.dart';
 import 'package:naqaa/pages/add_all_basket_order/view.dart';
 
 import 'address_model.dart';
@@ -217,7 +216,6 @@ class _MosqueMapState extends State<MosqueMap> {
                   text: "next".tr,
                   press: () async {
                     addressM = jsonEncode(address.toJson());
-                    await CacheHelper.setAddress(addressM);
                     addressName = address.addressName;
                     addressType = address.type;
                     lat = address.lat;

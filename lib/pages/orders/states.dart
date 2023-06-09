@@ -6,9 +6,9 @@ class OrdersLoadingState extends OrdersStates {}
 
 class OrdersSuccessState extends OrdersStates {}
 
-class OrdersSuccessWithNoDataState extends OrdersStates {}
+class OrdersNetworkErrorState extends OrdersStates {}
 
-class NetworkErrorState extends OrdersStates {}
+class OrdersSuccessWithNoDataState extends OrdersStates {}
 
 class OrdersFailureState extends OrdersStates {
   final String msg;

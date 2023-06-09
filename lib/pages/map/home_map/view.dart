@@ -8,7 +8,6 @@ import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:naqaa/components/custom_elevated.dart';
 import 'package:naqaa/constants/color_manager.dart';
-import 'package:naqaa/core/cache_helper.dart';
 import 'package:naqaa/pages/add_all_basket_order/view.dart';
 import 'package:naqaa/pages/map/address_model.dart';
 
@@ -130,14 +129,15 @@ class HomeMapView extends StatelessWidget {
                         long: cubit.currentAddress?.long,
                       );
                       var addressM = jsonEncode(address.toJson());
-                      await CacheHelper.setAddress(addressM);
                       print("SharePref Address==>> ${addressM}");
+                      Map<String, dynamic> myMap = jsonDecode(addressM);
+                      String myAddress = myMap["address"];
                       Navigator.push(
                         context,
                         MaterialPageRoute(
                           builder: (context) {
                             return AddAllBasketOrderView(
-                              orderAddressType: "home",
+                              orderAddressType: "${myAddress}",
                               lat: "${cubit.currentAddress?.lat}",
                               long: "${cubit.currentAddress?.long}",
                             );

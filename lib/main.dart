@@ -49,7 +49,7 @@ class MyApp extends StatelessWidget {
           ],
           child: GetMaterialApp(
             debugShowCheckedModeBanner: false,
-            title: 'naqaa',
+            title: "NAQAA",
             navigatorKey: navigatorKey,
             theme: ThemeData(
               platform: TargetPlatform.iOS,

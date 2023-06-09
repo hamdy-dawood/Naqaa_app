@@ -9,6 +9,7 @@ import 'package:naqaa/components/custom_elevated.dart';
 import 'package:naqaa/components/will_pop_scope.dart';
 import 'package:naqaa/constants/color_manager.dart';
 import 'package:naqaa/constants/custom_text.dart';
+import 'package:naqaa/constants/decor_container.dart';
 import 'package:naqaa/core/cache_helper.dart';
 import 'package:naqaa/core/navigate.dart';
 import 'package:naqaa/pages/add_product_to_basket/cubit.dart';
@@ -169,21 +170,10 @@ class ProductItem extends StatelessWidget {
         }
 
         return Container(
-          margin: EdgeInsets.symmetric(horizontal: 15.h, vertical: 12.h),
+          margin: EdgeInsets.symmetric(horizontal: 15.h, vertical: 8.h),
           padding: EdgeInsets.all(8.h),
-          decoration: BoxDecoration(
-            color: ColorManager.white,
-            borderRadius: BorderRadius.circular(10.r),
-            border: Border.all(
-              color: ColorManager.mainColor,
-            ),
-            boxShadow: [
-              BoxShadow(
-                color: ColorManager.darkGrey,
-                blurRadius: 5.0,
-                spreadRadius: 1.0,
-              ),
-            ],
+          decoration: containerDecoration(
+            borderColor: ColorManager.mainColor,
           ),
           child: Row(
             children: [

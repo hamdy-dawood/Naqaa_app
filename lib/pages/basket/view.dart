@@ -10,6 +10,7 @@ import 'package:naqaa/components/svg_icons.dart';
 import 'package:naqaa/components/will_pop_scope.dart';
 import 'package:naqaa/constants/color_manager.dart';
 import 'package:naqaa/constants/custom_text.dart';
+import 'package:naqaa/constants/decor_container.dart';
 import 'package:naqaa/constants/strings.dart';
 import 'package:naqaa/core/cache_helper.dart';
 import 'package:naqaa/pages/address_type/view2.dart';
@@ -130,61 +131,111 @@ class BasketView extends StatelessWidget {
                           child: Column(
                             children: [
                               Expanded(
-                                child: SizedBox(
-                                  height: 0.53.sh,
-                                  child: ListView.builder(
-                                    itemCount: cubit.baskets.length,
-                                    itemBuilder: (context, index) {
-                                      final baskets = cubit.baskets[index];
-                                      return BasketItem(
-                                          itemPress: () {
-                                            // if (int.parse(cubit.total) < 129) {
-                                            //   Fluttertoast.showToast(
-                                            //       msg:
-                                            //           "Minimum Order Value is QR 129 and if Products is Out of Stock"
-                                            //           "then New Stock will be available Soon!! Try Again Later");
-                                            // } else {
-                                            //   Navigator.push(
-                                            //     context,
-                                            //     MaterialPageRoute(
-                                            //       builder: (context) =>
-                                            //           ChooseAddressType(
-                                            //         productID:
-                                            //             "${baskets.productId}",
-                                            //         quantity:
-                                            //             "${baskets.basketQuantity}",
-                                            //         basketID:
-                                            //             "${baskets.basketId}",
-                                            //       ),
-                                            //     ),
-                                            //   );
-                                            // }
-                                          },
-                                          title: "${baskets.productName}",
-                                          subTitle:
-                                              "${baskets.productDescription}",
-                                          price: "${baskets.productPrice}",
-                                          image:
-                                              "${UrlsStrings.baseImageUrl}${baskets.productImage}",
-                                          quantity: "${baskets.basketQuantity}",
-                                          yesPressDelete: () {
-                                            removeCubit.removeProduct(
-                                                basketID:
-                                                    "${baskets.basketId}");
-                                            Navigator.pop(context);
-                                            WidgetsBinding.instance
-                                                .addPostFrameCallback((_) {
-                                              customWillPopScope(context);
-                                            });
-                                            Future.delayed(
-                                              const Duration(seconds: 1),
-                                              () {
-                                                Navigator.pop(context);
-                                                cubit.getBaskets();
-                                              },
+                                child: Container(
+                                  margin: EdgeInsets.symmetric(
+                                      horizontal: 15.h, vertical: 8.h),
+                                  padding: EdgeInsets.all(8.h),
+                                  decoration: containerDecoration(
+                                    borderColor: ColorManager.mainColor,
+                                  ),
+                                  child: Column(
+                                    children: [
+                                      Row(
+                                        children: [
+                                          SvgIcon(
+                                            height: 22.h,
+                                            icon: "assets/icons/location.svg",
+                                            color: ColorManager.black,
+                                          ),
+                                          SizedBox(
+                                            width: 10.w,
+                                          ),
+                                          CustomText(
+                                            text: "delivery_address".tr,
+                                            color: ColorManager.black,
+                                            fontSize: 15.sp,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ],
+                                      ),
+                                      SizedBox(
+                                        height: 10.h,
+                                      ),
+                                      Expanded(
+                                        child: ListView.separated(
+                                          itemCount: cubit.baskets.length,
+                                          separatorBuilder: (context, index) {
+                                            return Padding(
+                                              padding: EdgeInsets.only(
+                                                right: 5.w,
+                                                left: 5.w,
+                                                bottom: 8.h,
+                                                top: 3.h,
+                                              ),
+                                              child: Divider(
+                                                color: ColorManager.mainColor,
+                                                thickness: 0.5,
+                                              ),
                                             );
-                                          });
-                                    },
+                                          },
+                                          itemBuilder: (context, index) {
+                                            final baskets =
+                                                cubit.baskets[index];
+                                            return BasketItem(
+                                                itemPress: () {
+                                                  // if (int.parse(cubit.total) < 129) {
+                                                  //   Fluttertoast.showToast(
+                                                  //       msg:
+                                                  //           "Minimum Order Value is QR 129 and if Products is Out of Stock"
+                                                  //           "then New Stock will be available Soon!! Try Again Later");
+                                                  // } else {
+                                                  //   Navigator.push(
+                                                  //     context,
+                                                  //     MaterialPageRoute(
+                                                  //       builder: (context) =>
+                                                  //           ChooseAddressType(
+                                                  //         productID:
+                                                  //             "${baskets.productId}",
+                                                  //         quantity:
+                                                  //             "${baskets.basketQuantity}",
+                                                  //         basketID:
+                                                  //             "${baskets.basketId}",
+                                                  //       ),
+                                                  //     ),
+                                                  //   );
+                                                  // }
+                                                },
+                                                title: "${baskets.productName}",
+                                                subTitle:
+                                                    "${baskets.productDescription}",
+                                                price:
+                                                    "${baskets.productPrice}",
+                                                image:
+                                                    "${UrlsStrings.baseImageUrl}${baskets.productImage}",
+                                                quantity:
+                                                    "${baskets.basketQuantity}",
+                                                yesPressDelete: () {
+                                                  removeCubit.removeProduct(
+                                                      basketID:
+                                                          "${baskets.basketId}");
+                                                  Navigator.pop(context);
+                                                  WidgetsBinding.instance
+                                                      .addPostFrameCallback(
+                                                          (_) {
+                                                    customWillPopScope(context);
+                                                  });
+                                                  Future.delayed(
+                                                    const Duration(seconds: 1),
+                                                    () {
+                                                      Navigator.pop(context);
+                                                      cubit.getBaskets();
+                                                    },
+                                                  );
+                                                });
+                                          },
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ),
                               ),

@@ -20,7 +20,7 @@ class NavBarView extends StatelessWidget {
     List screens = [
       const HomeView(),
       const SearchView(),
-      const OrdersView(),
+      const NewOrdersView(),
       const BasketView(),
       const ProfileView(),
     ];
