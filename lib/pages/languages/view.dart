@@ -90,7 +90,7 @@ class LanguageView extends StatelessWidget {
                               },
                             );
                           },
-                          title: "english",
+                          title: "English",
                           image: AssetsStrings.logoEnglishImage,
                           isSelected: cubit.type == LanguageType.english,
                         ),
