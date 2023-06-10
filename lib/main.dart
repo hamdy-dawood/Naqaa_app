@@ -21,12 +21,24 @@ import 'pages/remove_product_from_basket/cubit.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await CacheHelper.init();
-  // CacheHelper.clear();
-  runApp(const MyApp());
+  CacheHelper.clear();
+  await initApp();
+}
+
+Future<void> initApp() async {
+  print("in main : ${CacheHelper.getLang()}");
+  print("- " * 20);
+  Locale initialLocale = CacheHelper.getLang() != ""
+      ? Locale("${CacheHelper.getLang()}")
+      : Locale("ar");
+
+  runApp(MyApp(initialLocale: initialLocale));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({super.key, required this.initialLocale});
+
+  final Locale initialLocale;
 
   @override
   Widget build(BuildContext context) {
@@ -44,24 +56,29 @@ class MyApp extends StatelessWidget {
             BlocProvider(create: (context) => RemoveAllBasketCubit()),
             BlocProvider(create: (context) => AddressTypeCubit()),
             BlocProvider(create: (context) => LanguageCubit()),
+            BlocProvider(create: (context) => LanguageAppCubit()),
             BlocProvider(create: (context) => HomeMapCubit()),
             BlocProvider(create: (context) => DeleteAccountCubit()),
           ],
-          child: GetMaterialApp(
-            debugShowCheckedModeBanner: false,
-            title: "NAQAA",
-            navigatorKey: navigatorKey,
-            theme: ThemeData(
-              platform: TargetPlatform.iOS,
-            ),
-            translations: Languages(),
-            locale: Locale("ar"),
-            fallbackLocale: Locale("ar"),
-            home: child,
+          child: BlocBuilder<LanguageAppCubit, Locale>(
+            builder: (context, locale) {
+              CacheHelper.saveLang("locale.languageCode");
+              return GetMaterialApp(
+                debugShowCheckedModeBanner: false,
+                title: "NAQAA",
+                navigatorKey: navigatorKey,
+                theme: ThemeData(
+                  platform: TargetPlatform.iOS,
+                ),
+                translations: Languages(),
+                locale: locale,
+                //fallbackLocale: Locale("ar"),
+                home: const SplashView(),
+              );
+            },
           ),
         );
       },
-      child: const SplashView(),
     );
   }
 }

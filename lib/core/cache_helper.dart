@@ -23,12 +23,12 @@ class CacheHelper {
     return prefs.getString("userID") ?? "";
   }
 
-  static Future<bool> saveLang(String lang) async {
-    return await prefs.setString("lang", lang);
+  static Future<void> saveLang(String languageCode) async {
+    await prefs.setString('language', languageCode);
   }
 
   static String getLang() {
-    return prefs.getString("lang") ?? "";
+    return prefs.getString("language") ?? "";
   }
 
   static Future<bool> removeUserID() async {

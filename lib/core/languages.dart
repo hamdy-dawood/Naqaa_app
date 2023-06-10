@@ -1,4 +1,7 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get_navigation/src/root/internacionalization.dart';
+import 'package:naqaa/pages/languages/cubit.dart';
 
 class Languages extends Translations {
   @override
@@ -163,4 +166,8 @@ class Languages extends Translations {
           "details4": "رقم المنطقة (اختياري)",
         },
       };
+  static void changeLanguage(BuildContext context, String languageCode) {
+    LanguageAppCubit languageCubit = context.read<LanguageAppCubit>();
+    languageCubit.changeLanguage(languageCode);
+  }
 }

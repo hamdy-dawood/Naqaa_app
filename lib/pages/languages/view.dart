@@ -57,15 +57,15 @@ class LanguageView extends StatelessWidget {
                         LanguageItem(
                           itemPress: () {
                             cubit.arabicType();
-
                             Future.delayed(
                               Duration(milliseconds: 100),
                               () {
-                                navigateTo(
-                                    page: LoginView(), withHistory: false);
+                                // CacheHelper.saveIfNotFirstTime();
+                                // navigateTo(
+                                //     page: LoginView(), withHistory: false);
+                                // CacheHelper.saveLang("ar");
                                 Get.updateLocale(const Locale('ar'));
-                                CacheHelper.saveIfNotFirstTime();
-                                CacheHelper.saveLang("ar");
+                                _changeLanguage(context, "ar");
                               },
                             );
                           },
@@ -82,11 +82,8 @@ class LanguageView extends StatelessWidget {
                             Future.delayed(
                               Duration(milliseconds: 100),
                               () {
-                                navigateTo(
-                                    page: LoginView(), withHistory: false);
                                 Get.updateLocale(const Locale('en'));
-                                CacheHelper.saveIfNotFirstTime();
-                                CacheHelper.saveLang("en");
+                                _changeLanguage(context, "en");
                               },
                             );
                           },
@@ -104,5 +101,13 @@ class LanguageView extends StatelessWidget {
         ),
       );
     });
+  }
+
+  Future<void> _changeLanguage(
+      BuildContext context, String languageCode) async {
+    BlocProvider.of<LanguageAppCubit>(context).changeLanguage(languageCode);
+    await CacheHelper.saveLang(languageCode);
+    CacheHelper.saveIfNotFirstTime();
+    navigateTo(page: LoginView(), withHistory: false);
   }
 }

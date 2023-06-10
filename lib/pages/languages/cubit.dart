@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get/get.dart';
-import 'package:naqaa/core/cache_helper.dart';
-import 'package:naqaa/core/navigate.dart';
-import 'package:naqaa/pages/bottom_nav_bar/view.dart';
 
 import 'states.dart';
 
@@ -20,18 +16,18 @@ class LanguageCubit extends Cubit<LanguageStates> {
     "English",
     "عربي",
   ];
-  List<VoidCallback> changeLang = [
-    () {
-      CacheHelper.saveLang("en");
-      Get.updateLocale(const Locale('en'));
-      navigateTo(page: NavBarView(), withHistory: false);
-    },
-    () {
-      CacheHelper.saveLang("ar");
-      Get.updateLocale(const Locale('ar'));
-      navigateTo(page: NavBarView(), withHistory: false);
-    },
-  ];
+  // List<VoidCallback> changeLang = [
+  //   () {
+  //     CacheHelper.saveLang("en");
+  //     Get.updateLocale(const Locale('en'));
+  //     navigateTo(page: NavBarView(), withHistory: false);
+  //   },
+  //   () {
+  //     CacheHelper.saveLang("ar");
+  //     Get.updateLocale(const Locale('ar'));
+  //     navigateTo(page: NavBarView(), withHistory: false);
+  //   },
+  // ];
 
   void arabicType() {
     type = LanguageType.arabic;
@@ -46,5 +42,13 @@ class LanguageCubit extends Cubit<LanguageStates> {
   onChangeLang(value) {
     selectedLang = value;
     emit(ChangeLangState());
+  }
+}
+
+class LanguageAppCubit extends Cubit<Locale> {
+  LanguageAppCubit() : super(Locale('ar'));
+
+  void changeLanguage(String languageCode) {
+    emit(Locale(languageCode));
   }
 }

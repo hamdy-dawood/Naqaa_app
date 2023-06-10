@@ -12,6 +12,7 @@ import 'package:naqaa/components/will_pop_scope.dart';
 import 'package:naqaa/constants/color_manager.dart';
 import 'package:naqaa/constants/custom_text.dart';
 import 'package:naqaa/constants/strings.dart';
+import 'package:naqaa/core/cache_helper.dart';
 import 'package:naqaa/core/navigate.dart';
 import 'package:naqaa/pages/bottom_nav_bar/view.dart';
 import 'package:naqaa/pages/login/states.dart';
@@ -24,6 +25,7 @@ class LoginView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print("in login : ${CacheHelper.getLang()}");
     return BlocProvider(
       create: (context) => LoginCubit(),
       child: Builder(builder: (context) {

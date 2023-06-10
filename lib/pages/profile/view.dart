@@ -14,6 +14,7 @@ import 'package:naqaa/constants/color_manager.dart';
 import 'package:naqaa/constants/custom_text.dart';
 import 'package:naqaa/constants/strings.dart';
 import 'package:naqaa/core/cache_helper.dart';
+import 'package:naqaa/core/languages.dart';
 import 'package:naqaa/pages/delete_account/cubit.dart';
 import 'package:naqaa/pages/delete_account/states.dart';
 import 'package:naqaa/pages/edit_name/view.dart';
@@ -209,13 +210,21 @@ class ProfileView extends StatelessWidget {
                                       ),
                                       onChanged: (value) {
                                         langCubit.onChangeLang(value);
+                                        if (value == langCubit.lang[0].tr) {
+                                          Languages.changeLanguage(
+                                              context, 'en');
+                                        } else if (value ==
+                                            langCubit.lang[1].tr) {
+                                          Languages.changeLanguage(
+                                              context, 'ar');
+                                        }
                                       },
                                       value: langCubit.selectedLang,
                                       items: List.generate(
                                         langCubit.lang.length,
                                         (index) => DropdownMenuItem(
                                           value: langCubit.lang[index],
-                                          onTap: langCubit.changeLang[index],
+                                          // onTap: langCubit.changeLang[index],
                                           child: Text(
                                             langCubit.lang[index],
                                           ),
