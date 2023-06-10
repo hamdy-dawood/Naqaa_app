@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:naqaa/constants/color_manager.dart';
@@ -16,7 +15,6 @@ class CustomTextFormField extends StatelessWidget {
     this.obscureText = false,
     this.isLastInput = false,
     this.readOnly = false,
-    this.formatter = const [],
   });
 
   final String hint;
@@ -26,12 +24,10 @@ class CustomTextFormField extends StatelessWidget {
   final FormFieldValidator validator;
   final IconButton? suffixIcon;
   final bool obscureText, isLastInput, readOnly;
-  final List<TextInputFormatter> formatter;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      inputFormatters: formatter,
       readOnly: readOnly,
       controller: controller,
       autovalidateMode: autoValidate,

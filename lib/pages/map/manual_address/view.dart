@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:naqaa/components/custom_elevated.dart';
@@ -75,7 +74,6 @@ class ManualAddressView extends StatelessWidget {
                 ),
                 SizedBox(height: 20.h),
                 CustomTextFormField(
-                  formatter: [FilteringTextInputFormatter.digitsOnly],
                   controller: TextEditingController(),
                   hint: "details1".tr,
                   validator: (value) {
@@ -128,10 +126,12 @@ class ManualAddressView extends StatelessWidget {
                         MaterialPageRoute(
                           builder: (context) {
                             return AddAllBasketOrderView(
-                                orderAddressType: "Home",
-                                lat: "${lat}",
-                                long: "${long}",
-                                address: "${address}");
+                              orderAddressType: "Home",
+                              lat: "${lat}",
+                              long: "${long}",
+                              address: "${address}",
+                              number: 5,
+                            );
                           },
                         ),
                       );

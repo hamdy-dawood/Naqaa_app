@@ -393,6 +393,9 @@ class BasketView extends StatelessWidget {
                                             title: "${baskets.productName}",
                                             subTitle:
                                                 "${baskets.productDescription}",
+                                            enTitle: "${baskets.productNameEN}",
+                                            enSubTitle:
+                                                "${baskets.productDescriptionEN}",
                                             price: "${baskets.productPrice}",
                                             image:
                                                 "${UrlsStrings.baseImageUrl}${baskets.productImage}",

@@ -5,6 +5,7 @@ import 'package:naqaa/components/custom_elevated.dart';
 import 'package:naqaa/components/delete_dialog.dart';
 import 'package:naqaa/constants/color_manager.dart';
 import 'package:naqaa/constants/custom_text.dart';
+import 'package:naqaa/core/cache_helper.dart';
 
 class BasketItem extends StatelessWidget {
   const BasketItem({
@@ -16,9 +17,11 @@ class BasketItem extends StatelessWidget {
     required this.quantity,
     required this.yesPressDelete,
     required this.itemPress,
+    required this.enTitle,
+    required this.enSubTitle,
   }) : super(key: key);
 
-  final String title, subTitle, price, image, quantity;
+  final String title, enTitle, subTitle, enSubTitle, price, image, quantity;
   final VoidCallback itemPress, yesPressDelete;
 
   @override
@@ -51,7 +54,7 @@ class BasketItem extends StatelessWidget {
                   children: [
                     Expanded(
                       child: CustomText(
-                        text: title,
+                        text: CacheHelper.getLang() == "ar" ? title : enTitle,
                         color: ColorManager.black,
                         fontSize: 15.sp,
                         fontWeight: FontWeight.w500,
@@ -75,7 +78,7 @@ class BasketItem extends StatelessWidget {
                   ],
                 ),
                 CustomText(
-                  text: subTitle,
+                  text: CacheHelper.getLang() == "ar" ? subTitle : enSubTitle,
                   color: ColorManager.darkGrey,
                   fontSize: 15.sp,
                   fontWeight: FontWeight.w500,

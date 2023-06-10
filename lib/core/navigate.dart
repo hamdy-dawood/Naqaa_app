@@ -20,12 +20,3 @@ void navigateTo(
   }
   NavBarCubit.get(context).navigateToNavBarView(index);
 }
-
-// navigateTo(context, screen) =>
-//     Navigator.of(context).push(MaterialPageRoute(builder: (_) => screen));
-//
-// void navigateAndFinish(context, widget) => Navigator.pushAndRemoveUntil(
-//     context, MaterialPageRoute(builder: (context) => widget), (route) => false);
-//
-// navigateAndReplace(context, screen) => Navigator.of(context)
-//     .pushReplacement(MaterialPageRoute(builder: (_) => screen));
