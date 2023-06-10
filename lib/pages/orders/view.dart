@@ -89,9 +89,20 @@ class OrdersView extends StatelessWidget {
                               elevation: 1,
                               borderRadius: BorderRadius.circular(10),
                               underline: const SizedBox.shrink(),
+                              // onChanged: (value) {
+                              //   cubit.setSelectedItem(value!);
+                              // },
                               onChanged: (value) {
                                 cubit.setSelectedItem(value);
+                                if (value == cubit.filterItems[0].tr) {
+                                  cubit.getOrders(status: 1);
+                                } else if (value == cubit.filterItems[1].tr) {
+                                  cubit.getOrders(status: 2);
+                                } else if (value == cubit.filterItems[2].tr) {
+                                  cubit.getOrders(status: 3);
+                                }
                               },
+
                               value: cubit.selectedItem,
                               items: List.generate(
                                 cubit.filterItems.length,
@@ -164,6 +175,13 @@ class OrdersView extends StatelessWidget {
                             underline: const SizedBox.shrink(),
                             onChanged: (value) {
                               cubit.setSelectedItem(value);
+                              if (value == cubit.filterItems[0].tr) {
+                                cubit.getOrders(status: 1);
+                              } else if (value == cubit.filterItems[1].tr) {
+                                cubit.getOrders(status: 2);
+                              } else if (value == cubit.filterItems[2].tr) {
+                                cubit.getOrders(status: 3);
+                              }
                             },
                             value: cubit.selectedItem,
                             items: List.generate(
