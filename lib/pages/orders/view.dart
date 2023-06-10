@@ -24,17 +24,6 @@ class OrdersView extends StatelessWidget {
         builder: (context) {
           final cubit = OrdersCubit.get(context);
           cubit.getOrders(status: 1);
-          cubit.changeItem = [
-            () {
-              cubit.getOrders(status: 1);
-            },
-            () {
-              cubit.getOrders(status: 2);
-            },
-            () {
-              cubit.getOrders(status: 3);
-            },
-          ];
           return RefreshIndicator(
             backgroundColor: ColorManager.mainColor,
             color: Colors.white,
@@ -89,9 +78,6 @@ class OrdersView extends StatelessWidget {
                               elevation: 1,
                               borderRadius: BorderRadius.circular(10),
                               underline: const SizedBox.shrink(),
-                              // onChanged: (value) {
-                              //   cubit.setSelectedItem(value!);
-                              // },
                               onChanged: (value) {
                                 cubit.setSelectedItem(value);
                                 if (value == cubit.filterItems[0].tr) {
@@ -102,13 +88,11 @@ class OrdersView extends StatelessWidget {
                                   cubit.getOrders(status: 3);
                                 }
                               },
-
                               value: cubit.selectedItem,
                               items: List.generate(
                                 cubit.filterItems.length,
                                 (index) => DropdownMenuItem(
                                   value: cubit.filterItems[index].tr,
-                                  onTap: cubit.changeItem![index],
                                   child: CustomText(
                                     text: cubit.filterItems[index].tr,
                                     color: ColorManager.mainColor,
@@ -188,7 +172,6 @@ class OrdersView extends StatelessWidget {
                               cubit.filterItems.length,
                               (index) => DropdownMenuItem(
                                 value: cubit.filterItems[index].tr,
-                                onTap: cubit.changeItem![index],
                                 child: CustomText(
                                   text: cubit.filterItems[index].tr,
                                   color: ColorManager.mainColor,

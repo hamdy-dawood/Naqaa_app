@@ -8,8 +8,8 @@ import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:naqaa/components/custom_elevated.dart';
 import 'package:naqaa/constants/color_manager.dart';
-import 'package:naqaa/pages/add_all_basket_order/view.dart';
 import 'package:naqaa/pages/map/address_model.dart';
+import 'package:naqaa/pages/map/manual_address/view.dart';
 
 import 'cubit.dart';
 import 'states.dart';
@@ -135,11 +135,11 @@ class HomeMapView extends StatelessWidget {
                         context,
                         MaterialPageRoute(
                           builder: (context) {
-                            return AddAllBasketOrderView(
-                                orderAddressType: "Home",
-                                lat: "${cubit.currentAddress?.lat}",
-                                long: "${cubit.currentAddress?.long}",
-                                address: "${myAddress}");
+                            return ManualAddressView(
+                              address: "${myAddress}",
+                              lat: "${cubit.currentAddress?.lat}",
+                              long: "${cubit.currentAddress?.long}",
+                            );
                           },
                         ),
                       );

@@ -76,6 +76,12 @@ class Languages extends Translations {
           "pending": "pending",
           "done": "done",
           "canceled": "canceled",
+          "address_details": "Add Address Details",
+          "details1": "Building Number",
+          "details1_validate": "Please enter building no",
+          "details2": "Unit Number(Optional)",
+          "details3": "Street Number(Optional)",
+          "details4": "Zone(Optional)",
         },
         'ar': {
           "language": "اللغة",
@@ -149,6 +155,12 @@ class Languages extends Translations {
           "pending": "تم وضعها",
           "done": "تم التوصيل",
           "canceled": "تم الإلغاء",
+          "address_details": "ادخل تفاصيل العنوان",
+          "details1": "رقم المبني / البيت",
+          "details1_validate": "الرجار ادخال رقم المبني",
+          "details2": "رقم الوحدة (اختياري)",
+          "details3": "رقم الشارع (اختياري)",
+          "details4": "رقم المنطقة (اختياري)",
         },
       };
 }

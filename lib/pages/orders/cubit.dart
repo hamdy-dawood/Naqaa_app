@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:naqaa/constants/strings.dart';
 import 'package:naqaa/core/cache_helper.dart';
@@ -22,8 +21,6 @@ class OrdersCubit extends Cubit<OrdersStates> {
     "done",
     "canceled",
   ];
-
-  List<VoidCallback>? changeItem;
 
   Future<void> getOrders({required int status}) async {
     emit(OrdersLoadingState());
