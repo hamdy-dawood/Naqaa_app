@@ -17,6 +17,7 @@ class OrderDetailsResp {
   String? basketLong;
   String? basketTypeAddress;
   String? basketTime;
+  String? basketAddress;
 
   OrderDetailsResp({
     this.productId,
@@ -37,6 +38,7 @@ class OrderDetailsResp {
     this.basketLong,
     this.basketTypeAddress,
     this.basketTime,
+    this.basketAddress,
   });
 
   OrderDetailsResp.fromJson(Map<String, dynamic> json) {
@@ -54,6 +56,7 @@ class OrderDetailsResp {
     basketUserId = json['basket_userid'] ?? "";
     basketQuantity = json['basket_quantity'] ?? "";
     basketOrderStatus = json['basket_orderstatus'] ?? "";
+    basketAddress = json['basket_address'] ?? "";
     basketLat = json['basket_lat'] ?? "";
     basketLong = json['basket_long'] ?? "";
     basketTypeAddress = json['basket_typeaddress'] ?? "";

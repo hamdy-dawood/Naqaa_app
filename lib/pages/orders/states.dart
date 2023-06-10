@@ -10,6 +10,8 @@ class OrdersNetworkErrorState extends OrdersStates {}
 
 class OrdersSuccessWithNoDataState extends OrdersStates {}
 
+class OrdersSelected extends OrdersStates {}
+
 class OrdersFailureState extends OrdersStates {
   final String msg;
 

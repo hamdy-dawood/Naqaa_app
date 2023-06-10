@@ -19,6 +19,7 @@ class UrlsStrings {
   static const String basketsUrl = "${baseUrl}basket/viewbasket.php";
   static const String ordersUrl = "${baseUrl}order/vieworders.php";
   static const String ticketsUrl = "${baseUrl}order/viewticket.php";
+  static const String filterTicketsUrl = "${baseUrl}order/filterorders.php";
   static const String addOrdersUrl = "${baseUrl}order/addorder.php";
   static const String addAllBasketOrdersUrl = "${baseUrl}order/addorderAll.php";
 

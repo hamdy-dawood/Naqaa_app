@@ -16,11 +16,12 @@ class AddAllBasketOrderView extends StatelessWidget {
   const AddAllBasketOrderView(
       {Key? key,
       required this.orderAddressType,
+      required this.address,
       required this.lat,
       required this.long})
       : super(key: key);
 
-  final String orderAddressType, lat, long;
+  final String orderAddressType, address, lat, long;
 
   @override
   Widget build(BuildContext context) {
@@ -60,10 +61,20 @@ class AddAllBasketOrderView extends StatelessWidget {
                   children: [
                     SizedBox(height: 50.h),
                     CustomText(
-                      text: "orderAddressType : $orderAddressType",
+                      text: "$orderAddressType",
                       color: ColorManager.black,
                       fontSize: 20.sp,
                       fontWeight: FontWeight.w500,
+                      textAlign: TextAlign.center,
+                    ),
+                    SizedBox(height: 10.h),
+                    CustomText(
+                      text: "$address",
+                      color: ColorManager.black,
+                      fontSize: 20.sp,
+                      fontWeight: FontWeight.w500,
+                      maxLines: 5,
+                      textAlign: TextAlign.center,
                     ),
                     SizedBox(height: 10.h),
                     CustomText(
@@ -71,6 +82,7 @@ class AddAllBasketOrderView extends StatelessWidget {
                       color: ColorManager.black,
                       fontSize: 20.sp,
                       fontWeight: FontWeight.w500,
+                      textAlign: TextAlign.center,
                     ),
                     SizedBox(height: 10.h),
                     CustomText(
@@ -78,6 +90,7 @@ class AddAllBasketOrderView extends StatelessWidget {
                       color: ColorManager.black,
                       fontSize: 20.sp,
                       fontWeight: FontWeight.w500,
+                      textAlign: TextAlign.center,
                     ),
                     BlocConsumer<AddAllBasketOrderCubit,
                         AddAllBasketOrderStates>(
@@ -109,6 +122,7 @@ class AddAllBasketOrderView extends StatelessWidget {
                                 orderAddressType: orderAddressType,
                                 lat: lat,
                                 long: long,
+                                address: address,
                               );
                             },
                             btnColor: ColorManager.mainColor,

@@ -15,8 +15,9 @@ import 'cubit.dart';
 import 'states.dart';
 
 class OrderDetailsView extends StatelessWidget {
-  const OrderDetailsView({Key? key, required this.orderID}) : super(key: key);
-  final String orderID;
+  const OrderDetailsView({Key? key, required this.orderID, required this.price})
+      : super(key: key);
+  final String orderID, price;
 
   @override
   Widget build(BuildContext context) {
@@ -50,6 +51,97 @@ class OrderDetailsView extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
+            bottomSheet: Container(
+              decoration: BoxDecoration(
+                color: ColorManager.white,
+                borderRadius: BorderRadius.only(
+                  topRight: Radius.circular(20),
+                  topLeft: Radius.circular(20),
+                ),
+                boxShadow: [
+                  BoxShadow(
+                    color: ColorManager.darkGrey,
+                    blurRadius: 5.0,
+                    spreadRadius: 1.0,
+                  ),
+                ],
+              ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Padding(
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 15.w, vertical: 10.h),
+                    child: SizedBox(
+                      child: Column(
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              CustomText(
+                                text: "order_val".tr,
+                                color: ColorManager.borderColor,
+                                fontSize: 15.sp,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              CustomText(
+                                text: "QR ${price}",
+                                color: ColorManager.black,
+                                fontSize: 16.sp,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ],
+                          ),
+                          SizedBox(
+                            height: 5.h,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              CustomText(
+                                text: "delivery_char".tr,
+                                color: ColorManager.borderColor,
+                                fontSize: 15.sp,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              CustomText(
+                                text: "QR 10",
+                                color: ColorManager.black,
+                                fontSize: 16.sp,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ],
+                          ),
+                          SizedBox(
+                            height: 8.h,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              CustomText(
+                                text: "total".tr,
+                                color: ColorManager.mainColor,
+                                fontSize: 20.sp,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              CustomText(
+                                text: "QR ${int.parse(price) + 10}",
+                                color: ColorManager.mainColor,
+                                fontSize: 20.sp,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ],
+                          ),
+                          SizedBox(
+                            height: 10.h,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
             body: BlocBuilder<OrderDetailsCubit, OrderDetailsStates>(
               builder: (context, state) {
                 if (state is OrderDetailsLoadingState) {
@@ -74,119 +166,120 @@ class OrderDetailsView extends StatelessWidget {
                 Navigator.pop(context);
                 return SizedBox(
                   width: 1.sw,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 15.h),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            CustomText(
-                              text: "order_id".tr,
-                              color: ColorManager.black,
-                              fontSize: 20.sp,
-                              fontWeight: FontWeight.w600,
-                            ),
-                            SizedBox(width: 10.w),
-                            CustomText(
-                              text: orderID,
-                              color: ColorManager.black,
-                              fontSize: 20.sp,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ],
+                  child: SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 15.h),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              CustomText(
+                                text: "order_id".tr,
+                                color: ColorManager.black,
+                                fontSize: 20.sp,
+                                fontWeight: FontWeight.w600,
+                              ),
+                              SizedBox(width: 10.w),
+                              CustomText(
+                                text: orderID,
+                                color: ColorManager.black,
+                                fontSize: 20.sp,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                      Container(
-                        margin: EdgeInsets.symmetric(
-                            horizontal: 15.h, vertical: 8.h),
-                        padding: EdgeInsets.all(8.h),
-                        decoration: containerDecoration(
-                          borderColor: ColorManager.borderColor,
+                        Container(
+                          margin: EdgeInsets.symmetric(
+                              horizontal: 15.h, vertical: 8.h),
+                          padding: EdgeInsets.all(8.h),
+                          decoration: containerDecoration(
+                            borderColor: ColorManager.borderColor,
+                          ),
+                          child: ListView.separated(
+                              physics: NeverScrollableScrollPhysics(),
+                              shrinkWrap: true,
+                              itemCount: cubit.orderDetails.length,
+                              separatorBuilder: (context, index) {
+                                return Padding(
+                                  padding: EdgeInsets.only(
+                                    bottom: 8.h,
+                                    top: 3.h,
+                                  ),
+                                  child: Divider(
+                                    color: ColorManager.mainColor,
+                                    thickness: 0.5,
+                                  ),
+                                );
+                              },
+                              itemBuilder: (context, index) {
+                                final baskets = cubit.orderDetails[index];
+                                return OrderItem(
+                                  title: "${baskets.productName}",
+                                  enTitle: "${baskets.productNameEN}",
+                                  subTitle: "${baskets.productDescription}",
+                                  enSubTitle: "${baskets.productDescriptionEN}",
+                                  price: "${baskets.productPrice}",
+                                  image:
+                                      "${UrlsStrings.baseImageUrl}${baskets.productImage}",
+                                  quantity: "${baskets.basketQuantity}",
+                                  addressType: "${baskets.basketTypeAddress}",
+                                );
+                              }),
                         ),
-                        child: ListView.separated(
-                            physics: NeverScrollableScrollPhysics(),
-                            shrinkWrap: true,
-                            itemCount: cubit.orderDetails.length,
-                            separatorBuilder: (context, index) {
-                              return Padding(
-                                padding: EdgeInsets.only(
-                                  right: 5.w,
-                                  left: 5.w,
-                                  bottom: 8.h,
-                                  top: 3.h,
-                                ),
-                                child: Divider(
-                                  color: ColorManager.mainColor,
-                                  thickness: 0.5,
-                                ),
-                              );
-                            },
-                            itemBuilder: (context, index) {
-                              final baskets = cubit.orderDetails[index];
-                              return OrderItem(
-                                title: "${baskets.productName}",
-                                enTitle: "${baskets.productNameEN}",
-                                subTitle: "${baskets.productDescription}",
-                                enSubTitle: "${baskets.productDescriptionEN}",
-                                price: "${baskets.productPrice}",
-                                image:
-                                    "${UrlsStrings.baseImageUrl}${baskets.productImage}",
-                                quantity: "${baskets.basketQuantity}",
-                                addressType: "${baskets.basketTypeAddress}",
-                              );
-                            }),
-                      ),
-                      SizedBox(height: 10.w),
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 15.h),
-                        child: CustomText(
-                          text: "receiver_details".tr,
-                          color: ColorManager.black,
-                          fontSize: 20.sp,
-                          fontWeight: FontWeight.w600,
+                        SizedBox(height: 10.w),
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 15.h),
+                          child: CustomText(
+                            text: "receiver_details".tr,
+                            color: ColorManager.black,
+                            fontSize: 20.sp,
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
-                      ),
-                      Container(
-                        margin: EdgeInsets.symmetric(
-                            horizontal: 15.h, vertical: 8.h),
-                        padding: EdgeInsets.all(8.h),
-                        decoration: containerDecoration(
-                          borderColor: ColorManager.borderColor,
+                        Container(
+                          margin: EdgeInsets.symmetric(
+                              horizontal: 15.h, vertical: 8.h),
+                          padding: EdgeInsets.all(8.h),
+                          decoration: containerDecoration(
+                            borderColor: ColorManager.borderColor,
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                children: [
+                                  SvgIcon(
+                                    height: 22.h,
+                                    icon: AssetsStrings.locationIcon,
+                                    color: ColorManager.black,
+                                  ),
+                                  SizedBox(width: 20.w),
+                                  CustomText(
+                                    text:
+                                        "${cubit.orderDetails[0].basketTypeAddress}",
+                                    color: ColorManager.black,
+                                    fontSize: 16.sp,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ],
+                              ),
+                              SizedBox(height: 5.h),
+                              CustomText(
+                                text: "${cubit.orderDetails[0].basketAddress}",
+                                color: ColorManager.black,
+                                fontSize: 16.sp,
+                                fontWeight: FontWeight.normal,
+                                maxLines: 10,
+                              ),
+                            ],
+                          ),
                         ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              children: [
-                                SvgIcon(
-                                  height: 22.h,
-                                  icon: AssetsStrings.locationIcon,
-                                  color: ColorManager.black,
-                                ),
-                                SizedBox(width: 20.w),
-                                CustomText(
-                                  text: "home",
-                                  color: ColorManager.black,
-                                  fontSize: 16.sp,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ],
-                            ),
-                            SizedBox(height: 5.h),
-                            CustomText(
-                              text:
-                                  "${cubit.orderDetails[0].basketTypeAddress}",
-                              color: ColorManager.black,
-                              fontSize: 16.sp,
-                              fontWeight: FontWeight.normal,
-                              maxLines: 10,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
+                        SizedBox(height: 150.h),
+                      ],
+                    ),
                   ),
                 );
               },

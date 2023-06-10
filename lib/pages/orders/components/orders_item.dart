@@ -29,6 +29,7 @@ class OrdersItem extends StatelessWidget {
             builder: (context) {
               return OrderDetailsView(
                 orderID: id,
+                price: price,
               );
             },
           ),
@@ -88,10 +89,10 @@ class OrdersItem extends StatelessWidget {
                       SizedBox(width: 3.w),
                       CustomText(
                         text: status == "1"
-                            ? "pending".tr
+                            ? "pending".tr.toUpperCase()
                             : status == "2"
-                                ? "done".tr
-                                : "canceled".tr,
+                                ? "done".tr.toUpperCase()
+                                : "canceled".tr.toUpperCase(),
                         color: ColorManager.black,
                         fontSize: 12.sp,
                         fontWeight: FontWeight.normal,

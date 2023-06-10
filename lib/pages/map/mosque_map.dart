@@ -223,19 +223,15 @@ class _MosqueMapState extends State<MosqueMap> {
                     short = address.short;
 
                     Navigator.pop(context);
-                    print('addressM>>>>>>>>>>>$addressM');
-                    print('addressName>>>>>>>>>>>$addressName');
-                    print('addressType>>>>>>>>>>>$addressType');
-                    print('lat>>>>>>>>>>>$lat');
-                    print('long>>>>>>>>>>>$long');
                     Navigator.push(
                       context,
                       MaterialPageRoute(
                         builder: (context) {
                           return AddAllBasketOrderView(
-                            orderAddressType: "${addressName}",
+                            orderAddressType: "Mosque",
                             lat: "${lat}",
                             long: "${long}",
+                            address: "${addressName}",
                           );
                         },
                       ),
@@ -324,8 +320,6 @@ class _MosqueMapState extends State<MosqueMap> {
         '&rankby=distance&type=mosque&key=AIzaSyDjjZzMmPfqAB8xbfhXhr2yiEaJ8n5EiDg';
 
     final response = await Dio().get(apiUrl);
-    print("API : ${apiUrl}");
-    print("StatusCode: ${response.statusCode}");
 
     if (response.statusCode == 200) {
       List<Marker> markers = [];
@@ -335,7 +329,6 @@ class _MosqueMapState extends State<MosqueMap> {
       } else if (response.data is String) {
         data = jsonDecode(response.data);
       }
-      print(data);
 
       data['results'].forEach((result) async {
         final latLng = LatLng(result['geometry']['location']['lat'],
@@ -387,8 +380,6 @@ class _MosqueMapState extends State<MosqueMap> {
     String apiUrl =
         'https://maps.googleapis.com/maps/api/geocode/json?latlng=$lat,$long&key=AIzaSyDjjZzMmPfqAB8xbfhXhr2yiEaJ8n5EiDg';
     final response = await Dio().get(apiUrl);
-    print("API : ${apiUrl}");
-    print("StatusCode: ${response.statusCode}");
     setState(() {
       isShowLoader = true;
     });
@@ -400,9 +391,7 @@ class _MosqueMapState extends State<MosqueMap> {
         } else if (response.data is String) {
           data = jsonDecode(response.data);
         }
-        print(data);
         var address = data['results'][0]['formatted_address'];
-        print("Address: $address");
 
         int id = 0;
         var rng = Random();

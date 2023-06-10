@@ -123,13 +123,12 @@ class HomeMapView extends StatelessWidget {
                       var address = Address(
                         addressName: cubit.currentAddress?.addressName ?? '',
                         short: '',
-                        type: "home",
+                        type: "Home",
                         id: id,
                         lat: cubit.currentAddress?.lat,
                         long: cubit.currentAddress?.long,
                       );
                       var addressM = jsonEncode(address.toJson());
-                      print("SharePref Address==>> ${addressM}");
                       Map<String, dynamic> myMap = jsonDecode(addressM);
                       String myAddress = myMap["address"];
                       Navigator.push(
@@ -137,10 +136,10 @@ class HomeMapView extends StatelessWidget {
                         MaterialPageRoute(
                           builder: (context) {
                             return AddAllBasketOrderView(
-                              orderAddressType: "${myAddress}",
-                              lat: "${cubit.currentAddress?.lat}",
-                              long: "${cubit.currentAddress?.long}",
-                            );
+                                orderAddressType: "Home",
+                                lat: "${cubit.currentAddress?.lat}",
+                                long: "${cubit.currentAddress?.long}",
+                                address: "${myAddress}");
                           },
                         ),
                       );

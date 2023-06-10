@@ -11,17 +11,18 @@ class AddAllBasketOrderCubit extends Cubit<AddAllBasketOrderStates> {
   static AddAllBasketOrderCubit get(context) => BlocProvider.of(context);
   final dio = Dio();
 
-  Future<void> addAllBasketOrder({
-    required String orderAddressType,
-    required String lat,
-    required String long,
-  }) async {
+  Future<void> addAllBasketOrder(
+      {required String orderAddressType,
+      required String lat,
+      required String long,
+      required String address}) async {
     emit(AddAllBasketOrderLoadingState());
     try {
       final response = await dio.post(UrlsStrings.addAllBasketOrdersUrl,
           data: FormData.fromMap({
             "userid": CacheHelper.getUserID(),
             "orderAddressType": orderAddressType,
+            "address": address,
             "lat": lat,
             "long": long,
           }));

@@ -196,12 +196,16 @@ class ProfileView extends StatelessWidget {
                                       elevation: 0,
                                       borderRadius: BorderRadius.circular(10),
                                       underline: const SizedBox.shrink(),
-                                      hint: Text(
-                                        "language".tr,
-                                        style: TextStyle(
-                                          fontSize: 18.sp,
-                                          color: ColorManager.darkGrey,
-                                        ),
+                                      hint: Row(
+                                        children: [
+                                          Text(
+                                            "language".tr,
+                                            style: TextStyle(
+                                              fontSize: 18.sp,
+                                              color: ColorManager.darkGrey,
+                                            ),
+                                          ),
+                                        ],
                                       ),
                                       onChanged: (value) {
                                         langCubit.onChangeLang(value);

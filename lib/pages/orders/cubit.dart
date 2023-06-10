@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:naqaa/constants/strings.dart';
 import 'package:naqaa/core/cache_helper.dart';
@@ -15,12 +16,22 @@ class OrdersCubit extends Cubit<OrdersStates> {
   final dio = Dio();
   List<OrdersResp> orders = [];
 
-  Future<void> getOrders() async {
+  String? selectedItem;
+  List<String> filterItems = [
+    "pending",
+    "done",
+    "canceled",
+  ];
+
+  List<VoidCallback>? changeItem;
+
+  Future<void> getOrders({required int status}) async {
     emit(OrdersLoadingState());
     try {
-      final response = await dio.post(UrlsStrings.ticketsUrl,
+      final response = await dio.post(UrlsStrings.filterTicketsUrl,
           data: FormData.fromMap({
             "userid": CacheHelper.getUserID(),
+            "status": "${status}",
           }));
       if (response.statusCode == 200) {
         Map<String, dynamic> json = jsonDecode(response.data);
@@ -54,5 +65,10 @@ class OrdersCubit extends Cubit<OrdersStates> {
       emit(OrdersFailureState(msg: 'An unknown error : $e'));
       print(e);
     }
+  }
+
+  setSelectedItem(value) {
+    selectedItem = value;
+    emit(OrdersSelected());
   }
 }

@@ -4,6 +4,7 @@ class OrdersResp {
   String? basketTicketID;
   String? basketTypeAddress;
   String? basketTime;
+  String? basketPrice;
 
   OrdersResp({
     this.count,
@@ -11,6 +12,7 @@ class OrdersResp {
     this.basketTicketID,
     this.basketTypeAddress,
     this.basketTime,
+    this.basketPrice,
   });
 
   OrdersResp.fromJson(Map<String, dynamic> json) {
@@ -19,5 +21,6 @@ class OrdersResp {
     basketTicketID = json['basket_ticket'] ?? "";
     basketTypeAddress = json['basket_typeaddress'] ?? "";
     basketTime = json['basket_time'] ?? "";
+    basketPrice = json['total'] ?? "";
   }
 }
