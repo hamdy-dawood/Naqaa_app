@@ -24,6 +24,7 @@ class AddAllBasketOrderView extends StatelessWidget {
 
   final String orderAddressType, address, lat, long;
   final int number;
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(

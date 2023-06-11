@@ -13,7 +13,7 @@ import 'package:naqaa/constants/custom_text.dart';
 import 'package:naqaa/constants/decor_container.dart';
 import 'package:naqaa/constants/strings.dart';
 import 'package:naqaa/core/cache_helper.dart';
-import 'package:naqaa/pages/address_type/view2.dart';
+import 'package:naqaa/pages/address_type/view.dart';
 import 'package:naqaa/pages/basket/components/basket_item.dart';
 import 'package:naqaa/pages/bottom_nav_bar/cubit.dart';
 import 'package:naqaa/pages/remove_all_basket/cubit.dart';
@@ -290,7 +290,7 @@ class BasketView extends StatelessWidget {
                                                   context,
                                                   MaterialPageRoute(
                                                     builder: (context) =>
-                                                        ChooseAddressType2(),
+                                                        ChooseAddressType(),
                                                   ),
                                                 );
                                               }
@@ -367,29 +367,7 @@ class BasketView extends StatelessWidget {
                                       itemBuilder: (context, index) {
                                         final baskets = cubit.baskets[index];
                                         return BasketItem(
-                                            itemPress: () {
-                                              // if (int.parse(cubit.total) < 129) {
-                                              //   Fluttertoast.showToast(
-                                              //       msg:
-                                              //           "Minimum Order Value is QR 129 and if Products is Out of Stock"
-                                              //           "then New Stock will be available Soon!! Try Again Later");
-                                              // } else {
-                                              //   Navigator.push(
-                                              //     context,
-                                              //     MaterialPageRoute(
-                                              //       builder: (context) =>
-                                              //           ChooseAddressType(
-                                              //         productID:
-                                              //             "${baskets.productId}",
-                                              //         quantity:
-                                              //             "${baskets.basketQuantity}",
-                                              //         basketID:
-                                              //             "${baskets.basketId}",
-                                              //       ),
-                                              //     ),
-                                              //   );
-                                              // }
-                                            },
+                                            basketID: "${baskets.basketId}",
                                             title: "${baskets.productName}",
                                             subTitle:
                                                 "${baskets.productDescription}",

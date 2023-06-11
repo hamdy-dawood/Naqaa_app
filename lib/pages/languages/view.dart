@@ -7,6 +7,7 @@ import 'package:naqaa/constants/color_manager.dart';
 import 'package:naqaa/constants/custom_text.dart';
 import 'package:naqaa/constants/strings.dart';
 import 'package:naqaa/core/cache_helper.dart';
+import 'package:naqaa/core/languages.dart';
 import 'package:naqaa/core/navigate.dart';
 import 'package:naqaa/pages/languages/components/language_item.dart';
 import 'package:naqaa/pages/login/view.dart';
@@ -66,6 +67,7 @@ class LanguageView extends StatelessWidget {
                                 // CacheHelper.saveLang("ar");
                                 Get.updateLocale(const Locale('ar'));
                                 _changeLanguage(context, "ar");
+                                Languages.changeLanguage(context, 'ar');
                               },
                             );
                           },
@@ -84,6 +86,7 @@ class LanguageView extends StatelessWidget {
                               () {
                                 Get.updateLocale(const Locale('en'));
                                 _changeLanguage(context, "en");
+                                Languages.changeLanguage(context, 'en');
                               },
                             );
                           },

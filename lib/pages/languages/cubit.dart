@@ -16,18 +16,6 @@ class LanguageCubit extends Cubit<LanguageStates> {
     "English",
     "عربي",
   ];
-  // List<VoidCallback> changeLang = [
-  //   () {
-  //     CacheHelper.saveLang("en");
-  //     Get.updateLocale(const Locale('en'));
-  //     navigateTo(page: NavBarView(), withHistory: false);
-  //   },
-  //   () {
-  //     CacheHelper.saveLang("ar");
-  //     Get.updateLocale(const Locale('ar'));
-  //     navigateTo(page: NavBarView(), withHistory: false);
-  //   },
-  // ];
 
   void arabicType() {
     type = LanguageType.arabic;

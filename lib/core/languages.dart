@@ -166,6 +166,7 @@ class Languages extends Translations {
           "details4": "رقم المنطقة (اختياري)",
         },
       };
+
   static void changeLanguage(BuildContext context, String languageCode) {
     LanguageAppCubit languageCubit = context.read<LanguageAppCubit>();
     languageCubit.changeLanguage(languageCode);

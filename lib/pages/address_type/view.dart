@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:naqaa/components/will_pop_scope.dart';
 import 'package:naqaa/constants/color_manager.dart';
 import 'package:naqaa/constants/custom_text.dart';
 import 'package:naqaa/constants/strings.dart';
-import 'package:naqaa/pages/add_order/view.dart';
 import 'package:naqaa/pages/address_type/states.dart';
+import 'package:naqaa/pages/map/home_map/view.dart';
+import 'package:naqaa/pages/map/mosque_map.dart';
 
 import 'components/card_item.dart';
 import 'cubit.dart';
@@ -15,11 +17,7 @@ import 'cubit.dart';
 class ChooseAddressType extends StatelessWidget {
   const ChooseAddressType({
     Key? key,
-    required this.productID,
-    required this.quantity,
-    required this.basketID,
   }) : super(key: key);
-  final String productID, quantity, basketID;
 
   @override
   Widget build(BuildContext context) {
@@ -73,28 +71,15 @@ class ChooseAddressType extends StatelessWidget {
                       CardTypeItem(
                         isSelected: cubit.type == AddressType.mosque,
                         continuePress: () {
-                          WidgetsBinding.instance.addPostFrameCallback((_) {
-                            customWillPopScope(context);
-                          });
-                          Future.delayed(
-                            Duration(seconds: 1),
-                            () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) {
-                                    return AddOrderView(
-                                      productID: productID,
-                                      quantity: quantity,
-                                      basketId: basketID,
-                                      orderAddressType: " ${cubit.mosque}",
-                                      lat: "${cubit.lat}",
-                                      long: "${cubit.long}",
-                                    );
-                                  },
-                                ),
-                              );
-                            },
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return MosqueMap(
+                                  addressType: "mosque",
+                                );
+                              },
+                            ),
                           );
                         },
                         itemPress: () {
@@ -107,23 +92,20 @@ class ChooseAddressType extends StatelessWidget {
                       CardTypeItem(
                         isSelected: cubit.type == AddressType.home,
                         continuePress: () {
-                          WidgetsBinding.instance.addPostFrameCallback((_) {
-                            customWillPopScope(context);
-                          });
+                          customWillPopScope(context);
                           Future.delayed(
-                            Duration(seconds: 1),
+                            Duration(seconds: 2),
                             () {
+                              Navigator.pop(context);
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) {
-                                    return AddOrderView(
-                                      productID: productID,
-                                      quantity: quantity,
-                                      basketId: basketID,
-                                      orderAddressType: " ${cubit.home}",
-                                      lat: "${cubit.lat}",
-                                      long: "${cubit.long}",
+                                    return HomeMapView(
+                                      location: LatLng(
+                                        double.parse("${cubit.lat}"),
+                                        double.parse("${cubit.long}"),
+                                      ),
                                     );
                                   },
                                 ),
