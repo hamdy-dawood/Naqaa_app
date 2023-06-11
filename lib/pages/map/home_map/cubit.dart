@@ -32,7 +32,7 @@ class HomeMapCubit extends Cubit<HomeMapStates> {
 
     controller.animateCamera(
       CameraUpdate.newCameraPosition(
-        CameraPosition(target: currentLocation, zoom: 12.0),
+        CameraPosition(target: currentLocation, zoom: 18.0),
       ),
     );
     await getLocation();

@@ -97,10 +97,14 @@ class LoginView extends StatelessWidget {
                       ),
                       child: InternationalPhoneNumberInput(
                         initialValue: PhoneNumber(isoCode: "QA"),
-                        onInputChanged: cubit.onInputChanged,
+                        onInputChanged: (PhoneNumber number) {
+                          cubit.onInputChanged(number);
+                        },
                         validator: (value) {
                           if (value!.isEmpty) {
                             return "phone_validator".tr;
+                          } else if (value.length > 8) {
+                            return "text_valid".tr;
                           }
                           return null;
                         },
