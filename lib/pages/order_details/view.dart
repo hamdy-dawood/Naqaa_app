@@ -157,11 +157,7 @@ class OrderDetailsView extends StatelessWidget {
                   );
                 } else if (state is NetworkErrorState) {
                   Navigator.pop(context);
-                  return ErrorNetwork(
-                    press: () {
-                      cubit.getOrderDetails(ID: orderID);
-                    },
-                  );
+                  return ErrorNetwork();
                 }
                 Navigator.pop(context);
                 return SizedBox(
@@ -276,6 +272,47 @@ class OrderDetailsView extends StatelessWidget {
                               ),
                             ],
                           ),
+                        ),
+                        SizedBox(height: 10.w),
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 15.h),
+                          child: CustomText(
+                            text: "receiver_details".tr,
+                            color: ColorManager.black,
+                            fontSize: 20.sp,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                        SizedBox(height: 10.w),
+                        Row(
+                          children: [
+                            SizedBox(width: 15.h),
+                            Container(
+                              height: 120.h,
+                              width: 100.w,
+                              decoration: BoxDecoration(
+                                color: ColorManager.white,
+                                borderRadius: BorderRadius.circular(10.r),
+                                border: Border.all(
+                                  color: ColorManager.borderColor,
+                                ),
+                              ),
+                              child: Image.asset("assets/images/no_image.jpg"),
+                            ),
+                            SizedBox(width: 20.h),
+                            Container(
+                              height: 120.h,
+                              width: 100.w,
+                              decoration: BoxDecoration(
+                                color: ColorManager.white,
+                                borderRadius: BorderRadius.circular(10.r),
+                                border: Border.all(
+                                  color: ColorManager.borderColor,
+                                ),
+                              ),
+                              child: Image.asset("assets/images/no_image.jpg"),
+                            ),
+                          ],
                         ),
                         SizedBox(height: 150.h),
                       ],

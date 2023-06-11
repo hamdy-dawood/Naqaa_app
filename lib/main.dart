@@ -16,6 +16,7 @@ import 'pages/edit_basket/cubit.dart';
 import 'pages/get_user_id/cubit.dart';
 import 'pages/home/cubit.dart';
 import 'pages/map/home_map/cubit.dart';
+import 'pages/orders/cubit.dart';
 import 'pages/remove_all_basket/cubit.dart';
 import 'pages/remove_product_from_basket/cubit.dart';
 
@@ -26,8 +27,6 @@ void main() async {
 }
 
 Future<void> initApp() async {
-  print("in main : ${CacheHelper.getLang()}");
-  print("- " * 20);
   String savedLang = CacheHelper.getLang();
   Locale initialLocale =
       savedLang.isNotEmpty ? Locale(savedLang) : Locale("ar");
@@ -58,6 +57,7 @@ class MyApp extends StatelessWidget {
             BlocProvider(create: (context) => AddressTypeCubit()),
             BlocProvider(create: (context) => LanguageCubit()),
             BlocProvider(create: (context) => LanguageAppCubit()),
+            BlocProvider(create: (context) => OrdersCubit()),
             BlocProvider(create: (context) => HomeMapCubit()),
             BlocProvider(create: (context) => DeleteAccountCubit()),
           ],

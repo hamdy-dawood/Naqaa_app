@@ -18,6 +18,7 @@ class OrdersCubit extends Cubit<OrdersStates> {
 
   GlobalKey<FormState> emptyFormKey = GlobalKey<FormState>();
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  GlobalKey<FormState> emptyDropDownKey = GlobalKey<FormState>();
   GlobalKey<FormState> dropDownKey = GlobalKey<FormState>();
 
   String? selectedItem;

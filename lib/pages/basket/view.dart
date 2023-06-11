@@ -61,11 +61,7 @@ class BasketView extends StatelessWidget {
                         );
                       } else if (state is NetworkErrorState) {
                         Navigator.pop(context);
-                        return ErrorNetwork(
-                          press: () {
-                            cubit.getBaskets();
-                          },
-                        );
+                        return ErrorNetwork();
                       } else if (state is BasketSuccessWithNoDataState) {
                         Navigator.pop(context);
                         return Scaffold(

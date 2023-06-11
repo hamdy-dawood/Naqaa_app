@@ -89,7 +89,7 @@ class CardTypeItem extends StatelessWidget {
                     height: 10.h,
                   ),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 0.2.sw),
+              padding: EdgeInsets.symmetric(horizontal: 0.16.sw),
               child: CustomElevated(
                 text: "continue".tr,
                 press: isSelected ? continuePress : () {},

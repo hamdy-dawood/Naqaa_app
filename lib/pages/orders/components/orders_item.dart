@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:naqaa/constants/color_manager.dart';
 import 'package:naqaa/constants/custom_text.dart';
 import 'package:naqaa/constants/decor_container.dart';
@@ -19,8 +20,17 @@ class OrdersItem extends StatelessWidget {
 
   final String id, count, status, price, addressType, time;
 
+  String formatDateTime(String dateTimeString) {
+    DateTime dateTime = DateTime.parse(dateTimeString);
+    String formattedDateTime =
+        DateFormat('MMM d, yyyy hh:mm a').format(dateTime);
+    return formattedDateTime;
+  }
+
   @override
   Widget build(BuildContext context) {
+    String formattedDateTime = formatDateTime(time);
+
     return GestureDetector(
       onTap: () {
         Navigator.push(
@@ -135,7 +145,7 @@ class OrdersItem extends StatelessWidget {
                           fontWeight: FontWeight.w500,
                         ),
                         CustomText(
-                          text: "${time}",
+                          text: "${formattedDateTime}",
                           color: ColorManager.borderColor,
                           fontSize: 12.sp,
                           fontWeight: FontWeight.w500,

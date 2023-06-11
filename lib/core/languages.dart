@@ -87,6 +87,7 @@ class Languages extends Translations {
           "details3": "Street Number(Optional)",
           "details4": "Zone(Optional)",
           "empty_quantity": "Please enter quantity",
+          "delivery_days": "delivery within two days",
         },
         'ar': {
           "language": "اللغة",
@@ -168,6 +169,7 @@ class Languages extends Translations {
           "details3": "رقم الشارع (اختياري)",
           "details4": "رقم المنطقة (اختياري)",
           "empty_quantity": "الرجاء إدخال الكمية",
+          "delivery_days": "توصيل خلال يومين",
         },
       };
 

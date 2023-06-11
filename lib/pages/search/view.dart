@@ -75,11 +75,7 @@ class SearchView extends StatelessWidget {
                   );
                 } else if (state is NetworkErrorState) {
                   Navigator.pop(context);
-                  return ErrorNetwork(
-                    press: () {
-                      cubit.getAllProducts();
-                    },
-                  );
+                  return ErrorNetwork();
                 }
                 Navigator.pop(context);
                 return ListView(

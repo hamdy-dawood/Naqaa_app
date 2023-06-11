@@ -14,13 +14,11 @@ import 'package:naqaa/constants/color_manager.dart';
 import 'package:naqaa/constants/custom_text.dart';
 import 'package:naqaa/constants/strings.dart';
 import 'package:naqaa/core/cache_helper.dart';
-import 'package:naqaa/core/languages.dart';
 import 'package:naqaa/pages/bottom_nav_bar/cubit.dart';
 import 'package:naqaa/pages/delete_account/cubit.dart';
 import 'package:naqaa/pages/delete_account/states.dart';
 import 'package:naqaa/pages/edit_name/view.dart';
 import 'package:naqaa/pages/languages/cubit.dart';
-import 'package:naqaa/pages/languages/states.dart';
 import 'package:naqaa/pages/login/view.dart';
 
 import 'cubit.dart';
@@ -107,11 +105,7 @@ class ProfileView extends StatelessWidget {
                   );
                 } else if (state is NetworkErrorState) {
                   Navigator.pop(context);
-                  return ErrorNetwork(
-                    press: () {
-                      cubit.getProfileData();
-                    },
-                  );
+                  return ErrorNetwork();
                 }
                 Navigator.pop(context);
                 return Padding(
@@ -163,88 +157,6 @@ class ProfileView extends StatelessWidget {
                                 hint: "${cubit.profileData[0].userPhone}",
                                 validator: (value) {
                                   return null;
-                                },
-                              ),
-                              SizedBox(
-                                height: 20.h,
-                              ),
-                              CustomText(
-                                text: "language".tr,
-                                color: ColorManager.black,
-                                fontSize: 20.sp,
-                                fontWeight: FontWeight.normal,
-                              ),
-                              SizedBox(
-                                height: 5.h,
-                              ),
-                              BlocBuilder<LanguageCubit, LanguageStates>(
-                                builder: (context, state) {
-                                  return Container(
-                                    height: 55,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10.r),
-                                      border: Border.all(
-                                        color: ColorManager.borderColor,
-                                      ),
-                                    ),
-                                    child: Padding(
-                                      padding: EdgeInsets.symmetric(
-                                          horizontal: 15.w),
-                                      child: DropdownButton<String>(
-                                        key: langCubit.dropDownKey,
-                                        style: TextStyle(
-                                          fontSize: 18.sp,
-                                          color: ColorManager.black,
-                                        ),
-                                        alignment: Alignment.center,
-                                        iconEnabledColor: ColorManager.darkGrey,
-                                        dropdownColor: Colors.grey[50],
-                                        elevation: 0,
-                                        borderRadius: BorderRadius.circular(10),
-                                        underline: const SizedBox.shrink(),
-                                        hint: Row(
-                                          children: [
-                                            Text(
-                                              "language".tr,
-                                              style: TextStyle(
-                                                fontSize: 18.sp,
-                                                color: ColorManager.darkGrey,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                        onChanged: (value) {
-                                          langCubit.onChangeLang(value);
-                                          if (value == langCubit.lang[0].tr) {
-                                            Languages.changeLanguage(
-                                                context, 'en');
-                                            CacheHelper.saveLang("en");
-                                            Get.updateLocale(
-                                                const Locale('en'));
-                                            navBarCubit.navigateToNavBarView(0);
-                                          } else if (value ==
-                                              langCubit.lang[1].tr) {
-                                            Languages.changeLanguage(
-                                                context, 'ar');
-                                            CacheHelper.saveLang("ar");
-                                            Get.updateLocale(
-                                                const Locale('ar'));
-                                            navBarCubit.navigateToNavBarView(0);
-                                          }
-                                        },
-                                        value: langCubit.selectedLang,
-                                        items: List.generate(
-                                          langCubit.lang.length,
-                                          (index) => DropdownMenuItem(
-                                            value: langCubit.lang[index],
-                                            child: Text(
-                                              langCubit.lang[index],
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  );
                                 },
                               ),
                               SizedBox(

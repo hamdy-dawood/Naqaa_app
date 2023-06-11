@@ -21,25 +21,7 @@ class HomeMapCubit extends Cubit<HomeMapStates> {
 
   void onMapCreated(GoogleMapController controller) async {
     mapController.complete(controller);
-    MarkerId markerId = MarkerId(markerIdVal());
-    Marker marker = Marker(
-      markerId: markerId,
-      position: currentLocation,
-      draggable: false,
-    );
-    markers[markerId] = marker;
-    emit(HomeMapMarkerState());
-    Future.delayed(Duration(seconds: 1), () async {
-      GoogleMapController controller = await mapController.future;
-      controller.animateCamera(
-        CameraUpdate.newCameraPosition(
-          CameraPosition(
-            target: currentLocation,
-            zoom: 17.0,
-          ),
-        ),
-      );
-    });
+    updateMarker();
   }
 
   String markerIdVal({bool increment = false}) {
@@ -99,5 +81,17 @@ class HomeMapCubit extends Cubit<HomeMapStates> {
     } else {
       emit(HomeMapFailureState());
     }
+  }
+
+  Future<void> updateMarker() async {
+    GoogleMapController controller = await mapController.future;
+    MarkerId markerId = MarkerId(markerIdVal());
+    Marker marker = Marker(
+      markerId: markerId,
+      position: currentLocation,
+      draggable: false,
+    );
+    markers[markerId] = marker;
+    emit(HomeMapMarkerState());
   }
 }

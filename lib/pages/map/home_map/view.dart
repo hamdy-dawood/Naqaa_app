@@ -58,20 +58,11 @@ class HomeMapView extends StatelessWidget {
                 mapType: cubit.type,
                 myLocationEnabled: true,
                 mapToolbarEnabled: true,
-                onCameraMove: (CameraPosition position) {
-                  cubit.currentLocation = LatLng(
-                      position.target.latitude, position.target.longitude);
-                  MarkerId markerId = MarkerId(cubit.markerIdVal());
-                  Marker marker = Marker(
-                    markerId: markerId,
-                    position: cubit.currentLocation,
-                    draggable: false,
-                  );
-                  cubit.markers[markerId] = marker;
-                },
                 onCameraIdle: () {
+                  cubit.updateMarker();
                   cubit.getLocation();
                 },
+                markers: Set<Marker>.of(cubit.markers.values),
               );
             },
           ),
