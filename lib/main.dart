@@ -12,6 +12,7 @@ import 'pages/add_product_to_basket/cubit.dart';
 import 'pages/address_type/cubit.dart';
 import 'pages/bottom_nav_bar/cubit.dart';
 import 'pages/delete_account/cubit.dart';
+import 'pages/edit_basket/cubit.dart';
 import 'pages/get_user_id/cubit.dart';
 import 'pages/home/cubit.dart';
 import 'pages/map/home_map/cubit.dart';
@@ -21,16 +22,16 @@ import 'pages/remove_product_from_basket/cubit.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await CacheHelper.init();
-  CacheHelper.clear();
+  //CacheHelper.clear();
   await initApp();
 }
 
 Future<void> initApp() async {
   print("in main : ${CacheHelper.getLang()}");
   print("- " * 20);
-  Locale initialLocale = CacheHelper.getLang() != ""
-      ? Locale("${CacheHelper.getLang()}")
-      : Locale("ar");
+  String savedLang = CacheHelper.getLang();
+  Locale initialLocale =
+      savedLang.isNotEmpty ? Locale(savedLang) : Locale("ar");
 
   runApp(MyApp(initialLocale: initialLocale));
 }
@@ -54,6 +55,7 @@ class MyApp extends StatelessWidget {
             BlocProvider(create: (context) => AddProductBasketCubit()),
             BlocProvider(create: (context) => RemoveProductBasketCubit()),
             BlocProvider(create: (context) => RemoveAllBasketCubit()),
+            BlocProvider(create: (context) => EditBasketCubit()),
             BlocProvider(create: (context) => AddressTypeCubit()),
             BlocProvider(create: (context) => LanguageCubit()),
             BlocProvider(create: (context) => LanguageAppCubit()),
@@ -62,7 +64,7 @@ class MyApp extends StatelessWidget {
           ],
           child: BlocBuilder<LanguageAppCubit, Locale>(
             builder: (context, locale) {
-              CacheHelper.saveLang("locale.languageCode");
+              CacheHelper.saveLang(locale.languageCode);
               return GetMaterialApp(
                 debugShowCheckedModeBanner: false,
                 title: "NAQAA",
