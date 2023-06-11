@@ -248,6 +248,10 @@ class LoginView extends StatelessWidget {
                             if (cubit.formKey.currentState!.validate()) {
                               if (cubit.isChecked == false) {
                                 Fluttertoast.showToast(msg: "terms_accept".tr);
+                              } else if (cubit.phoneNumber.length > 12) {
+                                Fluttertoast.showToast(msg: "mobile_fields".tr);
+                              } else if (cubit.phoneNumber.length < 12) {
+                                Fluttertoast.showToast(msg: "mobile_fields".tr);
                               } else {
                                 cubit.login();
                               }

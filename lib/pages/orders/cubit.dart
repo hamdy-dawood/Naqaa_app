@@ -16,10 +16,10 @@ class OrdersCubit extends Cubit<OrdersStates> {
   final dio = Dio();
   List<OrdersResp> orders = [];
 
-  GlobalKey<FormState> emptyFormKey = GlobalKey<FormState>();
-  GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  GlobalKey<FormState> emptyDropDownKey = GlobalKey<FormState>();
-  GlobalKey<FormState> dropDownKey = GlobalKey<FormState>();
+  final emptyFormKey = GlobalKey<FormState>();
+  final formKey = GlobalKey<FormState>();
+  final emptyDropDownKey = GlobalKey<FormState>();
+  final dropDownKey = GlobalKey<FormState>();
 
   String? selectedItem;
   List<String> filterItems = [

@@ -30,7 +30,6 @@ Future<void> initApp() async {
   String savedLang = CacheHelper.getLang();
   Locale initialLocale =
       savedLang.isNotEmpty ? Locale(savedLang) : Locale("ar");
-
   runApp(MyApp(initialLocale: initialLocale));
 }
 

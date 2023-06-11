@@ -11,8 +11,8 @@ class LanguageCubit extends Cubit<LanguageStates> {
 
   static LanguageCubit get(context) => BlocProvider.of(context);
 
-  GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  GlobalKey<FormState> dropDownKey = GlobalKey<FormState>();
+  final formKey = GlobalKey<FormState>();
+  final dropDownKey = GlobalKey<FormState>();
 
   LanguageType? type;
   String? selectedLang;

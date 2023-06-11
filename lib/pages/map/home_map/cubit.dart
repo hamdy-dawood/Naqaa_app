@@ -5,6 +5,7 @@ import 'dart:math';
 import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:location/location.dart';
 import 'package:naqaa/pages/map/address_model.dart';
 
 import 'states.dart';
@@ -15,13 +16,26 @@ class HomeMapCubit extends Cubit<HomeMapStates> {
   static HomeMapCubit get(context) => BlocProvider.of(context);
   late LatLng currentLocation;
   Address? currentAddress;
+  final Location location = Location();
   Map<MarkerId, Marker> markers = <MarkerId, Marker>{};
   int markerIdCounter = 0;
   Completer<GoogleMapController> mapController = Completer();
 
-  void onMapCreated(GoogleMapController controller) async {
+  Future<void> onMapCreated(GoogleMapController controller) async {
     mapController.complete(controller);
+
+    LocationData _locationData;
+    _locationData = await location.getLocation();
+
+    currentLocation = LatLng(_locationData.latitude!, _locationData.longitude!);
     updateMarker();
+
+    controller.animateCamera(
+      CameraUpdate.newCameraPosition(
+        CameraPosition(target: currentLocation, zoom: 12.0),
+      ),
+    );
+    await getLocation();
   }
 
   String markerIdVal({bool increment = false}) {

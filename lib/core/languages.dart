@@ -88,6 +88,7 @@ class Languages extends Translations {
           "details4": "Zone(Optional)",
           "empty_quantity": "Please enter quantity",
           "delivery_days": "delivery within two days",
+          "mobile_fields": "The mobile fields must be 8 characters",
         },
         'ar': {
           "language": "اللغة",
@@ -170,6 +171,7 @@ class Languages extends Translations {
           "details4": "رقم المنطقة (اختياري)",
           "empty_quantity": "الرجاء إدخال الكمية",
           "delivery_days": "توصيل خلال يومين",
+          "mobile_fields": "يجب أن تتكون حقول الجوال من 8 أحرف",
         },
       };
 
