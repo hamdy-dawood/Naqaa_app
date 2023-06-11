@@ -61,10 +61,6 @@ class LanguageView extends StatelessWidget {
                             Future.delayed(
                               Duration(milliseconds: 100),
                               () {
-                                // CacheHelper.saveIfNotFirstTime();
-                                // navigateTo(
-                                //     page: LoginView(), withHistory: false);
-                                // CacheHelper.saveLang("ar");
                                 Get.updateLocale(const Locale('ar'));
                                 _changeLanguage(context, "ar");
                                 Languages.changeLanguage(context, 'ar');

@@ -40,8 +40,8 @@ class Languages extends Translations {
               "Minimum Order Value is QR 129 and if Products is Out of Stock then New Stock will be available Soon!! Try Again Later",
           "total": "Total",
           "delete": "Delete",
-          "delete_all_sub": "Are u sure to delete your cart?",
-          "delete_item_sub": "Are u sure to remove this item?",
+          "delete_all_sub": "Are you sure to delete your cart?",
+          "delete_item_sub": "Are you sure to remove this item?",
           "edit_profile": "Edit Profile",
           "name": "Name",
           "mobile_num": "Mobile Number",
@@ -62,6 +62,7 @@ class Languages extends Translations {
               "We will send you 2 photos in 'My orders' after delivery",
           "delivery_home": "Delivery Home",
           "next": "Next",
+          "continue": "Continue",
           "don't_receive": "Didn't received the OTP?",
           "send_again": "Resend OTP",
           "no_notifications": "No Notification Found!",
@@ -85,6 +86,7 @@ class Languages extends Translations {
           "details2": "Unit Number(Optional)",
           "details3": "Street Number(Optional)",
           "details4": "Zone(Optional)",
+          "empty_quantity": "Please enter quantity",
         },
         'ar': {
           "language": "اللغة",
@@ -141,6 +143,7 @@ class Languages extends Translations {
           "delivery_mosque_sub": "سوف نرسل لك صورتين في 'طلباتي' بعد التسليم",
           "delivery_home": "التوصيل للمنازل",
           "next": "التالي",
+          "continue": "متابعة",
           "don't_receive": "لم تستلم كلمة السر لمرة واحدة؟",
           "send_again": "إعادة الإرسال",
           "no_notifications": "لاتوجد اشعارات!",
@@ -164,6 +167,7 @@ class Languages extends Translations {
           "details2": "رقم الوحدة (اختياري)",
           "details3": "رقم الشارع (اختياري)",
           "details4": "رقم المنطقة (اختياري)",
+          "empty_quantity": "الرجاء إدخال الكمية",
         },
       };
 

@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:naqaa/constants/strings.dart';
 import 'package:naqaa/core/cache_helper.dart';
@@ -14,6 +15,10 @@ class OrdersCubit extends Cubit<OrdersStates> {
   static OrdersCubit get(context) => BlocProvider.of(context);
   final dio = Dio();
   List<OrdersResp> orders = [];
+
+  GlobalKey<FormState> emptyFormKey = GlobalKey<FormState>();
+  GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  GlobalKey<FormState> dropDownKey = GlobalKey<FormState>();
 
   String? selectedItem;
   List<String> filterItems = [

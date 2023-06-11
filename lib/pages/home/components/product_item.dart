@@ -33,6 +33,7 @@ class ProductItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String savedLang = CacheHelper.getLang();
     String token = CacheHelper.getUserID();
     final navBarCubit = NavBarCubit.get(context);
     return Builder(
@@ -198,14 +199,13 @@ class ProductItem extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     CustomText(
-                      text: CacheHelper.getLang() == "ar" ? title : enTitle,
+                      text: savedLang == "ar" ? title : enTitle,
                       color: ColorManager.black,
                       fontSize: 15.sp,
                       fontWeight: FontWeight.w500,
                     ),
                     CustomText(
-                      text:
-                          CacheHelper.getLang() == "ar" ? subTitle : enSubTitle,
+                      text: savedLang == "ar" ? subTitle : enSubTitle,
                       color: ColorManager.darkGrey,
                       fontSize: 15.sp,
                       fontWeight: FontWeight.w500,

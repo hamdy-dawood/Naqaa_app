@@ -22,7 +22,6 @@ import 'pages/remove_product_from_basket/cubit.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await CacheHelper.init();
-  //CacheHelper.clear();
   await initApp();
 }
 
@@ -74,7 +73,7 @@ class MyApp extends StatelessWidget {
                 ),
                 translations: Languages(),
                 locale: locale,
-                //fallbackLocale: Locale("ar"),
+                fallbackLocale: Locale("ar"),
                 home: const SplashView(),
               );
             },

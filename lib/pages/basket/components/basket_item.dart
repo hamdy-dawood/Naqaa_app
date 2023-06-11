@@ -124,7 +124,6 @@ class BasketItem extends StatelessWidget {
                       Navigator.pop(context);
                       Navigator.pop(context);
                       basketCubit.getBaskets();
-                      Fluttertoast.showToast(msg: "add_successfully".tr);
                     }
                   },
                   builder: (context, state) {
@@ -140,7 +139,7 @@ class BasketItem extends StatelessWidget {
                         text: "add".tr,
                         press: () {
                           if (controller.text == "0" || controller.text == "") {
-                            Fluttertoast.showToast(msg: "من فضلك ادخل الكمية");
+                            Fluttertoast.showToast(msg: "empty_quantity".tr);
                           } else {
                             editCubit.editQuantity(
                               ID: basketID,

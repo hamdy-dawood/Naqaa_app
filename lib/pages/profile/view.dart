@@ -15,6 +15,7 @@ import 'package:naqaa/constants/custom_text.dart';
 import 'package:naqaa/constants/strings.dart';
 import 'package:naqaa/core/cache_helper.dart';
 import 'package:naqaa/core/languages.dart';
+import 'package:naqaa/pages/bottom_nav_bar/cubit.dart';
 import 'package:naqaa/pages/delete_account/cubit.dart';
 import 'package:naqaa/pages/delete_account/states.dart';
 import 'package:naqaa/pages/edit_name/view.dart';
@@ -30,6 +31,7 @@ class ProfileView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final navBarCubit = NavBarCubit.get(context);
     return BlocProvider(
       create: (context) => ProfileCubit(),
       child: Builder(builder: (context) {
@@ -114,258 +116,271 @@ class ProfileView extends StatelessWidget {
                 Navigator.pop(context);
                 return Padding(
                   padding: EdgeInsets.symmetric(horizontal: 15.h),
-                  child: Column(
-                    children: [
-                      Divider(
-                        color: ColorManager.mainColor,
-                        thickness: 0.5,
-                      ),
-                      SizedBox(height: 20.h),
-                      Expanded(
-                        child: ListView(
-                          children: [
-                            CustomText(
-                              text: "name".tr,
-                              color: ColorManager.black,
-                              fontSize: 20.sp,
-                              fontWeight: FontWeight.normal,
-                            ),
-                            SizedBox(
-                              height: 5.h,
-                            ),
-                            CustomTextFormField(
-                              readOnly: true,
-                              controller: TextEditingController(),
-                              hint: "${cubit.profileData[0].userName}",
-                              validator: (value) {
-                                return null;
-                              },
-                            ),
-                            SizedBox(
-                              height: 20.h,
-                            ),
-                            CustomText(
-                              text: "mobile_num".tr,
-                              color: ColorManager.black,
-                              fontSize: 20.sp,
-                              fontWeight: FontWeight.normal,
-                            ),
-                            SizedBox(
-                              height: 5.h,
-                            ),
-                            CustomTextFormField(
-                              readOnly: true,
-                              controller: TextEditingController(),
-                              hint: "${cubit.profileData[0].userPhone}",
-                              validator: (value) {
-                                return null;
-                              },
-                            ),
-                            SizedBox(
-                              height: 20.h,
-                            ),
-                            CustomText(
-                              text: "language".tr,
-                              color: ColorManager.black,
-                              fontSize: 20.sp,
-                              fontWeight: FontWeight.normal,
-                            ),
-                            SizedBox(
-                              height: 5.h,
-                            ),
-                            BlocBuilder<LanguageCubit, LanguageStates>(
-                              builder: (context, state) {
-                                return Container(
-                                  height: 55,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10.r),
-                                    border: Border.all(
-                                      color: ColorManager.borderColor,
+                  child: Form(
+                    key: langCubit.formKey,
+                    child: Column(
+                      children: [
+                        Divider(
+                          color: ColorManager.mainColor,
+                          thickness: 0.5,
+                        ),
+                        SizedBox(height: 20.h),
+                        Expanded(
+                          child: ListView(
+                            children: [
+                              CustomText(
+                                text: "name".tr,
+                                color: ColorManager.black,
+                                fontSize: 20.sp,
+                                fontWeight: FontWeight.normal,
+                              ),
+                              SizedBox(
+                                height: 5.h,
+                              ),
+                              CustomTextFormField(
+                                readOnly: true,
+                                controller: TextEditingController(),
+                                hint: "${cubit.profileData[0].userName}",
+                                validator: (value) {
+                                  return null;
+                                },
+                              ),
+                              SizedBox(
+                                height: 20.h,
+                              ),
+                              CustomText(
+                                text: "mobile_num".tr,
+                                color: ColorManager.black,
+                                fontSize: 20.sp,
+                                fontWeight: FontWeight.normal,
+                              ),
+                              SizedBox(
+                                height: 5.h,
+                              ),
+                              CustomTextFormField(
+                                readOnly: true,
+                                controller: TextEditingController(),
+                                hint: "${cubit.profileData[0].userPhone}",
+                                validator: (value) {
+                                  return null;
+                                },
+                              ),
+                              SizedBox(
+                                height: 20.h,
+                              ),
+                              CustomText(
+                                text: "language".tr,
+                                color: ColorManager.black,
+                                fontSize: 20.sp,
+                                fontWeight: FontWeight.normal,
+                              ),
+                              SizedBox(
+                                height: 5.h,
+                              ),
+                              BlocBuilder<LanguageCubit, LanguageStates>(
+                                builder: (context, state) {
+                                  return Container(
+                                    height: 55,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10.r),
+                                      border: Border.all(
+                                        color: ColorManager.borderColor,
+                                      ),
                                     ),
-                                  ),
-                                  child: Padding(
-                                    padding:
-                                        EdgeInsets.symmetric(horizontal: 15.w),
-                                    child: DropdownButton<String>(
-                                      style: TextStyle(
-                                        fontSize: 18.sp,
-                                        color: ColorManager.black,
-                                      ),
-                                      alignment: Alignment.center,
-                                      iconEnabledColor: ColorManager.darkGrey,
-                                      dropdownColor: Colors.grey[50],
-                                      elevation: 0,
-                                      borderRadius: BorderRadius.circular(10),
-                                      underline: const SizedBox.shrink(),
-                                      hint: Row(
-                                        children: [
-                                          Text(
-                                            "language".tr,
-                                            style: TextStyle(
-                                              fontSize: 18.sp,
-                                              color: ColorManager.darkGrey,
+                                    child: Padding(
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 15.w),
+                                      child: DropdownButton<String>(
+                                        key: langCubit.dropDownKey,
+                                        style: TextStyle(
+                                          fontSize: 18.sp,
+                                          color: ColorManager.black,
+                                        ),
+                                        alignment: Alignment.center,
+                                        iconEnabledColor: ColorManager.darkGrey,
+                                        dropdownColor: Colors.grey[50],
+                                        elevation: 0,
+                                        borderRadius: BorderRadius.circular(10),
+                                        underline: const SizedBox.shrink(),
+                                        hint: Row(
+                                          children: [
+                                            Text(
+                                              "language".tr,
+                                              style: TextStyle(
+                                                fontSize: 18.sp,
+                                                color: ColorManager.darkGrey,
+                                              ),
                                             ),
-                                          ),
-                                        ],
-                                      ),
-                                      onChanged: (value) {
-                                        langCubit.onChangeLang(value);
-                                        if (value == langCubit.lang[0].tr) {
-                                          Languages.changeLanguage(
-                                              context, 'en');
-                                        } else if (value ==
-                                            langCubit.lang[1].tr) {
-                                          Languages.changeLanguage(
-                                              context, 'ar');
-                                        }
-                                      },
-                                      value: langCubit.selectedLang,
-                                      items: List.generate(
-                                        langCubit.lang.length,
-                                        (index) => DropdownMenuItem(
-                                          value: langCubit.lang[index],
-                                          // onTap: langCubit.changeLang[index],
-                                          child: Text(
-                                            langCubit.lang[index],
+                                          ],
+                                        ),
+                                        onChanged: (value) {
+                                          langCubit.onChangeLang(value);
+                                          if (value == langCubit.lang[0].tr) {
+                                            Languages.changeLanguage(
+                                                context, 'en');
+                                            CacheHelper.saveLang("en");
+                                            Get.updateLocale(
+                                                const Locale('en'));
+                                            navBarCubit.navigateToNavBarView(0);
+                                          } else if (value ==
+                                              langCubit.lang[1].tr) {
+                                            Languages.changeLanguage(
+                                                context, 'ar');
+                                            CacheHelper.saveLang("ar");
+                                            Get.updateLocale(
+                                                const Locale('ar'));
+                                            navBarCubit.navigateToNavBarView(0);
+                                          }
+                                        },
+                                        value: langCubit.selectedLang,
+                                        items: List.generate(
+                                          langCubit.lang.length,
+                                          (index) => DropdownMenuItem(
+                                            value: langCubit.lang[index],
+                                            child: Text(
+                                              langCubit.lang[index],
+                                            ),
                                           ),
                                         ),
                                       ),
                                     ),
-                                  ),
-                                );
-                              },
-                            ),
-                            SizedBox(
-                              height: 30.h,
-                            ),
-                            CustomElevatedWithIcon(
-                              text: "logout".tr,
-                              image: AssetsStrings.logoutIcon,
-                              press: () {
-                                deleteDialog(
-                                  context: context,
-                                  title: "logout".tr,
-                                  subTitle: "logout_sub".tr,
-                                  yesPress: () {
-                                    CacheHelper.removeUserID();
-                                    Navigator.of(context).pushAndRemoveUntil(
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              const LoginView()),
-                                      (Route<dynamic> route) => false,
-                                    );
-                                  },
-                                );
-                              },
-                              btnColor: ColorManager.mainColor,
-                            ),
-                            SizedBox(
-                              height: 10.h,
-                            ),
-                            BlocConsumer<DeleteAccountCubit,
-                                DeleteAccountStates>(
-                              listener: (context, state) {
-                                if (state is DeleteAccountFailureState) {
-                                  Navigator.pop(context);
-                                  Fluttertoast.showToast(msg: state.msg);
-                                } else if (state is DeleteNetworkErrorState) {
-                                  Navigator.pop(context);
-                                  Fluttertoast.showToast(
-                                      msg: "check_online".tr);
-                                } else if (state is DeleteAccountLoadingState) {
-                                  customWillPopScope(context);
-                                } else if (state is DeleteAccountSuccessState) {
-                                  Navigator.pushAndRemoveUntil(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) {
-                                        return LoginView();
-                                      },
-                                    ),
-                                    (route) => false,
                                   );
-                                }
-                              },
-                              builder: (context, state) {
-                                return CustomElevatedWithIcon(
-                                  text: "delete_acc".tr,
-                                  image: AssetsStrings.deleteIcon,
-                                  press: () {
-                                    deleteDialog(
-                                      context: context,
-                                      title: "delete_account".tr,
-                                      subTitle: "delete_account_sub".tr,
-                                      yesPress: () {
-                                        deleteCubit.deleteAccount();
-                                      },
+                                },
+                              ),
+                              SizedBox(
+                                height: 30.h,
+                              ),
+                              CustomElevatedWithIcon(
+                                text: "logout".tr,
+                                image: AssetsStrings.logoutIcon,
+                                press: () {
+                                  deleteDialog(
+                                    context: context,
+                                    title: "logout".tr,
+                                    subTitle: "logout_sub".tr,
+                                    yesPress: () {
+                                      CacheHelper.removeUserID();
+                                      Navigator.of(context).pushAndRemoveUntil(
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                const LoginView()),
+                                        (Route<dynamic> route) => false,
+                                      );
+                                    },
+                                  );
+                                },
+                                btnColor: ColorManager.mainColor,
+                              ),
+                              SizedBox(
+                                height: 10.h,
+                              ),
+                              BlocConsumer<DeleteAccountCubit,
+                                  DeleteAccountStates>(
+                                listener: (context, state) {
+                                  if (state is DeleteAccountFailureState) {
+                                    Navigator.pop(context);
+                                    Fluttertoast.showToast(msg: state.msg);
+                                  } else if (state is DeleteNetworkErrorState) {
+                                    Navigator.pop(context);
+                                    Fluttertoast.showToast(
+                                        msg: "check_online".tr);
+                                  } else if (state
+                                      is DeleteAccountLoadingState) {
+                                    customWillPopScope(context);
+                                  } else if (state
+                                      is DeleteAccountSuccessState) {
+                                    Navigator.pushAndRemoveUntil(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) {
+                                          return LoginView();
+                                        },
+                                      ),
+                                      (route) => false,
                                     );
-                                  },
-                                  textColor: ColorManager.mainColor,
-                                  btnColor: ColorManager.white,
-                                );
-                              },
-                            ),
-                            SizedBox(
-                              height: 15.h,
-                            ),
-                            Divider(
-                              color: ColorManager.mainColor,
-                              thickness: 0.5,
-                            ),
-                            SizedBox(height: 20.h),
-                            CustomText(
-                              text: "support".tr,
-                              color: ColorManager.black,
-                              fontSize: 20.sp,
-                              fontWeight: FontWeight.bold,
-                            ),
-                            SizedBox(
-                              height: 5.h,
-                            ),
-                            Row(
-                              children: [
-                                SvgPicture.asset(
-                                  AssetsStrings.supportIcon,
-                                  height: 25.h,
-                                ),
-                                SizedBox(
-                                  width: 10.w,
-                                ),
-                                CustomText(
-                                  text: "support@naqaa.app",
-                                  color: ColorManager.black,
-                                  fontSize: 18.sp,
-                                  fontWeight: FontWeight.normal,
-                                ),
-                              ],
-                            ),
-                            SizedBox(
-                              height: 10.h,
-                            ),
-                            Row(
-                              children: [
-                                SvgPicture.asset(
-                                  AssetsStrings.whatsappIcon,
-                                  height: 25.h,
-                                ),
-                                SizedBox(
-                                  width: 10.w,
-                                ),
-                                CustomText(
-                                  text: "+974 66877039",
-                                  color: ColorManager.black,
-                                  fontSize: 18.sp,
-                                  fontWeight: FontWeight.normal,
-                                ),
-                              ],
-                            ),
-                            SizedBox(
-                              height: 10.h,
-                            ),
-                          ],
+                                  }
+                                },
+                                builder: (context, state) {
+                                  return CustomElevatedWithIcon(
+                                    text: "delete_acc".tr,
+                                    image: AssetsStrings.deleteIcon,
+                                    press: () {
+                                      deleteDialog(
+                                        context: context,
+                                        title: "delete_account".tr,
+                                        subTitle: "delete_account_sub".tr,
+                                        yesPress: () {
+                                          deleteCubit.deleteAccount();
+                                        },
+                                      );
+                                    },
+                                    textColor: ColorManager.mainColor,
+                                    btnColor: ColorManager.white,
+                                  );
+                                },
+                              ),
+                              SizedBox(
+                                height: 15.h,
+                              ),
+                              Divider(
+                                color: ColorManager.mainColor,
+                                thickness: 0.5,
+                              ),
+                              SizedBox(height: 20.h),
+                              CustomText(
+                                text: "support".tr,
+                                color: ColorManager.black,
+                                fontSize: 20.sp,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              SizedBox(
+                                height: 5.h,
+                              ),
+                              Row(
+                                children: [
+                                  SvgPicture.asset(
+                                    AssetsStrings.supportIcon,
+                                    height: 25.h,
+                                  ),
+                                  SizedBox(
+                                    width: 10.w,
+                                  ),
+                                  CustomText(
+                                    text: "support@naqaa.app",
+                                    color: ColorManager.black,
+                                    fontSize: 18.sp,
+                                    fontWeight: FontWeight.normal,
+                                  ),
+                                ],
+                              ),
+                              SizedBox(
+                                height: 10.h,
+                              ),
+                              Row(
+                                children: [
+                                  SvgPicture.asset(
+                                    AssetsStrings.whatsappIcon,
+                                    height: 25.h,
+                                  ),
+                                  SizedBox(
+                                    width: 10.w,
+                                  ),
+                                  CustomText(
+                                    text: "+974 66877039",
+                                    color: ColorManager.black,
+                                    fontSize: 18.sp,
+                                    fontWeight: FontWeight.normal,
+                                  ),
+                                ],
+                              ),
+                              SizedBox(
+                                height: 10.h,
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 );
               },

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:naqaa/components/custom_elevated.dart';
 import 'package:naqaa/components/svg_icons.dart';
 import 'package:naqaa/constants/color_manager.dart';
@@ -90,7 +91,7 @@ class CardTypeItem extends StatelessWidget {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 0.2.sw),
               child: CustomElevated(
-                text: "متابعة",
+                text: "continue".tr,
                 press: isSelected ? continuePress : () {},
                 btnColor: ColorManager.white,
                 textColor: isSelected
