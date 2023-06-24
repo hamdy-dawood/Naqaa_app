@@ -94,7 +94,7 @@ class ChooseAddressType extends StatelessWidget {
                         continuePress: () {
                           customWillPopScope(context);
                           Future.delayed(
-                            Duration(seconds: 2),
+                            Duration(seconds: 4),
                             () {
                               Navigator.pop(context);
                               Navigator.push(
