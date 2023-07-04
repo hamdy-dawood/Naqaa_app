@@ -15,7 +15,7 @@ class BasketCubit extends Cubit<BasketStates> {
 
   final dio = Dio();
   List<BasketsResp> baskets = [];
-  String total = "";
+  dynamic total = 0;
 
   Future<void> getBaskets() async {
     emit(BasketLoadingState());

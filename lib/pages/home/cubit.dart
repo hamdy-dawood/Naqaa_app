@@ -25,7 +25,6 @@ class AllProductsCubit extends Cubit<AllProductsStates> {
         List<dynamic> data = json['data'];
         products = data.map((item) => AllProductsResp.fromJson(item)).toList();
         emit(AllProductsSuccessState());
-        // print(response.data);
       } else {
         emit(AllProductsFailedState(msg: response.data["status"]));
       }

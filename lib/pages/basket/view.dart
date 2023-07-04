@@ -241,8 +241,7 @@ class BasketView extends StatelessWidget {
                                           fontWeight: FontWeight.bold,
                                         ),
                                         CustomText(
-                                          text:
-                                              "QR ${int.parse(cubit.total) + 10}",
+                                          text: "QR ${cubit.total + 10}",
                                           color: ColorManager.mainColor,
                                           fontSize: 20.sp,
                                           fontWeight: FontWeight.bold,
@@ -277,8 +276,7 @@ class BasketView extends StatelessWidget {
                                           child: CustomElevated(
                                             text: "complete_order".tr,
                                             press: () {
-                                              if (int.parse(cubit.total) <
-                                                  129) {
+                                              if (cubit.total < 129) {
                                                 Fluttertoast.showToast(
                                                     msg: "cart_minimum".tr);
                                               } else {

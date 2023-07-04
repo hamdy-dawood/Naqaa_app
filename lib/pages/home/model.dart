@@ -1,11 +1,11 @@
 class AllProductsResp {
-  String? productId;
+  int? productId;
   String? productName;
   String? productNameEN;
   String? productDescription;
   String? productDescriptionEN;
-  String? productPrice;
-  String? productStatus;
+  int? productPrice;
+  int? productStatus;
   String? productImage;
   String? productTime;
 
@@ -22,13 +22,13 @@ class AllProductsResp {
   });
 
   AllProductsResp.fromJson(Map<String, dynamic> json) {
-    productId = json['product_id'] ?? "";
+    productId = json['product_id'];
     productName = json['product_name'] ?? "";
     productNameEN = json['product_nameEN'] ?? "";
     productDescription = json['product_description'] ?? "";
     productDescriptionEN = json['product_descriptionEN'] ?? "";
-    productPrice = json['product_price'] ?? "";
-    productStatus = json['product_status'] ?? "";
+    productPrice = json['product_price'];
+    productStatus = json['product_status'];
     productImage = json['product_image'] ?? "";
     productTime = json['product_time'] ?? "";
   }

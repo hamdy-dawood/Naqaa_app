@@ -223,6 +223,7 @@ class ProfileView extends StatelessWidget {
                                         subTitle: "delete_account_sub".tr,
                                         yesPress: () {
                                           deleteCubit.deleteAccount();
+                                          CacheHelper.removeUserID();
                                         },
                                       );
                                     },

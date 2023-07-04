@@ -1,10 +1,10 @@
 class OrdersResp {
-  String? count;
-  String? basketOrderStatus;
-  String? basketTicketID;
+  int? count;
+  int? basketOrderStatus;
+  int? basketTicketID;
   String? basketTypeAddress;
   String? basketTime;
-  String? basketPrice;
+  int? basketPrice;
 
   OrdersResp({
     this.count,
