@@ -232,7 +232,7 @@ class _MosqueMapState extends State<MosqueMap> {
                             lat: "${lat}",
                             long: "${long}",
                             address: "${addressName}",
-                            number: 4,
+                            number: 5,
                           );
                         },
                       ),

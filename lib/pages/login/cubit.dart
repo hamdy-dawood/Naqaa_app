@@ -13,7 +13,7 @@ class LoginCubit extends Cubit<LoginStates> {
   static LoginCubit get(context) => BlocProvider.of(context);
 
   final formKey = GlobalKey<FormState>();
-  String phoneNumber = "";
+  String phoneNumber = "+12345678";
   bool isChecked = false;
 
   Future<void> login() async {

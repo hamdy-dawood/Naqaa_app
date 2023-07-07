@@ -125,320 +125,391 @@ class BasketView extends StatelessWidget {
                       }
                       Navigator.pop(context);
                       return Scaffold(
-                        backgroundColor: ColorManager.white,
-                        appBar: AppBar(
-                          automaticallyImplyLeading: false,
-                          backgroundColor: ColorManager.mainColor,
-                          elevation: 0.0,
-                          centerTitle: false,
-                          title: CustomText(
-                            text: "complete_order".tr,
-                            color: ColorManager.white,
-                            fontSize: 22.sp,
-                            fontWeight: FontWeight.bold,
-                          ),
-                          actions: [
-                            InkWell(
-                              onTap: () {
-                                deleteDialog(
-                                  context: context,
-                                  title: "delete".tr,
-                                  subTitle: "delete_all_sub".tr,
-                                  yesPress: () {
-                                    removeAllCubit.removeAllBasket();
-                                    Navigator.pop(context);
-                                    WidgetsBinding.instance
-                                        .addPostFrameCallback((_) {
-                                      customWillPopScope(context);
-                                    });
-                                    Future.delayed(
-                                      const Duration(seconds: 1),
-                                      () {
-                                        Navigator.pop(context);
-                                        cubit.getBaskets();
-                                      },
-                                    );
+                          backgroundColor: ColorManager.white,
+                          appBar: AppBar(
+                            automaticallyImplyLeading: false,
+                            backgroundColor: ColorManager.mainColor,
+                            elevation: 0.0,
+                            centerTitle: false,
+                            title: CustomText(
+                                text: "complete_order".tr,
+                                color: ColorManager.white,
+                                fontSize: 22.sp,
+                                fontWeight: FontWeight.bold),
+                            actions: [
+                              InkWell(
+                                  onTap: () {
+                                    deleteDialog(
+                                        context: context,
+                                        title: "delete".tr,
+                                        subTitle: "delete_all_sub".tr,
+                                        yesPress: () {
+                                          removeAllCubit.removeAllBasket();
+                                          Navigator.pop(context);
+                                          WidgetsBinding.instance
+                                              .addPostFrameCallback((_) {
+                                            customWillPopScope(context);
+                                          });
+                                          Future.delayed(
+                                              const Duration(seconds: 1), () {
+                                            Navigator.pop(context);
+                                            cubit.getBaskets();
+                                          });
+                                        });
                                   },
-                                );
-                              },
-                              child: Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 10.w),
-                                child: SvgIcon(
-                                  height: 20.h,
-                                  icon: AssetsStrings.deleteIcon,
-                                  color: ColorManager.white,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        bottomSheet: ListView(
-                          physics: NeverScrollableScrollPhysics(),
-                          shrinkWrap: true,
-                          children: [
-                            Divider(
-                              color: ColorManager.mainColor,
-                              thickness: 0.5,
-                            ),
-                            SizedBox(
-                              height: 5.h,
-                            ),
-                            Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 15.w),
-                              child: SizedBox(
-                                child: Column(
-                                  children: [
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        CustomText(
-                                          text: "order_val".tr,
-                                          color: ColorManager.borderColor,
-                                          fontSize: 15.sp,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                        CustomText(
-                                          text: "QR ${cubit.total}",
-                                          color: ColorManager.black,
-                                          fontSize: 16.sp,
-                                          fontWeight: FontWeight.w500,
-                                        ),
-                                      ],
-                                    ),
-                                    SizedBox(
-                                      height: 5.h,
-                                    ),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        CustomText(
-                                          text: "delivery_char".tr,
-                                          color: ColorManager.borderColor,
-                                          fontSize: 15.sp,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                        CustomText(
-                                          text: "QR 10",
-                                          color: ColorManager.black,
-                                          fontSize: 16.sp,
-                                          fontWeight: FontWeight.w500,
-                                        ),
-                                      ],
-                                    ),
-                                    SizedBox(
-                                      height: 8.h,
-                                    ),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        CustomText(
-                                          text: "total".tr,
-                                          color: ColorManager.mainColor,
-                                          fontSize: 20.sp,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                        CustomText(
-                                          text: "QR ${cubit.total + 10}",
-                                          color: ColorManager.mainColor,
-                                          fontSize: 20.sp,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ],
-                                    ),
-                                    SizedBox(
-                                      height: 10.h,
-                                    ),
-                                    Row(
-                                      children: [
-                                        Expanded(
-                                          child: CustomElevated(
-                                            text: "add_more".tr,
-                                            press: () {
-                                              final navBarCubit =
-                                                  NavBarCubit.get(context);
-                                              navBarCubit
-                                                  .navigateToNavBarView(0);
-                                            },
-                                            btnColor: ColorManager.white,
-                                            textColor: ColorManager.mainColor,
-                                            fontSize: 16.sp,
-                                            borderRadius: 8.r,
-                                            paddingVertical: 5.w,
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          width: 10.h,
-                                        ),
-                                        Expanded(
-                                          child: CustomElevated(
-                                            text: "complete_order".tr,
-                                            press: () {
-                                              if (cubit.total < 129) {
-                                                Fluttertoast.showToast(
-                                                    msg: "cart_minimum".tr);
-                                              } else {
-                                                Navigator.push(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        ChooseAddressType(),
-                                                  ),
-                                                );
-                                              }
-                                            },
-                                            btnColor: ColorManager.mainColor,
-                                            fontSize: 16.sp,
-                                            borderRadius: 8.r,
-                                            paddingVertical: 5.w,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    SizedBox(
-                                      height: 5.h,
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        body: SizedBox(
-                          width: 1.sw,
-                          child: ListView(
-                            children: [
-                              Container(
-                                margin: EdgeInsets.symmetric(
-                                    horizontal: 15.h, vertical: 8.h),
-                                padding: EdgeInsets.all(8.h),
-                                decoration: containerDecoration(
-                                  borderColor: ColorManager.mainColor,
-                                ),
-                                child: Column(
-                                  children: [
-                                    Row(
-                                      children: [
-                                        SvgIcon(
-                                          height: 22.h,
-                                          icon: "assets/icons/location.svg",
-                                          color: ColorManager.black,
-                                        ),
-                                        SizedBox(
-                                          width: 10.w,
-                                        ),
-                                        CustomText(
-                                          text: "delivery_address".tr,
-                                          color: ColorManager.black,
-                                          fontSize: 15.sp,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ],
-                                    ),
-                                    SizedBox(
-                                      height: 10.h,
-                                    ),
-                                    ListView.separated(
-                                      physics: NeverScrollableScrollPhysics(),
-                                      shrinkWrap: true,
-                                      itemCount: cubit.baskets.length,
-                                      separatorBuilder: (context, index) {
-                                        return Padding(
-                                          padding: EdgeInsets.only(
-                                            right: 5.w,
-                                            left: 5.w,
-                                            bottom: 8.h,
-                                            top: 3.h,
-                                          ),
-                                          child: Divider(
-                                            color: ColorManager.mainColor,
-                                            thickness: 0.5,
-                                          ),
-                                        );
-                                      },
-                                      itemBuilder: (context, index) {
-                                        final baskets = cubit.baskets[index];
-                                        return BasketItem(
-                                            basketID: "${baskets.basketId}",
-                                            title: "${baskets.productName}",
-                                            subTitle:
-                                                "${baskets.productDescription}",
-                                            enTitle: "${baskets.productNameEN}",
-                                            enSubTitle:
-                                                "${baskets.productDescriptionEN}",
-                                            price: "${baskets.productPrice}",
-                                            image:
-                                                "${UrlsStrings.baseImageUrl}${baskets.productImage}",
-                                            quantity:
-                                                "${baskets.basketQuantity}",
-                                            yesPressDelete: () {
-                                              removeCubit.removeProduct(
-                                                  basketID:
-                                                      "${baskets.basketId}");
-                                              Navigator.pop(context);
-                                              WidgetsBinding.instance
-                                                  .addPostFrameCallback((_) {
-                                                customWillPopScope(context);
-                                              });
-                                              Future.delayed(
-                                                const Duration(seconds: 1),
-                                                () {
-                                                  Navigator.pop(context);
-                                                  cubit.getBaskets();
-                                                },
-                                              );
-                                            });
-                                      },
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              SizedBox(
-                                height: 200.h,
-                              ),
+                                  child: Padding(
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 10.w),
+                                      child: SvgIcon(
+                                          height: 20.h,
+                                          icon: AssetsStrings.deleteIcon,
+                                          color: ColorManager.white)))
                             ],
                           ),
-                        ),
-                      );
+                          bottomSheet: ListView(
+                              physics: NeverScrollableScrollPhysics(),
+                              shrinkWrap: true,
+                              children: [
+                                Divider(
+                                  color: ColorManager.mainColor,
+                                  thickness: 0.5,
+                                ),
+                                SizedBox(
+                                  height: 5.h,
+                                ),
+                                Padding(
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 15.w),
+                                    child: SizedBox(
+                                        child: Column(children: [
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          CustomText(
+                                            text: "order_val".tr,
+                                            color: ColorManager.borderColor,
+                                            fontSize: 15.sp,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                          CustomText(
+                                            text: "QR ${cubit.total}",
+                                            color: ColorManager.black,
+                                            fontSize: 16.sp,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                        ],
+                                      ),
+                                      SizedBox(
+                                        height: 10.h,
+                                      ),
+                                      Row(
+                                        children: [
+                                          Expanded(
+                                            child: CustomElevated(
+                                              text: "add_more".tr,
+                                              press: () {
+                                                final navBarCubit =
+                                                    NavBarCubit.get(context);
+                                                navBarCubit
+                                                    .navigateToNavBarView(0);
+                                              },
+                                              btnColor: ColorManager.white,
+                                              textColor: ColorManager.mainColor,
+                                              fontSize: 16.sp,
+                                              borderRadius: 8.r,
+                                              paddingVertical: 5.w,
+                                            ),
+                                          ),
+                                          SizedBox(width: 10.h),
+                                          Expanded(
+                                              child: CustomElevated(
+                                                  text: "checkout".tr,
+                                                  press: () {
+                                                    showModalBottomSheet(
+                                                        context: context,
+                                                        builder: (context) {
+                                                          return Container(
+                                                            decoration: BoxDecoration(
+                                                                color:
+                                                                    ColorManager
+                                                                        .white,
+                                                                borderRadius: BorderRadius.only(
+                                                                    topRight: Radius
+                                                                        .circular(15
+                                                                            .r),
+                                                                    topLeft: Radius
+                                                                        .circular(
+                                                                            15.r))),
+                                                            child: Padding(
+                                                              padding: EdgeInsets
+                                                                  .symmetric(
+                                                                      horizontal:
+                                                                          15.w),
+                                                              child: Column(
+                                                                  mainAxisSize:
+                                                                      MainAxisSize
+                                                                          .min,
+                                                                  mainAxisAlignment:
+                                                                      MainAxisAlignment
+                                                                          .start,
+                                                                  crossAxisAlignment:
+                                                                      CrossAxisAlignment
+                                                                          .center,
+                                                                  children: [
+                                                                    SizedBox(
+                                                                        height:
+                                                                            10.h),
+                                                                    CustomText(
+                                                                        text: "checkout"
+                                                                            .tr,
+                                                                        color: ColorManager
+                                                                            .black,
+                                                                        fontSize: 18
+                                                                            .sp,
+                                                                        fontWeight:
+                                                                            FontWeight.bold),
+                                                                    SizedBox(
+                                                                        height:
+                                                                            10.h),
+                                                                    Row(
+                                                                        mainAxisAlignment:
+                                                                            MainAxisAlignment.spaceBetween,
+                                                                        children: [
+                                                                          CustomText(
+                                                                            text:
+                                                                                "order_val".tr,
+                                                                            color:
+                                                                                ColorManager.borderColor,
+                                                                            fontSize:
+                                                                                15.sp,
+                                                                            fontWeight:
+                                                                                FontWeight.bold,
+                                                                          ),
+                                                                          CustomText(
+                                                                              text: "QR ${cubit.total}",
+                                                                              color: ColorManager.black,
+                                                                              fontSize: 16.sp,
+                                                                              fontWeight: FontWeight.w500)
+                                                                        ]),
+                                                                    SizedBox(
+                                                                        height:
+                                                                            5.h),
+                                                                    Row(
+                                                                        mainAxisAlignment:
+                                                                            MainAxisAlignment.spaceBetween,
+                                                                        children: [
+                                                                          CustomText(
+                                                                              text: "delivery_char".tr,
+                                                                              color: ColorManager.borderColor,
+                                                                              fontSize: 15.sp,
+                                                                              fontWeight: FontWeight.bold),
+                                                                          CustomText(
+                                                                              text: "QR 10",
+                                                                              color: ColorManager.black,
+                                                                              fontSize: 16.sp,
+                                                                              fontWeight: FontWeight.w500)
+                                                                        ]),
+                                                                    SizedBox(
+                                                                        height:
+                                                                            8.h),
+                                                                    Row(
+                                                                        mainAxisAlignment:
+                                                                            MainAxisAlignment.spaceBetween,
+                                                                        children: [
+                                                                          CustomText(
+                                                                              text: "total".tr,
+                                                                              color: ColorManager.mainColor,
+                                                                              fontSize: 20.sp,
+                                                                              fontWeight: FontWeight.bold),
+                                                                          CustomText(
+                                                                              text: "QR ${cubit.total + 10}",
+                                                                              color: ColorManager.mainColor,
+                                                                              fontSize: 20.sp,
+                                                                              fontWeight: FontWeight.bold)
+                                                                        ]),
+                                                                    SizedBox(
+                                                                        height:
+                                                                            10.h),
+                                                                    Row(
+                                                                      children: [
+                                                                        Expanded(
+                                                                          child: CustomElevated(
+                                                                              text: "close".tr,
+                                                                              press: () {
+                                                                                Navigator.pop(context);
+                                                                              },
+                                                                              btnColor: ColorManager.mainColor,
+                                                                              textColor: ColorManager.white,
+                                                                              fontSize: 16.sp,
+                                                                              borderRadius: 8.r,
+                                                                              paddingVertical: 5.w),
+                                                                        ),
+                                                                        SizedBox(
+                                                                          width:
+                                                                              10.h,
+                                                                        ),
+                                                                        Expanded(
+                                                                            child: CustomElevated(
+                                                                                text: "complete_order".tr,
+                                                                                press: () {
+                                                                                  if (cubit.total < 129) {
+                                                                                    Fluttertoast.showToast(msg: "cart_minimum".tr);
+                                                                                  } else {
+                                                                                    Navigator.push(
+                                                                                      context,
+                                                                                      MaterialPageRoute(
+                                                                                        builder: (context) => ChooseAddressType(),
+                                                                                      ),
+                                                                                    );
+                                                                                  }
+                                                                                },
+                                                                                btnColor: ColorManager.mainColor,
+                                                                                fontSize: 16.sp,
+                                                                                borderRadius: 8.r,
+                                                                                paddingVertical: 5.w)),
+                                                                      ],
+                                                                    ),
+                                                                    SizedBox(
+                                                                        height:
+                                                                            5.h)
+                                                                  ]),
+                                                            ),
+                                                          );
+                                                        });
+                                                  },
+                                                  btnColor:
+                                                      ColorManager.mainColor,
+                                                  fontSize: 16.sp,
+                                                  borderRadius: 8.r,
+                                                  paddingVertical: 5.w)),
+                                        ],
+                                      ),
+                                      SizedBox(height: 5.h),
+                                    ])))
+                              ]),
+                          body: SizedBox(
+                              width: 1.sw,
+                              child: ListView(children: [
+                                Container(
+                                    margin: EdgeInsets.symmetric(
+                                        horizontal: 15.h, vertical: 8.h),
+                                    padding: EdgeInsets.all(8.h),
+                                    decoration: containerDecoration(
+                                      borderColor: ColorManager.mainColor,
+                                    ),
+                                    child: Column(children: [
+                                      Row(
+                                        children: [
+                                          SvgIcon(
+                                            height: 22.h,
+                                            icon: "assets/icons/location.svg",
+                                            color: ColorManager.black,
+                                          ),
+                                          SizedBox(
+                                            width: 10.w,
+                                          ),
+                                          CustomText(
+                                            text: "delivery_address".tr,
+                                            color: ColorManager.black,
+                                            fontSize: 15.sp,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ],
+                                      ),
+                                      SizedBox(
+                                        height: 10.h,
+                                      ),
+                                      ListView.separated(
+                                          physics:
+                                              NeverScrollableScrollPhysics(),
+                                          shrinkWrap: true,
+                                          itemCount: cubit.baskets.length,
+                                          separatorBuilder: (context, index) {
+                                            return Padding(
+                                              padding: EdgeInsets.only(
+                                                right: 5.w,
+                                                left: 5.w,
+                                                bottom: 8.h,
+                                                top: 3.h,
+                                              ),
+                                              child: Divider(
+                                                  color: ColorManager.mainColor,
+                                                  thickness: 0.5),
+                                            );
+                                          },
+                                          itemBuilder: (context, index) {
+                                            final baskets =
+                                                cubit.baskets[index];
+                                            return BasketItem(
+                                                basketID: "${baskets.basketId}",
+                                                title: "${baskets.productName}",
+                                                subTitle:
+                                                    "${baskets.productDescription}",
+                                                enTitle:
+                                                    "${baskets.productNameEN}",
+                                                enSubTitle:
+                                                    "${baskets.productDescriptionEN}",
+                                                price:
+                                                    "${baskets.productPrice}",
+                                                image:
+                                                    "${UrlsStrings.baseImageUrl}${baskets.productImage}",
+                                                quantity:
+                                                    "${baskets.basketQuantity}",
+                                                yesPressDelete: () {
+                                                  removeCubit.removeProduct(
+                                                      basketID:
+                                                          "${baskets.basketId}");
+                                                  Navigator.pop(context);
+                                                  WidgetsBinding.instance
+                                                      .addPostFrameCallback(
+                                                          (_) {
+                                                    customWillPopScope(context);
+                                                  });
+                                                  Future.delayed(
+                                                    const Duration(seconds: 1),
+                                                    () {
+                                                      Navigator.pop(context);
+                                                      cubit.getBaskets();
+                                                    },
+                                                  );
+                                                });
+                                          })
+                                    ])),
+                                SizedBox(height: 200.h)
+                              ])));
                     },
                   ),
                 )
               : Scaffold(
                   appBar: AppBar(
-                    backgroundColor: ColorManager.mainColor,
-                    elevation: 0.0,
-                    centerTitle: false,
-                    title: CustomText(
-                      text: "complete_order".tr,
-                      color: ColorManager.white,
-                      fontSize: 22.sp,
-                      fontWeight: FontWeight.bold,
-                    ),
-                    actions: [
-                      InkWell(
-                        onTap: () {},
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 10.w),
-                          child: SvgIcon(
-                            height: 20.h,
-                            icon: AssetsStrings.deleteIcon,
-                            color: ColorManager.white,
-                          ),
-                        ),
+                      backgroundColor: ColorManager.mainColor,
+                      elevation: 0.0,
+                      centerTitle: false,
+                      title: CustomText(
+                        text: "complete_order".tr,
+                        color: ColorManager.white,
+                        fontSize: 22.sp,
+                        fontWeight: FontWeight.bold,
                       ),
-                    ],
-                  ),
+                      actions: [
+                        InkWell(
+                            onTap: () {},
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 10.w),
+                              child: SvgIcon(
+                                height: 20.h,
+                                icon: AssetsStrings.deleteIcon,
+                                color: ColorManager.white,
+                              ),
+                            ))
+                      ]),
                   body: Center(
-                    child: CustomText(
-                      text: "empty_cart".tr,
-                      color: ColorManager.mainColor,
-                      fontSize: 22.sp,
-                      fontWeight: FontWeight.normal,
-                    ),
-                  ),
-                );
+                      child: CustomText(
+                          text: "empty_cart".tr,
+                          color: ColorManager.mainColor,
+                          fontSize: 22.sp,
+                          fontWeight: FontWeight.normal)));
         },
       ),
     );

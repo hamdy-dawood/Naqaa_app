@@ -118,7 +118,6 @@ class ProductItem extends StatelessWidget {
                       } else if (state is AddProductBasketSuccessState) {
                         Navigator.pop(context);
                         Navigator.pop(context);
-                        navBarCubit.navigateToNavBarView(3);
                         Fluttertoast.showToast(msg: "add_successfully".tr);
                         addProductCubit.quantityController.text = "1";
                       }

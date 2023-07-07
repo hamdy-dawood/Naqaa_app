@@ -95,38 +95,44 @@ class LoginView extends StatelessWidget {
                           color: ColorManager.borderColor,
                         ),
                       ),
-                      child: InternationalPhoneNumberInput(
-                        initialValue: PhoneNumber(isoCode: "QA"),
-                        onInputChanged: (PhoneNumber number) {
-                          cubit.onInputChanged(number);
-                        },
-                        validator: (value) {
-                          if (value!.isEmpty) {
-                            return "phone_validator".tr;
-                          } else if (value.length > 8) {
-                            return "text_valid".tr;
-                          }
-                          return null;
-                        },
-                        selectorConfig: const SelectorConfig(
-                          selectorType: PhoneInputSelectorType.DIALOG,
-                        ),
-                        ignoreBlank: false,
-                        autoValidateMode: AutovalidateMode.onUserInteraction,
-                        selectorTextStyle: TextStyle(color: ColorManager.black),
-                        formatInput: false,
-                        keyboardType: const TextInputType.numberWithOptions(
-                          signed: true,
-                          decimal: true,
-                        ),
-                        inputDecoration: InputDecoration(
-                          contentPadding:
-                              EdgeInsets.only(right: 10.w, bottom: 8.w),
-                          border: InputBorder.none,
-                          hintText: "mobile_number".tr,
-                          hintStyle: GoogleFonts.redHatDisplay(
-                            color: ColorManager.borderColor,
-                            fontSize: 16.sp,
+                      child: Localizations.override(
+                        context: context,
+                        locale: Locale("en"),
+                        child: InternationalPhoneNumberInput(
+                          maxLength: 8,
+                          initialValue: PhoneNumber(isoCode: "QA"),
+                          onInputChanged: (PhoneNumber number) {
+                            cubit.onInputChanged(number);
+                          },
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return "phone_validator".tr;
+                            } else if (value.length > 8) {
+                              return "text_valid".tr;
+                            }
+                            return null;
+                          },
+                          selectorConfig: const SelectorConfig(
+                            selectorType: PhoneInputSelectorType.DIALOG,
+                          ),
+                          ignoreBlank: false,
+                          autoValidateMode: AutovalidateMode.onUserInteraction,
+                          selectorTextStyle:
+                              TextStyle(color: ColorManager.black),
+                          formatInput: false,
+                          keyboardType: const TextInputType.numberWithOptions(
+                            signed: true,
+                            decimal: true,
+                          ),
+                          inputDecoration: InputDecoration(
+                            contentPadding:
+                                EdgeInsets.only(right: 10.w, bottom: 8.w),
+                            border: InputBorder.none,
+                            hintText: "mobile_number".tr,
+                            hintStyle: GoogleFonts.redHatDisplay(
+                              color: ColorManager.borderColor,
+                              fontSize: 16.sp,
+                            ),
                           ),
                         ),
                       ),

@@ -151,13 +151,17 @@ class ProfileView extends StatelessWidget {
                               SizedBox(
                                 height: 5.h,
                               ),
-                              CustomTextFormField(
-                                readOnly: true,
-                                controller: TextEditingController(),
-                                hint: "${cubit.profileData[0].userPhone}",
-                                validator: (value) {
-                                  return null;
-                                },
+                              Localizations.override(
+                                context: context,
+                                locale: Locale('en'),
+                                child: CustomTextFormField(
+                                  readOnly: true,
+                                  controller: TextEditingController(),
+                                  hint: "${cubit.profileData[0].userPhone}",
+                                  validator: (value) {
+                                    return null;
+                                  },
+                                ),
                               ),
                               SizedBox(
                                 height: 30.h,
@@ -278,11 +282,15 @@ class ProfileView extends StatelessWidget {
                                   SizedBox(
                                     width: 10.w,
                                   ),
-                                  CustomText(
-                                    text: "+974 66877039",
-                                    color: ColorManager.black,
-                                    fontSize: 18.sp,
-                                    fontWeight: FontWeight.normal,
+                                  Localizations.override(
+                                    context: context,
+                                    locale: Locale('en'),
+                                    child: CustomText(
+                                      text: "+974 66877039",
+                                      color: ColorManager.black,
+                                      fontSize: 18.sp,
+                                      fontWeight: FontWeight.normal,
+                                    ),
                                   ),
                                 ],
                               ),

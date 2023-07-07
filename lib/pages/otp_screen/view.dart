@@ -76,40 +76,48 @@ class OtpView extends StatelessWidget {
                     maxLines: 10,
                     textAlign: TextAlign.center,
                   ),
-                  CustomText(
-                    text: phone,
-                    color: ColorManager.mainColor,
-                    fontSize: 16.sp,
-                    fontWeight: FontWeight.normal,
+                  Localizations.override(
+                    context: context,
+                    locale: Locale('en'),
+                    child: CustomText(
+                      text: phone,
+                      color: ColorManager.mainColor,
+                      fontSize: 16.sp,
+                      fontWeight: FontWeight.normal,
+                    ),
                   ),
                   Padding(
                     padding: EdgeInsets.symmetric(
                       vertical: 0.05.sh,
                     ),
-                    child: Pinput(
-                      length: 4,
-                      controller: cubit.otpController,
-                      defaultPinTheme: PinTheme(
-                        height: 60.h,
-                        width: 55.h,
-                        textStyle: GoogleFonts.almarai(
-                          textStyle: TextStyle(
-                            color: ColorManager.mainColor,
-                            fontSize: 22.sp,
-                            fontWeight: FontWeight.bold,
+                    child: Localizations.override(
+                      context: context,
+                      locale: Locale('en'),
+                      child: Pinput(
+                        length: 4,
+                        controller: cubit.otpController,
+                        defaultPinTheme: PinTheme(
+                          height: 60.h,
+                          width: 55.h,
+                          textStyle: GoogleFonts.almarai(
+                            textStyle: TextStyle(
+                              color: ColorManager.mainColor,
+                              fontSize: 22.sp,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8.r),
+                            border: Border.all(color: ColorManager.mainColor),
                           ),
                         ),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8.r),
-                          border: Border.all(color: ColorManager.mainColor),
-                        ),
+                        validator: (otp) {
+                          if ((otp!.length != 4)) {
+                            return "otp_validator".tr;
+                          }
+                          return null;
+                        },
                       ),
-                      validator: (otp) {
-                        if ((otp!.length != 4)) {
-                          return "otp_validator".tr;
-                        }
-                        return null;
-                      },
                     ),
                   ),
                   SizedBox(

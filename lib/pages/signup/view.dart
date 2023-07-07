@@ -3,8 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:intl_phone_number_input/intl_phone_number_input.dart';
+// import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:naqaa/components/custom_elevated.dart';
 import 'package:naqaa/components/custom_form_field.dart';
 import 'package:naqaa/components/will_pop_scope.dart';
@@ -90,38 +89,38 @@ class SignUpView extends StatelessWidget {
                             color: ColorManager.borderColor,
                           ),
                         ),
-                        child: InternationalPhoneNumberInput(
-                          initialValue: PhoneNumber(isoCode: "QA"),
-                          onInputChanged: cubit.onInputChanged,
-                          validator: (value) {
-                            if (value!.isEmpty) {
-                              return "من فضلك ادخل رقم الهاتف !";
-                            }
-                            return null;
-                          },
-                          selectorConfig: const SelectorConfig(
-                            selectorType: PhoneInputSelectorType.DIALOG,
-                          ),
-                          ignoreBlank: false,
-                          autoValidateMode: AutovalidateMode.onUserInteraction,
-                          selectorTextStyle:
-                              TextStyle(color: ColorManager.black),
-                          formatInput: false,
-                          keyboardType: const TextInputType.numberWithOptions(
-                            signed: true,
-                            decimal: true,
-                          ),
-                          inputDecoration: InputDecoration(
-                            contentPadding:
-                                EdgeInsets.only(right: 10.w, bottom: 8.w),
-                            border: InputBorder.none,
-                            hintText: "ادخل رقم هاتفك",
-                            hintStyle: GoogleFonts.redHatDisplay(
-                              color: ColorManager.borderColor,
-                              fontSize: 16.sp,
-                            ),
-                          ),
-                        ),
+                        // child: InternationalPhoneNumberInput(
+                        //   initialValue: PhoneNumber(isoCode: "QA"),
+                        //   onInputChanged: cubit.onInputChanged,
+                        //   validator: (value) {
+                        //     if (value!.isEmpty) {
+                        //       return "من فضلك ادخل رقم الهاتف !";
+                        //     }
+                        //     return null;
+                        //   },
+                        //   selectorConfig: const SelectorConfig(
+                        //     selectorType: PhoneInputSelectorType.DIALOG,
+                        //   ),
+                        //   ignoreBlank: false,
+                        //   autoValidateMode: AutovalidateMode.onUserInteraction,
+                        //   selectorTextStyle:
+                        //       TextStyle(color: ColorManager.black),
+                        //   formatInput: false,
+                        //   keyboardType: const TextInputType.numberWithOptions(
+                        //     signed: true,
+                        //     decimal: true,
+                        //   ),
+                        //   inputDecoration: InputDecoration(
+                        //     contentPadding:
+                        //         EdgeInsets.only(right: 10.w, bottom: 8.w),
+                        //     border: InputBorder.none,
+                        //     hintText: "ادخل رقم هاتفك",
+                        //     hintStyle: GoogleFonts.redHatDisplay(
+                        //       color: ColorManager.borderColor,
+                        //       fontSize: 16.sp,
+                        //     ),
+                        //   ),
+                        // ),
                       ),
                       SizedBox(
                         height: 0.02.sh,

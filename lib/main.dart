@@ -23,6 +23,7 @@ import 'pages/remove_product_from_basket/cubit.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await CacheHelper.init();
+  // CacheHelper.clear();
   await initApp();
 }
 

@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:intl_phone_number_input/intl_phone_number_input.dart';
+// import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:naqaa/constants/strings.dart';
 import 'package:naqaa/pages/signup/controllers.dart';
 
@@ -55,10 +55,10 @@ class SignUpCubit extends Cubit<SignUpStates> {
     }
   }
 
-  onInputChanged(PhoneNumber number) {
-    phoneNumber = number.phoneNumber!;
-    emit(ChangeNumberState());
-  }
+  // onInputChanged(PhoneNumber number) {
+  //   phoneNumber = number.phoneNumber!;
+  //   emit(ChangeNumberState());
+  // }
 
   passwordVisibility() {
     securePass = !securePass;

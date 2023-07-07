@@ -90,6 +90,8 @@ class Languages extends Translations {
           "delivery_days": "delivery within two days",
           "mobile_fields": "The mobile fields must be 8 characters",
           "text_valid": "Maximum 8 characters allowed",
+          "checkout": "Checkout",
+          "close": "Close",
         },
         'ar': {
           "language": "اللغة",
@@ -174,6 +176,8 @@ class Languages extends Translations {
           "delivery_days": "توصيل خلال يومين",
           "mobile_fields": "يجب أن تتكون حقول الجوال من 8 أحرف",
           "text_valid": "الحد الأقصى المسموح به 8 أحرف",
+          "checkout": "الدفع",
+          "close": "إغلاق",
         },
       };
 
